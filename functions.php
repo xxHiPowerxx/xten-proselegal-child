@@ -32,7 +32,7 @@ function enqueue_child_styles() {
 		// Enqueue Scripts
 
 }
-add_action( 'wp_enqueue_scripts', 'enqueue_child_styles' );
+add_action( 'wp_enqueue_scripts', 'enqueue_child_styles', 11 );
 	
 // IF ACF-JSON is a requirement create the acf-json folder and uncoment the following
 // // Load fields.
