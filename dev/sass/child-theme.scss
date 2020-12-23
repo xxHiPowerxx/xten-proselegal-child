@@ -1,0 +1,106 @@
+@import 'variables';
+
+/*   Common   */
+
+.btn {
+  font-size: 1.8rem;
+	font-weight: 600;
+	&.btn-theme-style {
+		background-color: $secondary;
+		border-radius: 0.435em;
+		color: $primary;
+		padding: .25em .5em;
+	}
+}
+
+/*   /Common   */
+
+/*   Header   */
+
+.site-branding {
+  display: flex;
+	align-items: center;
+	.anchor-site-phone-number {
+		font-size: 3.5rem;
+		margin-left: 1.5rem;
+		border-left: .2rem solid rgb(135, 199, 245);
+		padding-left: 1.5rem;
+	}
+	.site-phone-number {
+		display: inline-block;
+		line-height: 1;
+		margin-top: -0.25em;
+	}
+}
+.main-navigation {
+	padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  margin-left: .75rem !important;
+	> ul {
+		li {
+			margin-left: 0;
+			&.menu-type-flyout,
+			&.menu-type-mega-menu {
+				a {
+					padding-left: .375em;
+				}
+			}
+		}
+		li.menu-type-flyout a,
+		li.menu-type-mega-menu a,
+		.menu-item-has-children,
+		.menu-type-mega-menu,
+		.page_item_has_children {
+			padding-right: .375em;
+		}
+		> li {
+			&,
+			&.current-menu-item,
+			&.current_page_item {
+				a {
+					&:before {
+						height: .2rem;
+						background-image: none;
+						background-color: $secondary;
+					}
+				}
+			}
+			a {
+				&:before {
+					background-color: $primary;
+				}
+			}
+		}
+	}
+}
+.header-search-toggle {
+  font-size: 2rem;
+  color: $primary;
+  padding: 0.375em;
+  margin-right: -.375em;
+}
+
+/*   /Header   */
+
+/*   Footer   */
+.site-footer {
+  background-color: $white;
+	background-image: none;
+	.site-info {
+		line-height: 1.25;
+	}
+}
+.site-info-footer-wrapper {
+  background-color: $primary;
+}
+.site-info {
+	max-width: 90rem;
+	a {
+		&,
+		&:hover {
+			color: $white;
+			text-decoration: underline;
+		}
+	}
+}
+/*   /Footer   */
