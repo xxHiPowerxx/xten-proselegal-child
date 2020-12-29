@@ -2,6 +2,63 @@
 
 /*   Common   */
 
+html {
+	font-size: 2vmin;
+	@media (min-width: 400px) and (min-height: 400px) {
+		font-size: 8px;
+	}
+	@media (min-width: 576px) {
+		font-size: 10px;
+	}
+}
+body {
+	font-size: 100%;
+	color: $dark;
+	@media (min-width: 340px) {
+		min-width: 340px;
+		max-width: 100%;
+		overflow-x: hidden;
+	} 
+}
+body,
+.font-fam-primary,
+h2,
+.xten-h2 {
+	font-family: $font-fam-primary;
+}
+h1,
+.xten-h1,
+h2,
+.xten-h2,
+h3,
+.xten-h3,
+h4,
+.xten-h4,
+h5,
+.xten-h5,
+h6,
+.xten-h6,
+.font-fam-secondary {
+	font-family: $font-fam-secondary;
+}
+h1,
+.xten-h1,
+h2,
+.xten-h2,
+h3,
+.xten-h3,
+h4,
+.xten-h4,
+h5,
+.xten-h5,
+h6,
+.xten-h6 {
+	&.font-fam-primary {
+		font-family: $font-fam-primary;
+	}
+}
+
+
 .btn {
   font-size: 1.8rem;
 	font-weight: 600;
@@ -10,6 +67,12 @@
 		border-radius: 0.435em;
 		color: $primary;
 		padding: .25em .5em;
+	}
+}
+
+.fa-phone {
+	&.phone-icon-fix {
+		transform: translateZ(0) rotate(137.5deg);
 	}
 }
 
@@ -86,8 +149,25 @@
 .site-footer {
   background-color: $white;
 	background-image: none;
-	.site-info {
-		line-height: 1.25;
+	.footer-wrapper {
+		flex: 1 0 auto;
+		margin-left: 3rem;
+	}
+	.footer-content-wrapper {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+	.site-logo-wrapper {
+		width: auto;
+		min-width: initial;
+		flex: 0 1 auto;
+	}
+	.component-offices-list {
+		@include flex-margin( 1.5rem );
+	}
+	.component-office {
+		width: 28.9rem;
 	}
 }
 .site-info-footer-wrapper {

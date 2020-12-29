@@ -3,11 +3,17 @@
 
 All functions of this file will be loaded before of parent theme functions.
 Learn more at https://codex.wordpress.org/Child_Themes.
-
-Note: this function loads the parent stylesheet before, then child theme stylesheet
-(leave it in place unless you know what you are doing.)
 */
 
+function priority_enqueues() {
+	$google_font_css_path = 'https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap';
+	wp_enqueue_style( 'google-font-css', $google_font_css_path, array(), '', 'all' );
+}
+add_action( 'wp_enqueue_scripts', 'priority_enqueues', 1 );
+
+
+// Note: this function loads the parent stylesheet before, then child theme stylesheet
+// (leave it in place unless you know what you are doing.)
 function enqueue_child_styles() {
 	$parent_style = 'parent-style';
 		wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css', array( 'xten-vendor-bootstrap-css' ) );

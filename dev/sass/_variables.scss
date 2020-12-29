@@ -14,16 +14,24 @@ $primary: rgb(52, 80, 115);
 // $primary-darker: rgb(54, 71, 102);
 $secondary: rgb(135, 199, 245);
 // $secondary-dark: rgb(131, 140, 172);
-$light-red: rgb(255, 145, 142);
-$dark-red: rgb(170, 21, 17);
-$tertiary: rgb(242, 223, 104);
-$quartiary: rgb(51, 51, 51);
+// $light-red: rgb(255, 145, 142);
+// $dark-red: rgb(170, 21, 17);
+// $tertiary: rgb(242, 223, 104);
+// $quartiary: rgb(51, 51, 51);
+$black: rgb(0, 0, 0);
 $white: rgb(255, 255, 255);
-$off-white: rgb(245, 245, 245);
+$off-white: rgb(241, 243, 245);
 $gray: rgb(153, 153, 153);
 $dark: rgb(51, 51, 51);
 $darker: rgb(25, 25, 25);
 /*   /Colors   */
+
+/*   Fonts   */
+$font-fam-primary: 'Roboto', helvetica, arial, sans-serif;
+$font-fam-secondary: 'PT Serif', 'Times New Roman', serif;
+/*   /Fonts   */
+
+$active: '&:hover,&:focus,&:focus-within,&.active';
 
 /*   Smooth Transition    */
 /*-----TRANSITIONS------*/
@@ -46,6 +54,26 @@ $smooth-transition: all 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
 	@include smoothest-transition;
 }
 
-$active: "&:hover,&:focus,&.active";
-
-$border-radius-theme-style: .25em .25em 0 .25em;
+$border-radius-theme-style: 10%;
+$card-style: 0 .25rem .25rem rgba($black, 0.16);
+$border-card-style: 1px solid rgba($dark, .1);
+@mixin card-style {
+	box-shadow: $card-style;
+}
+.card-style {
+	@include card-style;
+}
+@mixin theme-card-style {
+	border-radius: $border-radius-theme-style;
+	border: $border-card-style;
+	@include card-style;
+}
+.theme-card-style {
+	@include theme-card-style;
+}
+@mixin flex-margin( $margin ) {
+	margin: -$margin;
+	> * {
+		margin: $margin;
+	}
+}
