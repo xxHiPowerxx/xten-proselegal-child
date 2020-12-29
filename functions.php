@@ -52,3 +52,51 @@ add_action( 'wp_enqueue_scripts', 'enqueue_child_styles', 11 );
 //     return $paths;
 
 // }
+
+/**
+ * Get Option from Site Settings Page and save ACF to Child if Set.
+ * Check to see if xten Save fields file exsists and adds save point if it does.
+ * 
+ */
+function save_acf_fields_to_child_theme() {
+	$save_acf_fields_to_child_theme = get_field('save_acf_fields_to_child_theme', 'options');
+	// If not set, default to true.
+	$save_acf_fields_to_child_theme = $save_acf_fields_to_child_theme !== null ? $save_acf_fields_to_child_theme : true;
+	$select_where_to_save_acf_field_groups = get_field('select_where_to_save_acf_field_groups', 'options');
+	if (
+		$select_where_to_save_acf_field_groups === 'child' ||
+		(
+			$select_where_to_save_acf_field_groups === null &&
+			$save_acf_fields_to_child_theme
+		)
+	) :
+		$save_acf_fields = get_stylesheet_directory() . '/acf/save-acf-fields.php';
+		if ( file_exists( $save_acf_fields ) ) {
+			require $save_acf_fields;
+		}
+	endif;
+}
+add_action( 'acf/init', 'save_acf_fields_to_child_theme' );
+
+/* for Contact-Form-7 */
+add_filter('wpcf7_autop_or_not', '__return_false');
+
+/**
+ * Custom Post Types.
+ */
+require get_stylesheet_directory() . '/inc/custom-post-types.php';
+
+/**
+ * Utility Functions
+ */
+require get_stylesheet_directory() . '/inc/utility-functions.php';
+
+/**
+ * Shortcodes
+ */
+require get_stylesheet_directory() . '/inc/shortcodes.php';
+
+/**
+ * Widgets.
+ */
+require get_stylesheet_directory() . '/inc/widgets/offices-widget.php';
