@@ -150,18 +150,26 @@ h6,
   background-color: $white;
 	background-image: none;
 	.footer-wrapper {
-		flex: 1 0 auto;
-		margin-left: 3rem;
+		flex: 0 1 auto;
+		display: flex;
+		flex-wrap: wrap;
 	}
 	.footer-content-wrapper {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
+		.component-social-media-icon {
+			color: $primary;
+			#{$active} {
+					color: $secondary;
+			}
+		}
 	}
 	.site-logo-wrapper {
 		width: auto;
 		min-width: initial;
 		flex: 0 1 auto;
+		margin-right: 3rem;
 	}
 	.component-offices-list {
 		@include flex-margin( 1.5rem );
@@ -169,6 +177,13 @@ h6,
 	.component-office {
 		width: 28.9rem;
 	}
+}
+.footer-wrapper {
+	@include flex-margin( 1.5rem );
+	flex: 1 0 auto;
+}
+.footer-2-wrapper {
+	flex: 1 0 auto;
 }
 .site-info-footer-wrapper {
   background-color: $primary;
@@ -184,3 +199,9 @@ h6,
 	}
 }
 /*   /Footer   */
+
+.accreditations-list {
+  display: flex;
+	justify-content: space-between;
+	@include flex-margin( .75rem );
+}

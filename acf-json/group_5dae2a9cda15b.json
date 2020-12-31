@@ -67,7 +67,7 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_5febb38220650",
+                    "key": "field_5febb671f78ff",
                     "label": "Google Business",
                     "name": "google_business",
                     "type": "url",
@@ -133,6 +133,100 @@
             ]
         },
         {
+            "key": "field_5febb9dda9414",
+            "label": "Social Media Accounts",
+            "name": "social_media_accounts_repeater",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "field_5febba1da941b",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "Add Account",
+            "sub_fields": [
+                {
+                    "key": "field_5febba1da941b",
+                    "label": "Account Name",
+                    "name": "account_name",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5febba5ca941c",
+                    "label": "Account URL",
+                    "name": "account_url",
+                    "type": "url",
+                    "instructions": "Link to Account\/Profile",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_5febba8aa941d",
+                    "label": "Icon",
+                    "name": "icon",
+                    "type": "text",
+                    "instructions": "Select from any <b>Font Awesome  Brand Icon<\/b> <a href=\"https:\/\/fontawesome.com\/icons?d=gallery&s=brands\" target=\"_blank\">Listed Here<\/a>.<br\/>\r\nexample: Facebook Icon = <code>facebook-f<\/code>",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "facebook-f",
+                    "prepend": "fa-",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5fecbef91c994",
+                    "label": "Title Attribute",
+                    "name": "title_attribute",
+                    "type": "text",
+                    "instructions": "Place the text you would like to display when you mouse over this icon.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                }
+            ]
+        },
+        {
             "key": "field_5e1f67b879cc0",
             "label": "<h1>Site Info<\/h1>",
             "name": "",
@@ -186,5 +280,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1609282531
+    "modified": 1609350954
 }

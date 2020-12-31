@@ -33,23 +33,14 @@ class XTen_Offices extends WP_Widget {
 		 */
 		public function widget($args, $instance) {
 
-			$facebook  = $instance['facebook'];
 			// Field Id of offices.
 			$field_id = 'field_5fea27a18a30b';
 			$post_ids = $instance['acf'][$field_id];
 			$html     = null;
-			// var_dump(	get_field_object('offices'), ' foobar!');
-			// var_dump(	$post_ids, ' foobar 1');
 
 			ob_start();
-			// foreach ( $post_ids as $post_id ) :
-				// xten_render_component( 'offices', 'dookie' );
-			// endforeach;
 			$html = ob_get_clean();
 			
-
-			// social profile link
-			$facebook_profile  = '<a class="facebook" target="_blank" aria-label="Visit Our Facebook Page" href="' . $facebook . '"><i aria-hidden="true" class="fab fa-facebook-square" title="Visit Our Facebook Page"></i><span class="sr-only">Visit Our Facebook Page</span></a>';
 
 			echo $args['before_widget'];
 

@@ -4,10 +4,9 @@
  * @package xten
  */
 function component_offices_list( $post_ids = null ) {
-	// var_dump($post_ids, 'foobar 3');
-	// Enqueue Stylesheet.
-/*	
 	$handle             = 'offices-list';
+	// Enqueue Stylesheet.
+/*
 	$component_handle   = 'component-' . $handle;
 	$component_css_path = '/assets/css/' . $component_handle . '.css';
 	wp_register_style(
@@ -36,9 +35,10 @@ function component_offices_list( $post_ids = null ) {
 	endif;
 
 	if ( $html !== '' ) :
-		$start_tag = '<div class="component-offices-list">';
-		$end_tag   = '</div>';
-		$html = $start_tag . $html . $end_tag;
+		$component_id = xten_register_component_id( $handle );
+		$start_tag    = '<div id="' . $component_id . '" class="component-offices-list">';
+		$end_tag      = '</div>';
+		$html         = $start_tag . $html . $end_tag;
 		return $html;
 	endif;
 }

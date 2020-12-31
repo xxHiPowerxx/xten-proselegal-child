@@ -1,0 +1,25 @@
+@import 'variables';
+
+.component-social-media-icons-list {
+	display: flex;
+	@include flex-margin( .75rem );
+}
+.component-social-media-icon {
+	font-size: 3.9rem;
+	color: $primary;
+	background-color: rgba($white, .8);
+	@include smoothest-transition;
+  min-width: 6.2rem;
+  text-align: center;
+	padding: 0.2692em;
+	backdrop-filter: blur(5px) brightness(1.5);
+	&,
+	#{$active} {
+		text-decoration: none;
+	}
+	#{$active} {
+		color: $secondary;
+		background-color: rgba($primary, .8);
+	}
+	@include theme-card-style;
+}

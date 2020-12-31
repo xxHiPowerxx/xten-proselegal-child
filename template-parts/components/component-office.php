@@ -20,14 +20,14 @@ function component_office( $post_id = null ) {
 	wp_enqueue_style( $component_handle . '-css' );
 	$styles = '';
 
-	$component_id = $post_id;
-	if ( $post_id === null ) :
-		global $post;
-		if ( $post ) :
-			$component_id = $post->ID;
-		endif;
-	endif;
-	$component_id        = $handle . '-' . $component_id;
+	// $component_id = $post_id;
+	// if ( $post_id === null ) :
+	// 	global $post;
+	// 	if ( $post ) :
+	// 		$component_id = $post->ID;
+	// 	endif;
+	// endif;
+	$component_id        = xten_register_component_id( $handle );
 	$office_title        = get_the_title( $post_id );
 	$office_address      = get_field( 'office_address', $post_id );
 	$address_line_1      = esc_attr( $office_address['address_line_1'] );
@@ -42,15 +42,15 @@ function component_office( $post_id = null ) {
 		null;
 	$office_open         = $office_phone_number !== '';
 	$has_address         = false;
-		foreach ( $office_address as $address_item ) :
-			if ( $address_item !== '' ) :
-				if ( $office_open === false ) :
-					$office_open = true;
-				endif; // endif ( $office_open === false ) :
-				$has_address = true;
-			break;
-			endif;
-		endforeach;
+	foreach ( $office_address as $address_item ) :
+		if ( $address_item !== '' ) :
+			if ( $office_open === false ) :
+				$office_open = true;
+			endif; // endif ( $office_open === false ) :
+			$has_address = true;
+		break;
+		endif;
+	endforeach;
 	ob_start();
 	?>
 	<div id="<?php echo $component_id; ?>" class="component-<?php echo $handle; ?>">

@@ -25,7 +25,6 @@ class XTenChildUtilities {
 		 * @return string rendered markup as string.
 		 */
 		function xten_render_component( $handle, $post_id = null ) {
-			// var_dump($handle, $post_id, 'foobar 2');
 			$file_path = get_stylesheet_directory() . '/template-parts/components/';
 			$file_name = 'component-' . $handle . '.php';
 			$file_path = $file_path . $file_name;
@@ -37,6 +36,22 @@ class XTenChildUtilities {
 					return $component_func( $post_id );
 				endif;
 			endif;
+		}
+
+		/**
+		 * Create Component ID
+		 * Function Increments Id based on handle
+		 * @param string $handle name of handle.
+		 * @return int component id.
+		 */
+		function xten_register_component_id( $handle ) {
+			$GLOBALS['component_ids'][$handle] = $GLOBALS['component_ids'][$handle] !== null ?
+				$GLOBALS['component_ids'][$handle] :
+				0;
+				$GLOBALS['component_ids'][$handle] ++;
+				$component_id = $handle . '-' . $GLOBALS['component_ids'][$handle];
+
+			return  $component_id;
 		}
 	}
 }

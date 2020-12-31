@@ -66,79 +66,45 @@
 				</div>
 				<?php
 				if (
-					! empty( $facebook_account ) ||
-					! empty( $twitter_account ) ||
-					! empty( $youtube_account ) ||
-					! empty( $instagram_account ) ||
-					! empty( $linkedin_account )
+					is_active_sidebar( 'footer-1' ) ||
+					is_active_sidebar( 'footer-2' ) ||
+					is_active_sidebar( 'footer-3' ) ||
+					is_active_sidebar( 'footer-4' )
 				) :
-				?>
-					<div class="site-footer-content">
+					?>
+					<div class="footer-wrapper">
 						<?php
-						if (
-							! empty( $facebook_account ) ||
-							! empty( $twitter_account ) ||
-							! empty( $youtube_account ) ||
-							! empty( $instagram_account ) ||
-							! empty( $linkedin_account )
-						) :
-						?>
-							<div class="social-media-wrapper">
-								<?php
-								echo '<div class="social-icons">';
-									echo ( ! empty( $facebook_account ) ) ? $facebook_profile : null;
-									echo ( ! empty( $twitter_account ) ) ? $twitter_profile : null;
-									echo ( ! empty( $youtube_account ) ) ? $youtube_profile : null;
-									echo ( ! empty( $instagram_account ) ) ? $instagram_profile : null;
-									echo ( ! empty( $linkedin_account ) ) ? $linkedin_profile : null;
-								echo '</div>';
-								?>
-							</div>
-						<?php endif; ?>
-					</div>
-
-					<?php
-					if (
-						is_active_sidebar( 'footer-1' ) ||
-						is_active_sidebar( 'footer-2' ) ||
-						is_active_sidebar( 'footer-3' ) ||
-						is_active_sidebar( 'footer-4' )
-					) :
-						?>
-						<div class="footer-wrapper">
-							<?php
-							if ( is_active_sidebar( 'footer-1' ) ) :
-								?>
-								<div class="footer-1-wrapper">
-									<?php dynamic_sidebar( 'footer-1' ); ?>
-								</div>
-								<?php
-							endif;
-							if ( is_active_sidebar( 'footer-2' ) ) :
-								?>
-								<div class="footer-2-wrapper">
-									<?php dynamic_sidebar( 'footer-2' ); ?>
-								</div>
-								<?php
-							endif;
-							if ( is_active_sidebar( 'footer-3' ) ) :
-								?>
-								<div class="footer-3-wrapper">
-									<?php dynamic_sidebar( 'footer-3' ); ?>
-								</div>
-								<?php
-							endif;
-							if ( is_active_sidebar( 'footer-4' ) ) :
-								?>
-								<div class="footer-4-wrapper">
-									<?php dynamic_sidebar( 'footer-4' ); ?>
-								</div>
-								<?php
-							endif;
+						if ( is_active_sidebar( 'footer-1' ) ) :
 							?>
-						</div>
-					<?php endif; ?>
-				<?php endif; ?>
+							<div class="footer-1-wrapper">
+								<?php dynamic_sidebar( 'footer-1' ); ?>
+							</div>
+							<?php
+						endif;
+						if ( is_active_sidebar( 'footer-2' ) ) :
+							?>
+							<div class="footer-2-wrapper">
+								<?php dynamic_sidebar( 'footer-2' ); ?>
+							</div>
+							<?php
+						endif;
+						if ( is_active_sidebar( 'footer-3' ) ) :
+							?>
+							<div class="footer-3-wrapper">
+								<?php dynamic_sidebar( 'footer-3' ); ?>
+							</div>
+							<?php
+						endif;
+						if ( is_active_sidebar( 'footer-4' ) ) :
+							?>
+							<div class="footer-4-wrapper">
+								<?php dynamic_sidebar( 'footer-4' ); ?>
+							</div>
+							<?php
+						endif;
+						?>
+					</div>
+				<?php endif; // endif ( is_active_sidebar( 'footer-1' ) || ) ?>
 			</div>
 		</div>
 		<div class="site-info-footer-wrapper">
