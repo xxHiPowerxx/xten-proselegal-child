@@ -7,6 +7,7 @@
 .component-social-media-icon {
 	font-size: 3.9rem;
 	color: $primary;
+	@include background-blur;
 	background-color: rgba($white, .8);
 	@include smoothest-transition;
   min-width: 6.2rem;

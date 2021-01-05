@@ -57,16 +57,42 @@ h6,
 		font-family: $font-fam-primary;
 	}
 }
-
-
-.btn {
-  font-size: 1.8rem;
-	font-weight: 600;
-	&.btn-theme-style {
-		background-color: $secondary;
-		border-radius: 0.435em;
+h1,
+.xten-h1 {
+	+ h2,
+	+ .xten-h2 {
 		color: $primary;
-		padding: .25em .5em;
+		font-family: $font-fam-primary;
+		@at-root .theme-content & {
+			+ h3,
+			+ .xten-h3 {
+				font-size: 2rem;
+				font-family: $font-fam-primary;
+			}
+		}
+	}
+}
+
+@mixin btn {
+	font-size: 1.8rem;
+	font-weight: 600;
+}
+@mixin btn-theme-style {
+	background-color: $secondary;
+	border-radius: 0.435em;
+	color: $primary;
+	padding: .25em .5em;
+}
+@mixin btn-large {
+	font-size: 3rem;
+}
+.btn {
+  @include btn;
+	&.btn-theme-style {
+		@include btn-theme-style;
+	}
+	&.btn-large {
+		@include btn-large;
 	}
 }
 
@@ -205,3 +231,44 @@ h6,
 	justify-content: space-between;
 	@include flex-margin( .75rem );
 }
+
+/*   Home Page   */
+
+/*   Hero Section   */
+.xten-section-hero {
+	.xten-content {
+		padding: 0;
+	}
+	.xten-content-inner {
+		max-width: 96rem;
+		background-color: rgba($white, 0.8);
+
+		padding: 6rem;
+		@include theme-card-style( $border-radius-theme-style-rem-lg );
+		@include background-blur;
+		> * {
+			margin-bottom: 0;
+			&:not(:first-child) {
+				margin-top: 1.5rem;
+			}
+		}
+	}
+	h1 {
+		line-height: 1;
+	}
+	p {
+		@include prominent-p;
+	}
+	.xten-content-outer {
+		position: relative;
+		.component-social-media-icons-list {
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			margin: -.75rem;
+		}
+	}
+}
+/*   /Hero Section   */
+
+/*   /Home Page   */

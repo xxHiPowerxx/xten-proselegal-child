@@ -2,7 +2,7 @@
 
 
 .component-office {
-	@include theme-card-style;
+	@include theme-card-style( $border-radius-theme-style-rem-sm );
 	color: $dark;
 	display: flex;
 	flex-direction: column;
