@@ -100,6 +100,11 @@ add_filter('wpcf7_autop_or_not', '__return_false');
 require get_stylesheet_directory() . '/inc/custom-post-types.php';
 
 /**
+ * Custom Taxonomies.
+ */
+require get_stylesheet_directory() . '/inc/custom-taxonomies.php';
+
+/**
  * Utility Functions
  */
 require get_stylesheet_directory() . '/inc/utility-functions.php';
@@ -118,3 +123,24 @@ require get_stylesheet_directory() . '/inc/widgets/offices-widget.php';
  * Inline Styles.
  */
 require get_stylesheet_directory() . '/inc/inline-styles.php';
+
+/**
+ * Convert Post Taxonomy Checkboxes to Radio so only one value can be selected.
+ */
+function convert_post_tax_checkboxes_to_radio() {
+	global $post_type;
+	$p_t = 'services';
+	if ($p_t == $post_type) :
+		$tax = 'service-categories';
+		?>
+		<script type="text/javascript">
+			jQuery('#<?php echo $tax; ?>checklist>li>label input, #<?php echo $tax; ?>checklist>li>ul>li>label input').each(function() {
+				this.type = 'radio';
+			});
+			jQuery('#<?php echo $tax; ?>-tabs .hide-if-no-js').remove();
+		</script>
+		<?php
+	endif;
+}
+add_action('admin_footer-post.php', 'convert_post_tax_checkboxes_to_radio');
+add_action('admin_footer-post-new.php', 'convert_post_tax_checkboxes_to_radio');
