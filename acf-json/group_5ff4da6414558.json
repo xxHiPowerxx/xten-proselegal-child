@@ -25,6 +25,117 @@
             "max_height": "",
             "max_size": "",
             "mime_types": ""
+        },
+        {
+            "key": "field_5ff7931d72132",
+            "label": "Icon",
+            "name": "icon_fc",
+            "type": "flexible_content",
+            "instructions": "Choose Whether the Icon Associated with this Service Category is a Font Awesome Icon, an SVG, or a bitmap (PNG\/JPG).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layouts": {
+                "layout_5ff778658e656": {
+                    "key": "layout_5ff778658e656",
+                    "name": "font_awesome_icon",
+                    "label": "Font Awesome Icon",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_5ff7931d72133",
+                            "label": "Font Awesome Icon Handle",
+                            "name": "font_awesome_icon_handle",
+                            "type": "text",
+                            "instructions": "Select from any <b>Font Awesome Icon<\/b> <a href=\"https:\/\/fontawesome.com\/icons?d=gallery\" target=\"_blank\">Listed Here<\/a>.<br\/>\r\nexample: User Icon = <code>user<\/code>",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "user",
+                            "prepend": "fa-",
+                            "append": "",
+                            "maxlength": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_5ff77e5ff1549": {
+                    "key": "layout_5ff77e5ff1549",
+                    "name": "svg",
+                    "label": "SVG",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_5ff7931d72134",
+                            "label": "SVG Path",
+                            "name": "svg_path",
+                            "type": "text",
+                            "instructions": "Give the path for the SVG local to the Child Theme.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "\/assets\/img\/",
+                            "placeholder": "",
+                            "prepend": ".\/xten-prose-legal\/",
+                            "append": "",
+                            "maxlength": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_5ff77e8af154a": {
+                    "key": "layout_5ff77e8af154a",
+                    "name": "bitmap",
+                    "label": "Bitmap",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_5ff7931d72135",
+                            "label": "Image",
+                            "name": "image",
+                            "type": "image",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "preview_size": "medium",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                }
+            },
+            "button_label": "Add Icon Type",
+            "min": "",
+            "max": 1
         }
     ],
     "location": [
@@ -44,5 +155,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "Extra Attributes for a Service Category.",
-    "modified": 1609888162
+    "modified": 1610061544
 }

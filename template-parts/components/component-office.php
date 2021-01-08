@@ -20,13 +20,6 @@ function component_office( $post_id = null ) {
 	wp_enqueue_style( $component_handle . '-css' );
 	$styles = '';
 
-	// $component_id = $post_id;
-	// if ( $post_id === null ) :
-	// 	global $post;
-	// 	if ( $post ) :
-	// 		$component_id = $post->ID;
-	// 	endif;
-	// endif;
 	$component_id        = xten_register_component_id( $handle );
 	$office_title        = get_the_title( $post_id );
 	$office_address      = get_field( 'office_address', $post_id );

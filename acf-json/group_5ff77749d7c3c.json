@@ -1,0 +1,45 @@
+{
+    "key": "group_5ff77749d7c3c",
+    "title": "Service Attributes",
+    "fields": [
+        {
+            "key": "field_5ff777647dbca",
+            "label": "Fee",
+            "name": "fee",
+            "type": "number",
+            "instructions": "The Fee for the Service",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "$",
+            "append": "",
+            "min": 0,
+            "max": "",
+            "step": 5
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "services"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "Configure the Service with these Attributes.",
+    "modified": 1610053625
+}
