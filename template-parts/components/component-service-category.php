@@ -45,38 +45,12 @@ function component_service_category( $term = null ) {
 	if ( have_rows( 'icon_fc', $term ) ) :
 		while ( have_rows( 'icon_fc', $term ) ) :
 			the_row();
-			$row_layout = get_row_layout();
+			$row_layout                              = get_row_layout();
 			$component_attrs_array['data-icon-type'] = str_replace( '_', '-', $row_layout );
-			if ( $row_layout === 'font_awesome_icon' ) :
-				
-				$fa_handle = esc_attr( get_sub_field( 'font_awesome_icon_handle' ) );
-				if ( $fa_handle ) :
-					$icon = '<i class="fa fa-' . $fa_handle . '"></i>';
-				endif;
-			endif; // endif ( $row_layout === 'font_awesome_icon' ) :
-			if ( $row_layout === 'svg' ) :
-				$svg_path = get_sub_field( 'svg_path' );
-				if ( $svg_path ) :
-					$whole_path = get_stylesheet_directory() . $svg_path;
-
-					if ( file_exists( $whole_path ) ) :
-						$icon = file_get_contents( $whole_path );
-					endif;
-				endif;
-			endif; // endif ( $row_layout === 'svg' ) :
-			if ( $row_layout === 'bitmap' ) :
-				$image = get_sub_field( 'image' );
-				if ( $image ) :
-					$icon = wp_get_attachment_image(
-						$image['id'],
-						xten_get_optimal_image_size(null, 70), true
-					);
-				endif;
-			endif; // endif ( $row_layout === 'bitmap' ) :
+			$icon                                    = xten_get_icon_fc( $row_layout );
 		endwhile;
 	endif;
 
-	// var_dump( $term );
 	$title                         = esc_attr( $term->name );
 	$description                   = wp_trim_excerpt( wp_kses_post( $term->description ) );
 	$url                           = esc_url( get_term_link( $term ) );
@@ -87,7 +61,7 @@ function component_service_category( $term = null ) {
 		$space = $key !== $component_attrs_array[0] ?
 			' ' :
 			null;
-		$component_attrs.= "$space$key=$value";
+		$component_attrs.= "$space$key='$value'";
 	endforeach;
 
 	ob_start();

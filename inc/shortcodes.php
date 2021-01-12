@@ -47,3 +47,17 @@ function service_categories_list_shortcode( $atts = '' ) {
 	return xten_render_component( 'service-categories-list' );
 }
 add_shortcode( 'service_categories_list', 'service_categories_list_shortcode' );
+
+/**
+ * Accordions Shortcode
+ * Renders Accordions.
+ */
+function accordions_list_shortcode( $atts = '' ) {
+	// When Shortcode is used $atts defaults to ''.
+	// Ensure that this gets converted to an array.
+	$atts = $atts === '' ? array() : $atts;
+
+	// Get Component Function.
+	return xten_render_component( 'accordions-list' );
+}
+add_shortcode( 'accordions_list', 'accordions_list_shortcode' );

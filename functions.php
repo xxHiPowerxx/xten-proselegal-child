@@ -125,6 +125,11 @@ require get_stylesheet_directory() . '/inc/widgets/offices-widget.php';
 require get_stylesheet_directory() . '/inc/inline-styles.php';
 
 /**
+ * Block Registration.
+ */
+require get_stylesheet_directory() . '/inc/xten-child-block-registration.php';
+
+/**
  * Convert Post Taxonomy Checkboxes to Radio so only one value can be selected.
  */
 function convert_post_tax_checkboxes_to_radio() {
