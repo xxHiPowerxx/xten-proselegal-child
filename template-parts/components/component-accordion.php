@@ -107,8 +107,6 @@ function component_accordion( $args ) {
 		</div>
 
 		<?php
-		// var_dump($styles);
-		// die;
 		wp_register_style( $component_id, false );
 		wp_enqueue_style( $component_id );
 		wp_add_inline_style( $component_id, $styles );

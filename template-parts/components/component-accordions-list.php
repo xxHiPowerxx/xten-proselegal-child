@@ -21,12 +21,10 @@ function component_accordions_list( $post_id = null ) {
 	$styles = '';
 
 	$component_id    = xten_register_component_id( $handle );
-	// var_dump($component_id, ' foobar 3');
 
 	$html            = '';
 	if ( have_rows( 'accordions_repeater', $post_id ) ) :
 		$parent = get_field( 'open_multiple', $post_id ) === true ? null : $component_id;
-		// var_dump($parent, ' foobar 2');
 		while ( have_rows( 'accordions_repeater', $post_id ) ) :
 			the_row();
 			$args           = array();
@@ -35,10 +33,6 @@ function component_accordions_list( $post_id = null ) {
 
 			$html          .= xten_render_component( 'accordion', $args );
 		endwhile;
-
-		// foreach ( $accounts as $account ) :
-		// 	$html .= xten_render_component( 'social-media-icon', $account );
-		// endforeach;
 
 		if ( $html !== '' ) :
 			// $component_id = xten_register_component_id( $handle );

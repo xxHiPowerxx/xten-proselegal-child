@@ -25,12 +25,9 @@ function component_offices_list( $post_ids = null ) {
 	$html = '';
 	if ( is_array( $post_ids ) ) :
 		foreach ( $post_ids as $post_id ) :
-			// var_dump($post_ids);
-			// $html .= render_office( $post_id );
 			$html .= xten_render_component( 'office', $post_id );
 		endforeach;
 	else:
-		// $html .= render_office( $post_id );
 		$html .= xten_render_component( 'office', $post_id );
 	endif;
 
