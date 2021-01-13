@@ -23,7 +23,7 @@ wp_register_style( 'xten-site-header-inline-style', false );
 wp_enqueue_style( 'xten-site-header-inline-style', '', 'xten-content-css' );
 wp_add_inline_style( 'xten-site-header-inline-style', $style );
 ?>
-<header id="masthead" class="site-header new-site-header fixed-header">
+<header id="masthead" class="site-header new-site-header fixed-header scrolledPastHeaderRef">
 	<div class="navbar" id="mainNav">
 		<div class="header-container container container-ext">
 			<div class="site-branding">
