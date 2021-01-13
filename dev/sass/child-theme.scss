@@ -81,10 +81,15 @@ h1,
 	font-weight: 600;
 }
 @mixin btn-theme-style {
+	color: $primary;
 	background-color: $secondary;
 	border-radius: 0.435em;
-	color: $primary;
 	padding: .25em .5em;
+	@include smoothest-transition;
+	#{$active} {
+		color: $white;
+		background-color: $primary;
+	}
 }
 @mixin btn-large {
 	font-size: 3rem;
@@ -130,11 +135,11 @@ h1,
 			}
 		}
 	}
-	> .xten-section {
+	> .section {
 		padding-top: 12rem;
 		padding-bottom: 12rem;
 	}
-} 
+}
 
 /*   /Common   */
 
@@ -146,7 +151,7 @@ h1,
 	.anchor-site-phone-number {
 		font-size: 3.5rem;
 		margin-left: 1.5rem;
-		border-left: .2rem solid rgb(135, 199, 245);
+		border-left: .2rem solid $secondary;
 		padding-left: 1.5rem;
 	}
 	.site-phone-number {
@@ -164,6 +169,19 @@ h1,
 			margin-left: 0;
 			&.menu-type-flyout,
 			&.menu-type-mega-menu {
+				.sub-menu {
+					li {
+						a {
+							// TODO: Build these color choices into customizer
+							// AND simplify this selector in parent theme.
+							@include smoothest-transition;
+							#{$active} {
+								background-color: $secondary;
+								color: $primary;
+							}
+						}
+					}
+				}
 				a {
 					padding-left: .375em;
 				}
@@ -201,6 +219,25 @@ h1,
   color: $primary;
   padding: 0.375em;
   margin-right: -.375em;
+}
+// TODO: Add Customizer Setting to turn scrolledPastHeader styles off.
+.header-wrapper .site-header .navbar .header-container .site-branding .custom-logo-link .custom-logo {
+	@include smoothest-transition;
+	@at-root body.scrolledPastHeader & {
+		max-height: 5rem;
+	}
+}
+.site-header {
+	.custom-logo {
+		[data-name="hideable-objects"] {
+			@include smoothest-transition;
+			transform-origin: 50% 50%;
+			@at-root body.scrolledPastHeader & {
+				opacity: 0;
+				transform: translateZ(0) scaleY(0);
+			}
+		}
+	}
 }
 
 /*   /Header   */
@@ -366,12 +403,10 @@ h1,
 	&.has-media-on-the-right {
 		grid-template-columns: 1fr 34%;
 	}
-	&.container {
-		.container-xten-section-accordion {
-			padding: 6rem;
-			@include theme-card-style( $border-radius-theme-style-rem-lg );
-			@include white-gradient;
-		}
+	.container-xten-section-accordion {
+		padding: 6rem;
+		@include theme-card-style( $border-radius-theme-style-rem-lg );
+		@include white-gradient;
 	}
 	&.is-image-fill {
 		figure {
