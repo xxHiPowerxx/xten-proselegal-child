@@ -61,8 +61,8 @@ function xten_child_custom_taxonomies() {
 		array(
 			'public'             => true,
 			'publicly_queryable' => true,
-			'hierarchical'       => false,
-			'meta_box_cb'        => 'post_categories_meta_box',
+			'hierarchical'       => true,
+			// 'meta_box_cb'        => 'post_categories_meta_box',
 			'labels'             => $labels,
 			'show_ui'            => true,
 			'show_in_menu'       => true,
