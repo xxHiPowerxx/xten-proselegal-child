@@ -35,7 +35,6 @@ function component_accordions_list( $post_id = null ) {
 		endwhile;
 
 		if ( $html !== '' ) :
-			// $component_id = xten_register_component_id( $handle );
 			$start_tag    = '<div id="' . $component_id . '"  class="component-' . $handle .'">';
 			$end_tag      = '</div>';
 			$html         = $start_tag . $html . $end_tag;

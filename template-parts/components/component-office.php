@@ -3,7 +3,8 @@
  * This Component Renders ONE Office.
  * @package xten
  */
-function component_office( $post_id = null ) {
+function component_office( $args = null ) {
+
 	// Enqueue Stylesheet.
 	$handle             = 'office';
 	$component_handle   = 'component-' . $handle;
@@ -18,9 +19,26 @@ function component_office( $post_id = null ) {
 		'all'
 	);
 	wp_enqueue_style( $component_handle . '-css' );
-	$styles = '';
-
+	$styles              = '';
 	$component_id        = xten_register_component_id( $handle );
+	$post_id             = $args['post_id'];
+	$inc_featured_image  = $args['inc_featured_image'];
+	$featured_image      = null;
+
+	if ( $inc_featured_image ) :
+		$thumbnail_id        = get_post_thumbnail_id( $post_id );
+		$image_size          = xten_get_optimal_image_size(
+			$thumbnail_id,
+			array(185, 185),
+			array(1, 1)
+		);
+		$featured_image      = get_the_post_thumbnail(
+			$post_id,
+			$image_size,
+			array( 'class' => 'office-featured-image' )
+		);
+	endif;
+
 	$office_title        = get_the_title( $post_id );
 	$office_address      = get_field( 'office_address', $post_id );
 	$address_line_1      = esc_attr( $office_address['address_line_1'] );
@@ -47,44 +65,51 @@ function component_office( $post_id = null ) {
 	ob_start();
 	?>
 	<div id="<?php echo $component_id; ?>" class="component-<?php echo $handle; ?>">
-		<?php if ( $office_title ) : ?>
-			<h4 class="office-title"><?php echo $office_title; ?></h4>
+		<?php if ( $featured_image ) : ?>
+			<div class="office-featured-image-wrapper">
+				<?php echo $featured_image; ?>
+			</div>
 		<?php endif; ?>
-		<?php if ( $office_open ) : ?>
-			<div class="office-content">
-				<?php if ( $office_phone_number !== '' ) : ?>
-					<a class="anchor-office-phone-number" href="tel:<?php echo $office_phone_number; ?>"><span class="office-icon fas fa-phone phone-icon-fix"></span><span class="office-phone-number"><?php echo $office_phone_number; ?></span></a>
-				<?php endif; ?>
-				<?php if ( $has_address ) : ?>
-					<a class="anchor-office-address" <?php echo $google_maps_attrs; ?>>
-						<span class="office-icon fas fa-map-marker-alt"></span>
-						<div class="office-address-wrapper">
-							<?php if ( $address_line_1 !== '' || $address_line_2 !== '' ) : ?>
-								<?php if ( $address_line_1 ) : ?>
-									<span class="office-address-line-1"><?php echo $address_line_1; ?></span>
-								<?php endif;?>
-								<?php if ( $address_line_2 ) : ?>
-									<span class="office-address-line-2"><?php echo $address_line_2; ?></span>
-								<?php endif;?>
-							<?php endif; // endif ( $address_line_1 !== '' || $address_line_2 !== '' ?>
-							<?php if ( $city !== '' ) : ?>
-								<span class="office-city"><?php echo $city; ?></span>
-							<?php endif; ?>
-							<?php if ( $state !== '' ) : ?>
-								<span class="office-state"><?php echo $state; ?></span>
-							<?php endif; ?>
-							<?php if ( $zip_code !== '' ) : ?>
-								<span class="office-zip-code"><?php echo $zip_code; ?></span>
-							<?php endif; ?>
-						</div>
-					</a>
-				<?php endif; // endif ( $has_address ) : ?>
-			</div>
-		<?php else : ?>
-			<div class="office-coming-soon">
-				<span class="office-coming-soon-text">Coming Soon!</span>
-			</div>
-		<?php endif; // endif ( ! $office_open ) : ?>
+		<div class="office-title-content-wrapper">
+			<?php if ( $office_title ) : ?>
+				<h4 class="office-title"><?php echo $office_title; ?></h4>
+			<?php endif; ?>
+			<?php if ( $office_open ) : ?>
+				<div class="office-content">
+					<?php if ( $office_phone_number !== '' ) : ?>
+						<a class="anchor-office-phone-number" href="tel:<?php echo $office_phone_number; ?>"><span class="office-icon fas fa-phone phone-icon-fix"></span><span class="office-phone-number"><?php echo $office_phone_number; ?></span></a>
+					<?php endif; ?>
+					<?php if ( $has_address ) : ?>
+						<a class="anchor-office-address" <?php echo $google_maps_attrs; ?>>
+							<span class="office-icon fas fa-map-marker-alt"></span>
+							<div class="office-address-wrapper">
+								<?php if ( $address_line_1 !== '' || $address_line_2 !== '' ) : ?>
+									<?php if ( $address_line_1 ) : ?>
+										<span class="office-address-line-1"><?php echo $address_line_1; ?></span>
+									<?php endif;?>
+									<?php if ( $address_line_2 ) : ?>
+										<span class="office-address-line-2"><?php echo $address_line_2; ?></span>
+									<?php endif;?>
+								<?php endif; // endif ( $address_line_1 !== '' || $address_line_2 !== '' ?>
+								<?php if ( $city !== '' ) : ?>
+									<span class="office-city"><?php echo $city; ?></span>
+								<?php endif; ?>
+								<?php if ( $state !== '' ) : ?>
+									<span class="office-state"><?php echo $state; ?></span>
+								<?php endif; ?>
+								<?php if ( $zip_code !== '' ) : ?>
+									<span class="office-zip-code"><?php echo $zip_code; ?></span>
+								<?php endif; ?>
+							</div>
+						</a>
+					<?php endif; // endif ( $has_address ) : ?>
+				</div>
+			<?php else : ?>
+				<div class="office-coming-soon">
+					<span class="office-coming-soon-text">Coming Soon!</span>
+				</div>
+			<?php endif; // endif ( ! $office_open ) : ?>
+		</div>
 	</div>
 
 	<?php

@@ -43,6 +43,7 @@ function enqueue_child_styles() {
 	wp_enqueue_style( 'child-theme-css' );
 
 	// Enqueue Scripts
+	wp_enqueue_script( 'child-theme-js' );
 
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_child_styles', 11 );

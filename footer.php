@@ -10,8 +10,8 @@
  */
 
 ?>
-		</div> <!-- /row -->
-	</div> <!-- /container -->
+		</div> <!-- /.content-wrapper -->
+	</div> <!-- /#page-wrapper -->
 
 	<?php
 	$site_name         = esc_attr( get_bloginfo() );

@@ -3,7 +3,7 @@
  * This Component Renders one or more Offices.
  * @package xten
  */
-function component_offices_list( $post_ids = null ) {
+function component_offices_list( $args = null ) {
 	$handle             = 'offices-list';
 	// Enqueue Stylesheet.
 /*
@@ -22,13 +22,30 @@ function component_offices_list( $post_ids = null ) {
 */
 	$styles = '';
 
+	$post_ids = $args['post_ids'];
+
 	$html = '';
-	if ( is_array( $post_ids ) ) :
-		foreach ( $post_ids as $post_id ) :
-			$html .= xten_render_component( 'office', $post_id );
-		endforeach;
+	if ( is_numeric( $post_ids ) || is_object( $post_ids ) ) :
+		$_args = array(
+			'post_id'            => $post_ids,
+			'inc_featured_image' => $args['inc_featured_image'],
+		);
+		$html .= xten_render_component( 'office', $args );
 	else:
-		$html .= xten_render_component( 'office', $post_id );
+		if ( $post_ids === null ) :
+			$post_ids = get_posts( array (
+				'post_type'   => 'offices',
+				'numberposts' => -1,
+				'order'       => 'ASC'
+			) );
+		endif;
+		foreach ( $post_ids as $post_id ) :
+			$_args = array(
+				'post_id'            => $post_id,
+				'inc_featured_image' => $args['inc_featured_image'],
+			);
+			$html .= xten_render_component( 'office', $_args );
+		endforeach;
 	endif;
 
 	if ( $html !== '' ) :

@@ -53,6 +53,28 @@ class XTenChildUtilities {
 
 			return  $component_id;
 		}
+		if ( ! function_exists( 'get_first_contact_form' ) ) :
+			/**
+			 * Get First Contact Form.
+			 * 
+			 * @return string Contact Form 7 Markup.
+			 */
+			function get_first_contact_form() {
+				$args = array(
+					'numberposts' => 1,
+					'order'       => 'ASC',
+					'orderby'     => 'date',
+					'post_type'   => 'wpcf7_contact_form',
+				);
+				$contact_forms_array = get_posts( $args );
+				if ( is_array( $contact_forms_array ) ) :
+					 $contact_form = $contact_forms_array[0];
+					 return do_shortcode( '[contact-form-7 id="' . $contact_form->ID . '" title="' . $contact_form->post_title . '"]' );
+				else:
+					return false;
+				endif;
+			}
+		endif; // endif ( ! function_exists( 'get_first_contact_form' ) ) :
 	}
 }
 

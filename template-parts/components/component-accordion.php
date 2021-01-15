@@ -107,11 +107,14 @@ function component_accordion( $args ) {
 		</div>
 
 		<?php
-		wp_register_style( $component_id, false );
-		wp_enqueue_style( $component_id );
-		wp_add_inline_style( $component_id, $styles );
-
 		$html = ob_get_clean();
+
+		if ( $styles !== '' ) :
+			wp_register_style( $component_id, false );
+			wp_enqueue_style( $component_id );
+			wp_add_inline_style( $component_id, $styles );
+		endif;
+
 		return $html;
 	endif; // endif ( $content ) :
 }

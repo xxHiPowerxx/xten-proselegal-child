@@ -1,0 +1,29 @@
+@import 'variables';
+
+.component-contact-section {
+	display: flex;
+	@at-root div.xten-content > & {
+		@include flex-margin( 6rem );
+	}
+	.offices-list-wrapper {
+		flex: 0 1 auto;
+	}
+	.contact-form-wrapper {
+		flex: 1 0 auto;
+	}
+	.component-offices-list {
+		@include flex-margin( 3rem );
+	}
+	.component-office {
+		width: 45.8rem;
+		max-width: 50%;
+		min-height: 22.475rem;
+	}
+	.offices-list-title {
+		text-align: center;
+		margin-bottom: .75em;
+	}
+}
+.office-featured-image-wrapper {
+  flex: 1 1 22.75rem;
+}

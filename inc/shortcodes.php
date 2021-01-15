@@ -61,3 +61,17 @@ function accordions_list_shortcode( $atts = '' ) {
 	return xten_render_component( 'accordions-list' );
 }
 add_shortcode( 'accordions_list', 'accordions_list_shortcode' );
+
+/**
+ * Contact Section Shortcode
+ * Renders Contact Section.
+ */
+function contact_section_shortcode( $atts = '' ) {
+	// When Shortcode is used $atts defaults to ''.
+	// Ensure that this gets converted to an array.
+	$atts = $atts === '' ? array() : $atts;
+
+	// Get Component Function.
+	return xten_render_component( 'contact-section' );
+}
+add_shortcode( 'contact_section', 'contact_section_shortcode' );

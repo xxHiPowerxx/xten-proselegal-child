@@ -44,7 +44,7 @@ class XTen_Offices extends WP_Widget {
 
 			echo $args['before_widget'];
 
-				echo xten_render_component( 'offices-list', $post_ids );
+				echo xten_render_component( 'offices-list', array( 'post_ids' => $post_ids ) );
 
 			echo $args['after_widget'];
 		}
