@@ -56,11 +56,12 @@ function component_service_category( $term = null ) {
 	$url                           = esc_url( get_term_link( $term ) );
 	$component_attrs_array['href'] = $url;
 
+
 	$component_attrs = xten_stringify_attrs( $component_attrs_array );
 
 	ob_start();
 	?>
-	<a id="<?php echo $component_id; ?>" class="component-<?php echo $handle; ?> flip-card" <?php echo esc_attr( $component_attrs ); ?>>
+	<a <?php echo  $component_attrs; ?> id="<?php echo $component_id; ?>" class="component-<?php echo $handle; ?> flip-card" >
 		<div class="flip-card-front">
 			<?php if ( $icon ) : ?>
 				<div class="<?php echo $handle; ?>-icon">

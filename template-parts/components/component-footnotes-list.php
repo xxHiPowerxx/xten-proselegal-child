@@ -6,6 +6,8 @@
 function component_footnotes_list( $args = null ) {
 
 	$footnotes = $args['footnotes'];
+	// var_dump($footnotes);
+	// 			die;
 	if ( ! $footnotes ) :
 		return false;
 	endif;

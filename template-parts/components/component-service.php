@@ -41,7 +41,7 @@ function component_service( $args = null ) {
 			$fee = esc_attr( get_field( 'fee', $post_id ) );
 			if ( $fee ) :
 				$footnotes_array = get_the_terms( $post_id, 'footnotes' );
-				$footnotes_args  = array( 'footnotes'=>$footnotes_array );
+				$footnotes_args  = array( 'footnotes' => $footnotes_array );
 				$footnotes       = xten_render_component( 'footnotes-list', $footnotes_args );
 				?>
 				<span class='service-fee'>

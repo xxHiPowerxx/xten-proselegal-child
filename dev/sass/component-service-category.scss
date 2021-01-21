@@ -3,7 +3,7 @@
 .component-service-categories-list {
   display: flex;
 	flex-wrap: wrap;
-	@include flex-margin( 1.5rem )
+	@include flex-margin( 1.5rem );
 }
 .component-service-category {
 	flex: 1 1 calc(25% - 3rem);

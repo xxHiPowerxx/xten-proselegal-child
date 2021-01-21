@@ -59,6 +59,35 @@ function xten_child_acf_blocks_init() {
 			)
 		);
 
+		// Service Categories Section - xten-section-service-categories.
+		$handle       = 'service-categories';
+		$section_name = 'xten-section-' . $handle;
+		acf_register_block_type(
+			array(
+				'name'              => $section_name,
+				'title'             => __('Service Categories Section'),
+				'description'       => __('List of Service Categories on Flip Cards'),
+				'icon'              => xten_get_icon( $section_name ),
+				'render_template'   => get_stylesheet_directory() . '/template-parts/block/' . $section_name . '.php',
+				'keywords'          => array(
+																'xten',
+																'section',
+																'service',
+																'categor',
+																'list',
+																'cards',
+															),
+				'supports'          => array(
+					'anchor' => true,
+				),
+				'category'          => 'xten-child',
+				'enqueue_assets'    => function ($block) {
+																	$section_name = str_replace( 'acf/', '', $block['name'] );
+																	xten_enqueue_assets( $section_name );
+																}
+			)
+		);
+
 		// Contact Section - xten-section-contact-section.
 		$handle       = 'contact-section';
 		$section_name = 'xten-section-' . $handle;

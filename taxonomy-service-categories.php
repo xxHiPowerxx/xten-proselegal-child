@@ -40,6 +40,10 @@ get_header();
 				</div><!-- /.services-list -->
 			</div><!-- /.container-services-section -->
 		</section><!-- /#services -->
+		<?php
+		echo xten_get_reuseable_block( 'Service Categories Section RB' );
+		echo xten_get_reuseable_block( 'Contact Section RB' );
+		?>
 	</div><!-- #primary -->
 </div>
 <?php

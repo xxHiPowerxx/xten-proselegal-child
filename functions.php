@@ -150,3 +150,23 @@ function convert_post_tax_checkboxes_to_radio() {
 }
 add_action('admin_footer-post.php', 'convert_post_tax_checkboxes_to_radio');
 add_action('admin_footer-post-new.php', 'convert_post_tax_checkboxes_to_radio');
+
+/**
+ * Set Services order to ASC on Service Category Taxonomy Page.
+ */
+function mod_service_categories_order( $query ) {
+	if(
+		$query->is_main_query() &&
+		! is_admin() &&
+		$query->is_archive() &&
+		$query->is_tax( 'service-categories' )
+	) :
+		// Set parameters to modify the query
+		$query->set( 'orderby', 'date' );
+		$query->set( 'order', 'ASC' );
+		$query->set( 'suppress_filters', 'true' );
+	endif;
+}
+ 
+// Hook our custom query function to the pre_get_posts 
+add_action( 'pre_get_posts', 'mod_service_categories_order' );
