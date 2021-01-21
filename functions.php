@@ -28,7 +28,7 @@ function enqueue_child_styles() {
 	$css_dependancies   = array();
 	$css_dependancies[] = 'xten-base-style';
 	// TODO: Figure out how to make Child Stylesheet load AFTER ALL xten-sections stylesheets for overrides.
-	$handle = 'xten-section-hero-css';
+	$handle = 'xten-component-hero-css';
 	if ( wp_style_is( $handle, 'registered' ) ) :
 		$css_dependancies[] = $handle;
 	endif;

@@ -3,7 +3,7 @@
 .component-contact-section {
 	display: flex;
 	@at-root div.xten-content > & {
-		@include flex-margin( 6rem );
+		@include flex-margin( 3rem );
 	}
 	.offices-list-wrapper {
 		flex: 0 1 auto;
@@ -15,8 +15,7 @@
 		@include flex-margin( 3rem );
 	}
 	.component-office {
-		width: 45.8rem;
-		max-width: 50%;
+		width: calc(50% - 6rem);
 		min-height: 22.475rem;
 	}
 	.offices-list-title {

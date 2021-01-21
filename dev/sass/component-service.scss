@@ -1,0 +1,36 @@
+@import 'variables';
+
+.services-list {
+  display: flex;
+  flex-wrap: wrap;
+	@include flex-margin( 3rem );
+	.listed-service {
+		flex: 0 1 calc(50% - 6rem);
+	}
+}
+.component-service {
+	.accordion-title {
+		font-size: 3rem;
+		max-width: 49rem;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.accordion-content {
+		padding: 0;
+	}
+	.accordion-content-inner {
+		@include leading-p;
+		padding: 6rem;
+	}
+	.btn-show-contact {
+		width: 100%;
+		display: block;
+		border-radius: 0;
+	}
+}
+.service-fee {
+	white-space: nowrap;
+	* {
+		display: inline-block;
+	}
+}

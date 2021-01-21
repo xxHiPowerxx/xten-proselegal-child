@@ -56,13 +56,7 @@ function component_service_category( $term = null ) {
 	$url                           = esc_url( get_term_link( $term ) );
 	$component_attrs_array['href'] = $url;
 
-	$component_attrs = '';
-	foreach ($component_attrs_array as $key => $value) :
-		$space = $key !== $component_attrs_array[0] ?
-			' ' :
-			null;
-		$component_attrs.= "$space$key='$value'";
-	endforeach;
+	$component_attrs = xten_stringify_attrs( $component_attrs_array );
 
 	ob_start();
 	?>

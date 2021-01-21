@@ -37,9 +37,6 @@ $active: '&:hover,&:focus,&:focus-within,&.active';
 /*   Smooth Transition    */
 /*-----TRANSITIONS------*/
 $smooth-transition: all 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
-.smooth-transition {
-	transition: $smooth-transition;
-}
 @mixin smoother-transition {
 	transition: $smooth-transition;
 	backface-visibility: hidden;
@@ -47,12 +44,6 @@ $smooth-transition: all 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
 @mixin smoothest-transition {
 	@include smoother-transition;
 	transform: translateZ(0);
-}
-.smoother-transition {
-	@include smoother-transition;
-}
-.smoothest-transition {
-	@include smoothest-transition;
 }
 
 $border-radius-theme-style-em: 0.435em;
@@ -64,16 +55,10 @@ $background-blur: blur(5px) brightness(2.2);
 @mixin card-style {
 	box-shadow: $card-style;
 }
-.card-style {
-	@include card-style;
-}
 @mixin theme-card-style( $border-radius: $border-radius-theme-style-em ) {
 	border-radius: $border-radius;
 	border: $border-card-style;
 	@include card-style;
-}
-.theme-card-style {
-	@include theme-card-style;
 }
 @mixin flex-margin( $margin ) {
 	margin: -$margin;
@@ -91,13 +76,38 @@ $background-blur: blur(5px) brightness(2.2);
 @mixin background-blur {
 	backdrop-filter: $background-blur;
 }
-.background-blur {
-	@include background-blur;
-}
 
 @mixin primary-gradient {
 	background-image: linear-gradient(45deg,$primary, $primary-light);
 }
 @mixin white-gradient {
 	background-image: linear-gradient(45deg, $off-white, rgb(251, 251, 251));
+}
+
+@mixin btn {
+	font-size: 1.8rem;
+	font-weight: 600;
+}
+@mixin btn-theme-style {
+	color: $primary;
+	background-color: $secondary;
+	border-radius: 0.435em;
+	padding: .25em .5em;
+	line-height: 1.5;
+	@include smoothest-transition;
+	#{$active} {
+		color: $white;
+		background-color: $primary;
+		box-shadow:$card-style, inset 0 0 0 1px rgba($white, 0.16)
+	}
+}
+@mixin btn-color-primary {
+	color: $white;
+	background-color: $primary;
+	#{$active} {
+		background-color: $primary-light;
+	}
+}
+@mixin btn-large {
+	font-size: 3rem;
 }

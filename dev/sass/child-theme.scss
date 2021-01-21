@@ -20,7 +20,7 @@ body {
 		overflow-x: hidden;
 	}
 	&.xten-theme-color-bg {
-		background-color: white;
+		background-color: $white;
 	}
 }
 body,
@@ -76,34 +76,46 @@ h1,
 	}
 }
 
-@mixin btn {
-	font-size: 1.8rem;
-	font-weight: 600;
+.smooth-transition {
+	transition: $smooth-transition;
 }
-@mixin btn-theme-style {
-	color: $primary;
-	background-color: $secondary;
-	border-radius: 0.435em;
-	padding: .25em .5em;
-	line-height: 1.5;
+.smoother-transition {
+	@include smoother-transition;
+}
+.smoothest-transition {
 	@include smoothest-transition;
-	#{$active} {
-		color: $white;
-		background-color: $primary;
-		box-shadow:$card-style, inset 0 0 0 1px rgba(255, 255, 255, 0.16)
-	}
 }
-@mixin btn-large {
-	font-size: 3rem;
+.card-style {
+	@include card-style;
 }
+.theme-card-style {
+	@include theme-card-style;
+}
+.leading-p {
+	@include leading-p;
+}
+.prominent-p {
+	@include prominent-p;
+}
+.background-blur {
+	@include background-blur;
+}
+
 .btn {
   @include btn;
 	&.btn-theme-style {
 		@include btn-theme-style;
+		&.btn-color-primary {
+			@include btn-color-primary;
+		}
 	}
 	&.btn-large {
 		@include btn-large;
 	}
+}
+.btn.btn-theme-style.theme-color-secondary {
+  background-color: rgb(52, 80, 115);
+  color: white;
 }
 
 .fa-phone {
@@ -122,26 +134,95 @@ h1,
 	background-color: transparent;
 }
 
-.hentry {
-	> .alt-bg {
-		&:nth-child(2n+1) {
-			@include white-gradient;
-			.xten-section-heading {
-				color: $primary;
-			}
-		}
-		&:nth-child(2n) {
-			@include primary-gradient;
-			.xten-section-heading {
-				color: $white;
-			}
+.section {
+	padding-top: 12rem;
+	padding-bottom: 12rem;
+}
+.alt-bg {
+	&:nth-child(2n+1) {
+		@include white-gradient;
+		.xten-section-heading {
+			color: $primary;
 		}
 	}
-	> .section {
-		padding-top: 12rem;
-		padding-bottom: 12rem;
+	&:nth-child(2n) {
+		@include primary-gradient;
+		.xten-section-heading {
+			color: $white;
+		}
 	}
 }
+.xten-hero-banner {
+	&.xten-component-hero {
+		min-height: calc(65vmin - 10.5rem);
+		.container-xten-component-hero {
+			align-items: stretch;
+		}
+	}
+	.xten-content-inner {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 100%;
+	}
+}
+.xten-banner-divider {
+	text-align: center;
+	min-height: 35vmin;
+	display: flex;
+	align-items: stretch;
+	padding-top: 6rem;
+	padding-bottom: 6rem;
+	.container {
+		display: flex;
+		align-items: center;
+		min-height: 100%;
+	}
+	.xten-content {
+		max-width: 140rem;
+		margin-left: auto;
+		margin-right: auto;
+		> * {
+			margin-bottom: 0;
+			&:not(:first-child) {
+				margin-top: 3rem;
+			}
+		}
+	}
+	.anchor-btn-cta {
+		display: inline-block;
+	}
+}
+[data-tooltip] {
+	position: relative;
+	#{$active} {
+		&:after {
+			opacity: 1;
+			transform: translate3d(-50%, 0, 0) scaleY(1);
+		}
+	}
+	&:after{
+		content: attr(data-tooltip);
+		font-size: 1.6rem;
+		font-weight: 500;
+		padding: .5em 1em;
+		// background-image: linear-gradient( $secondary, $primary);
+		background-color: $primary;
+		@include theme-card-style;
+		color: $white;
+		text-shadow: 0 .1em .1em $primary;
+		position: absolute;
+		z-index: 105;
+		bottom: 100%;
+		left: 50%;
+		transform: translate3d(-50%, 0, 0) scaleY(0);
+		transform-origin: 50% 100%;
+		opacity: 0;
+		max-width: calc( 100vw - 6rem );
+		@include smoother-transition;
+	}
+}
+
 
 /*   /Common   */
 
@@ -311,7 +392,11 @@ h1,
 /*   Home Page   */
 
 /*   Hero Section   */
-.xten-section-hero {
+.xten-component-hero {
+	.container-xten-component-hero {
+		padding-top: 6rem;
+		padding-bottom: 6rem;
+	}
 	.xten-content {
 		padding: 0;
 	}
@@ -349,12 +434,13 @@ h1,
 
 /*   Accordion Section   */
 
-.component-accordions-list {
-  border-radius: 1.5rem;
+.component-accordions-list,
+.component-service {
+	@include theme-card-style( $border-radius-theme-style-rem-sm );
   overflow: hidden;
 }
 .component-accordion {
-  border: $border-card-style;
+  // border: $border-card-style;
   background-color: $white;
 }
 .accordion-control {
@@ -362,7 +448,7 @@ h1,
 	@include card-style;
 	@include smoothest-transition;
 	&:not([aria-expanded="true"]) {
-		box-shadow: 0 0 transparent;
+		// box-shadow: 0 0 transparent;
 		.fa-check {
 			&:before {
 				content: '\f128';

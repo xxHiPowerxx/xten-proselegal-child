@@ -89,6 +89,7 @@
 	flex-direction: column;
 	width: 100%;
 	background-color: $white;
+	flex-basis: 1 0;
 	> * {
 		padding-left: 1.5rem;
 		padding-right: 1.5rem;
@@ -115,5 +116,10 @@
 .anchor-office-address {
 	.office-icon {
 		color: $primary;
+	}
+}
+.office-address-wrapper {
+	> * {
+		display: block;
 	}
 }

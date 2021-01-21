@@ -27,11 +27,7 @@ function component_office( $args = null ) {
 
 	if ( $inc_featured_image ) :
 		$thumbnail_id        = get_post_thumbnail_id( $post_id );
-		$image_size          = xten_get_optimal_image_size(
-			$thumbnail_id,
-			array(185, 185),
-			array(1, 1)
-		);
+		$image_size = array(null, 222.75);
 		$featured_image      = get_the_post_thumbnail(
 			$post_id,
 			$image_size,
@@ -91,15 +87,25 @@ function component_office( $args = null ) {
 										<span class="office-address-line-2"><?php echo $address_line_2; ?></span>
 									<?php endif;?>
 								<?php endif; // endif ( $address_line_1 !== '' || $address_line_2 !== '' ?>
-								<?php if ( $city !== '' ) : ?>
-									<span class="office-city"><?php echo $city; ?></span>
-								<?php endif; ?>
-								<?php if ( $state !== '' ) : ?>
-									<span class="office-state"><?php echo $state; ?></span>
-								<?php endif; ?>
-								<?php if ( $zip_code !== '' ) : ?>
-									<span class="office-zip-code"><?php echo $zip_code; ?></span>
-								<?php endif; ?>
+								<?php
+								if (
+									$city !== '' ||
+									$state !== '' ||
+									$zip_code !== ''
+								) :
+								?>
+									<span class="office-address-c-s-z">
+										<?php if ( $city !== '' ) : ?>
+											<span class="office-city"><?php echo $city; ?></span>
+										<?php endif; ?>
+										<?php if ( $state !== '' ) : ?>
+											<span class="office-state"><?php echo $state; ?></span>
+										<?php endif; ?>
+										<?php if ( $zip_code !== '' ) : ?>
+											<span class="office-zip-code"><?php echo $zip_code; ?></span>
+										<?php endif; ?>
+									</span>
+								<?php endif; // endif ( $c || $s || $z ) : ?>
 							</div>
 						</a>
 					<?php endif; // endif ( $has_address ) : ?>

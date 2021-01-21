@@ -5,7 +5,7 @@
  */
 function component_accordion( $args ) {
 	$parent = $args['parent'];
-	$open = $args['open'];
+	$open   = $args['open'];
 	// Enqueue Stylesheet.
 	$handle             = 'accordion';
 	$component_handle   = 'component-' . $handle;
@@ -21,7 +21,7 @@ function component_accordion( $args ) {
 	);
 	wp_enqueue_style( $component_handle . '-css' );
 
-	$content          = xten_kses_post( get_sub_field('content') );
+	$content = xten_kses_post( $args['content'] );
 	if ( $content ) :
 		$styles                             = '';
 		$component_id                       = xten_register_component_id( $handle );
@@ -32,9 +32,9 @@ function component_accordion( $args ) {
 
 		$component_selector                 = "[data-c-id='{$component_attrs_array['data-c-id']}'].{$component_attrs_array['class']}";
 
-		$title            = xten_kses_post( get_sub_field( 'title', null, false ) );
+		$title            = xten_kses_post( $args['title'] );
 		$target           = "$component_id-collapse";
-		$color            = esc_attr( get_sub_field('color') );
+		$color            = esc_attr( $args['color'] );
 		if ( $color ) :
 			$styles .= xten_add_inline_style(
 				$component_selector,
@@ -43,7 +43,7 @@ function component_accordion( $args ) {
 				)
 			);
 		endif;
-		$background_color = esc_attr( get_sub_field('background_color') );
+		$background_color = esc_attr( $args['background_color'] );
 		if ( $background_color ) :
 			$styles .= xten_add_inline_style(
 				$component_selector,
@@ -53,15 +53,7 @@ function component_accordion( $args ) {
 			);
 		endif;
 
-		$icon = null;
-		if ( have_rows( 'icon_fc' ) ) :
-			while ( have_rows( 'icon_fc' ) ) :
-				the_row();
-				$row_layout                              = get_row_layout();
-				$component_attrs_array['data-icon-type'] = str_replace( '_', '-', $row_layout );
-				$icon                                    = xten_get_icon_fc( $row_layout );
-			endwhile;
-		endif;
+		$icon = $args['icon'];
 
 		$control_attrs_a                     = array();
 		$control_attrs_a['id']               = "$component_id-control";
