@@ -170,3 +170,18 @@ function mod_service_categories_order( $query ) {
  
 // Hook our custom query function to the pre_get_posts 
 add_action( 'pre_get_posts', 'mod_service_categories_order' );
+
+/**
+ * Redirect Staff Member to Staff Section on About Us Page.
+ */
+function redirect_staff() {
+	$post_type = 'staff';
+	if ( is_singular( $post_type ) ) :
+		$link = get_page_by_title( 'About' );
+		// var_dump($link->guid);
+		// die;
+    wp_redirect( $link->guid . '#staff', 301 );
+    exit;
+	endif;
+}
+add_action( 'template_redirect', 'redirect_staff' );

@@ -113,10 +113,6 @@ h1,
 		@include btn-large;
 	}
 }
-.btn.btn-theme-style.theme-color-secondary {
-  background-color: rgb(52, 80, 115);
-  color: white;
-}
 
 .fa-phone {
 	&.phone-icon-fix {
@@ -125,10 +121,18 @@ h1,
 }
 
 .xten-section-heading {
-	text-align: center;
+	line-height: 1;
 	max-width: 100rem;
-	margin-left: auto;
+}
+.xten-section-description {
+  max-width: 110rem;
+}
+.xten-section-heading,
+.xten-section-description {
+  text-align: center;
+  margin-left: auto;
 	margin-right: auto;
+	margin-bottom: 3rem;
 }
 #page {
 	background-color: transparent;
@@ -144,10 +148,14 @@ h1,
 		.xten-section-heading {
 			color: $primary;
 		}
+		.xten-section-description {
+			color: $dark;
+		}
 	}
 	&:nth-child(2n) {
 		@include primary-gradient;
-		.xten-section-heading {
+		.xten-section-heading,
+		.xten-section-description  {
 			color: $white;
 		}
 	}
@@ -479,9 +487,6 @@ h1,
 .collapse-control-indicator {
 	background-color: $primary;
 	color: $white;
-}
-.collapse-control-indicator {
-	transform: translateZ(0);
 }
 .accordion-content {
 	p,

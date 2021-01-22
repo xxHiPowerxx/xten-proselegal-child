@@ -75,3 +75,17 @@ function contact_section_shortcode( $atts = '' ) {
 	return xten_render_component( 'contact-section' );
 }
 add_shortcode( 'contact_section', 'contact_section_shortcode' );
+
+/**
+ * Staff Shortcode
+ * Renders Staff.
+ */
+function staff_shortcode( $atts = '' ) {
+	// When Shortcode is used $atts defaults to ''.
+	// Ensure that this gets converted to an array.
+	$atts = $atts === '' ? array() : $atts;
+
+	// Get Component Function.
+	return xten_render_component( 'staff-list' );
+}
+add_shortcode( 'staff', 'staff_shortcode' );
