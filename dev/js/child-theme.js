@@ -39,9 +39,26 @@ jQuery(document).ready(function($) {
 			});
 		});
 	}
+	function preventExpandedCollapse() {
+		$('.preventExpandedCollapse').on('click keyup', function(e) {
+			if ($(this).attr('aria-expanded') == 'true') {
+				var key = e.key || e.keyCode;
+				if (key) {
+					var enterKey = key === "Enter" || key === 13;
+					var spaceKey = key === " " || key === 32;
+					if (!(enterKey || spaceKey)) {
+						return;
+					}
+				}
+				e.stopImmediatePropagation();
+				e.preventDefault();
+			}
+		});
+	}
 	function readyFuncs() {
 		addHTMLValidationToCF();
 		validateInput();
+		preventExpandedCollapse();
 	}
 	readyFuncs();
 });

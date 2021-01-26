@@ -230,8 +230,14 @@ h1,
 		@include smoother-transition;
 	}
 }
-
-
+.collapse {
+	@include smoothest-transition;
+}
+.preventExpandedCollapse {
+	&[aria-expanded="true"] {
+		cursor: default;
+	}
+}
 /*   /Common   */
 
 /*   Header   */
@@ -543,3 +549,13 @@ h1,
 }
 
 /*   /Home Page   */
+
+/*   About Page   */
+/*   Staff Section   */
+#staff {
+	.xten-section-description {
+		margin-bottom: 6rem;
+	}
+}
+/*   /Staff Section   */
+/*   /About Page   */

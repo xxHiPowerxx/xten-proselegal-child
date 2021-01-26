@@ -89,3 +89,17 @@ function staff_shortcode( $atts = '' ) {
 	return xten_render_component( 'staff-list' );
 }
 add_shortcode( 'staff', 'staff_shortcode' );
+
+/**
+ * Office Locations Shortcode
+ * Renders Office Locations.
+ */
+function office_locations_shortcode( $atts = '' ) {
+	// When Shortcode is used $atts defaults to ''.
+	// Ensure that this gets converted to an array.
+	$atts = $atts === '' ? array() : $atts;
+
+	// Get Component Function.
+	return xten_render_component( 'office-locations' );
+}
+add_shortcode( 'office_locations', 'office_locations_shortcode' );

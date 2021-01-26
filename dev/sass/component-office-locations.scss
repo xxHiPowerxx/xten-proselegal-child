@@ -1,0 +1,109 @@
+@import 'variables';
+
+
+.component-office-locations {
+	display: flex;
+	justify-content: space-between;
+	align-items: stretch;
+	.offices-list-wrapper {
+		padding: 6rem;
+		@include theme-card-style( $border-radius-theme-style-rem-lg );
+		background-color: $off-white;
+		width: 59.5rem;
+	}
+	.office-location-collapse-control {
+		.office-title {
+			margin-bottom: 0;
+			flex: 1;
+			padding: .25em;
+		}
+	}
+	.component-office {
+		border: none;
+		box-shadow: none;
+		border-radius: 0;
+	}
+}
+.office-location-collapse-wrapper {
+	border: $border-card-style;
+	@include card-style;
+	overflow: hidden;
+	&:first-child {
+		border-top-left-radius: 3rem;
+		border-top-right-radius: 3rem;
+	}
+	&:last-child {
+		border-bottom-left-radius: 3rem;
+		border-bottom-right-radius: 3rem;
+	}
+	&:not(:last-child) {
+		border-bottom: 0;
+	}
+}
+.office-location-collapse-control {
+	display: flex;
+	align-items: stretch;
+	text-align: center;
+	line-height: 1;
+	overflow: hidden;
+	@include smoothest-transition;
+	&[aria-expanded="true"] {
+		height: 0;
+	}
+}
+.office-location-icon {
+	font-size: 3rem;
+	color: $secondary;
+	background-color: $primary;
+	align-self: stretch;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: .25em;
+}
+.office-location-icon,
+.office-featured-image-wrapper {
+	width: 18.5rem;
+}
+.office-location-map-marker-collapse-control {
+	text-align: center;
+	position: absolute;
+	&[aria-expanded="true"] {
+		.map-marker-icon {
+			color: $white;
+		}
+	}
+}
+.map-marker-icon {
+	font-size: 3.5rem;
+	text-shadow: $card-style;
+	@include smoothest-transition;
+}
+.office-location-icon,
+.map-marker-icon {
+	color: $secondary;
+}
+.office-locations-map-and-markers {
+	position: relative;
+}
+.map-marker-office-name {
+	padding: .25em .5em;
+	margin-top: .75rem;
+	margin-bottom: 0;
+	@include theme-card-style;
+	@include smoothest-transition;
+}
+.office-locations-map {
+	@include theme-card-style( $border-radius-theme-style-rem-lg );
+	overflow: hidden;
+}
+.component-office-locations .office-location-collapse-control .office-title,
+.map-marker-office-name {
+	color: $primary;
+	background-color: $white;
+}
+.component-office-locations .component-office .office-title,
+.office-location-map-marker-collapse-control[aria-expanded="true"] .map-marker-office-name {
+	background-color: $primary;
+	color: $white;
+}
