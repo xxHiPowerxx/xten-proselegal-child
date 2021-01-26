@@ -1,6 +1,15 @@
 @import 'variables';
 
-
+.component-accordion {
+	.collapse-control-icon,
+	.collapse-control-indicator {
+		display: flex;
+		align-items: center;
+		min-width: 2.25em;
+		min-height: 2.25em;
+		justify-content: center;
+	}
+}
 .accordion-control {
 	display: flex;
 	align-items: stretch;
@@ -17,14 +26,6 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-}
-.collapse-control-icon,
-.collapse-control-indicator {
-	display: flex;
-	align-items: center;
-	min-width: 2.25em;
-	min-height: 2.25em;
-	justify-content: center;
 }
 .accordion-content {
 	padding: 3rem;

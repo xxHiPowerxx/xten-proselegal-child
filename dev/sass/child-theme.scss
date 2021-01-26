@@ -160,9 +160,28 @@ h1,
 		}
 	}
 }
+/*   Hero Banner   */
+.xten-hero-banner-w-divider {
+	> * {
+		display: flex;
+		flex-direction: column;
+		min-height: calc(100vh - 10.5rem);
+	}
+	.xten-section-hero {
+		flex: 1;
+		display: flex;
+	}
+}
+
 .xten-hero-banner {
 	&.xten-component-hero {
-		min-height: calc(65vmin - 10.5rem);
+		// min-height: calc(65vmin - 10.5rem);
+		min-height: 0;
+		display: flex;
+		width: 100%;
+		.sizeHero {
+			min-height: 33vmin !important;
+		}
 		.container-xten-component-hero {
 			align-items: stretch;
 		}
@@ -174,6 +193,7 @@ h1,
 		min-height: 100%;
 	}
 }
+
 .xten-banner-divider {
 	text-align: center;
 	min-height: 35vmin;
@@ -201,6 +221,7 @@ h1,
 		display: inline-block;
 	}
 }
+/*   /Hero Banner   */
 [data-tooltip] {
 	position: relative;
 	#{$active} {
@@ -228,6 +249,10 @@ h1,
 		opacity: 0;
 		max-width: calc( 100vw - 6rem );
 		@include smoother-transition;
+		word-break: normal;
+		line-height: 1.25;
+		width: max-content;
+		max-width: 12em;
 	}
 }
 .collapse {
@@ -514,15 +539,19 @@ h1,
 	&.has-media-on-the-right {
 		grid-template-columns: 1fr 34%;
 	}
-	.container-xten-section-accordion {
-		padding: 6rem;
-		@include theme-card-style( $border-radius-theme-style-rem-lg );
-		@include white-gradient;
-	}
 	&.is-image-fill {
 		figure {
 			&.wp-block-media-text__media {
+				flex: 1;
 				height: 80vmin;
+			}
+		}
+	}
+	&.d-flex {
+		figure {
+			&.wp-block-media-text__media {
+				height: auto;
+				align-self: stretch;
 			}
 		}
 	}
@@ -530,11 +559,18 @@ h1,
 		@include theme-card-style( $border-radius-theme-style-rem-lg );
 	}
 	.wp-block-media-text__content {
-		padding-left: 0;
-		padding-right: 0;
+		padding: 6rem;
+		@include theme-card-style( $border-radius-theme-style-rem-lg );
+		@include white-gradient;
 		flex: 1;
+		@at-root #were-mobile & {
+			max-width: 59.5rem;
+		}
+		> :last-child {
+			margin-bottom: 0;
+		}
 	}
-} 
+}
 
 .wp-block-media-text__media {
 	img {
@@ -547,6 +583,13 @@ h1,
 		object-fit: cover;
 	}
 }
+
+/*   Contact Section   */
+.office-location-icon,
+.office-featured-image-wrapper {
+	width: 18.5rem;
+}
+/*   /Contact Section   */
 
 /*   /Home Page   */
 
