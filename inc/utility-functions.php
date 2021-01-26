@@ -116,30 +116,41 @@ class XTenChildUtilities {
 					),
 				);
 				ob_start();
-				echo xten_sections_render_component( 'hero', $args );
-				$html = ob_get_clean();
-				/*   /Hero Banner   */
-
-				/*   Hero Banner Divider   */
-				$description = get_field( 'long_description', $queried_object, false ) ? :
-					$queried_object->description;
-
-				if ( $description !== '' ) :
-					ob_start();
-					?>
-					<div class="xten-banner-divider">
-						<div class="container container-ext">
-							<div class="xten-content">
-								<p class="prominent-p"><?php echo xten_kses_post( $description ); ?></p>
-								<a class="anchor-btn-cta" href="#services"><button class="btn btn-theme-style btn-cta btn-large nowrap-parent" type="button"><span>See</span> <span><?php echo $term_title; ?></span> <span>Services</span></button></a>
-							</div>
+				?>
+				<div class="xten-hero-banner-w-divider">
+					<div class="xten-hero-banner-w-divider-inner">
+						<div class="xten-section-hero">
+							<?php echo xten_sections_render_component( 'hero', $args ); ?>
 						</div>
-					</div>
-					<?php
-					$html .= ob_get_clean();
-				endif; //if ( $description !== '' ) :
-				/*   /Hero Banner Divider   */
+						<?php
+						$html = ob_get_clean();
+						/*   /Hero Banner   */
 
+						/*   Hero Banner Divider   */
+						$description = get_field( 'long_description', $queried_object, false ) ? :
+							$queried_object->description;
+
+						if ( $description !== '' ) :
+							ob_start();
+							?>
+							<div class="xten-banner-divider">
+								<div class="container container-ext">
+									<div class="xten-content">
+										<p class="prominent-p"><?php echo xten_kses_post( $description ); ?></p>
+										<a class="anchor-btn-cta" href="#services"><button class="btn btn-theme-style btn-cta btn-large nowrap-parent" type="button"><span>See</span> <span><?php echo $term_title; ?></span> <span>Services</span></button></a>
+									</div>
+								</div>
+							</div>
+							<?php
+							$html .= ob_get_clean();
+						endif; //if ( $description !== '' ) :
+						/*   /Hero Banner Divider   */
+						ob_start();
+						?>
+					</div><!-- /.xten-hero-banner-w-divider-inner -->
+				</div><!-- /.xten-hero-banner-w-divider -->
+				<?php
+				$html .= ob_get_clean();
 				return $html;
 			}
 		endif; // endif ( ! function_exists( 'render_hero_banner' ) ) :
