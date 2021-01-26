@@ -24,6 +24,7 @@ get_header();
 			'parent' => $section_id,
 		);
 		?>
+		<div class="alt-bg-spacer d-none"></div>
 		<section id="<?php echo $section_id; ?>" class="services-section section alt-bg">
 			<div class="container container-ext container-services-section">
 				<div class="services-list">
