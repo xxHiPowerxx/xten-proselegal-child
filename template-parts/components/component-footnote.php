@@ -5,8 +5,7 @@
  */
 function component_footnote( $args = null ) {
 
-	$footnote = $args['footnote'];
-	if ( ! $footnote ) :
+	if ( ! $args['name'] || ! $args['description'] ) :
 		return false;
 	endif;
 	// Enqueue Stylesheet.
@@ -33,16 +32,16 @@ function component_footnote( $args = null ) {
 
 	$component_attrs = array();
 
-	$name        = esc_attr( $footnote->name );
-	$component_attrs['data-tooltip'] = esc_attr( $footnote->description );
+	$name                            = xten_kses_post( $args['name'] );
+	$component_attrs['data-tooltip'] = esc_attr( $args['description'] );
 	$component_attrs['tabindex'] = 0;
 
 	$component_attrs_s = xten_stringify_attrs( $component_attrs );
 	ob_start();
 	?>
-	<div id="<?php echo $component_id; ?>" class="component-<?php echo $handle; ?>" <?php echo $component_attrs_s; ?>>
-		<div class="footnote-name"><?php echo $name; ?></div>
-	</div>
+	<span id="<?php echo $component_id; ?>" class="component-<?php echo $handle; ?>" <?php echo $component_attrs_s; ?>>
+		<span class="footnote-name"><?php echo $name; ?></span>
+	</span>
 	<?php
 	$html = ob_get_clean();
 

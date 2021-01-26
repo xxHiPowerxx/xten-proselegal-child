@@ -77,6 +77,20 @@ function contact_section_shortcode( $atts = '' ) {
 add_shortcode( 'contact_section', 'contact_section_shortcode' );
 
 /**
+ * Footnote Shortcode
+ * Renders a Footnote.
+ */
+function footnote_shortcode( $atts = '' ) {
+	// When Shortcode is used $atts defaults to ''.
+	// Ensure that this gets converted to an array.
+	$atts = $atts === '' ? array() : $atts;
+
+	// Get Component Function.
+	return xten_render_component( 'footnote', $atts );
+}
+add_shortcode( 'footnote', 'footnote_shortcode' );
+
+/**
  * Staff Shortcode
  * Renders Staff.
  */

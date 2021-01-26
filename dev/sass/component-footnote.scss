@@ -1,6 +1,7 @@
 @import 'variables';
 
 .component-footnote {
+	display: inline-block;
   font-size: 1.4rem;
   vertical-align: super;
   line-height: 1;
@@ -32,6 +33,9 @@
 		background-color: $secondary;
 		transform: translate3d(-50%, -50%, 0);
 		z-index: -1;
+	}
+	.fa {
+		font-size: .7em;
 	}
 }
 

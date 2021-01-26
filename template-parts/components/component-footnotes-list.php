@@ -39,7 +39,10 @@ function component_footnotes_list( $args = null ) {
 	<div id="<?php echo $component_id; ?>" class="component-<?php echo $handle; ?>">
 		<?php
 		foreach ( $footnotes as $footnote ) :
-			$_args = array( 'footnote' => $footnote );
+			$_args = array(
+				'name'        => $footnote->name,
+				'description' => $footnote->description,
+			);
 			echo xten_render_component( 'footnote', $_args );
 		endforeach;
 		?>
