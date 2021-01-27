@@ -113,6 +113,14 @@ $background-blur: blur(5px) brightness(2.2);
 		background-color: $primary-light;
 	}
 }
+@mixin btn-color-white {
+	background-color: $white;
+	&[aria-expanded="true"],
+	#{$active} {
+		color: $primary;
+		background-color: $off-white;
+	}
+}
 @mixin btn-large {
 	font-size: 3rem;
 }

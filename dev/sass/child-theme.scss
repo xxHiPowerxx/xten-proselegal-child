@@ -108,6 +108,9 @@ h1,
 		&.btn-color-primary {
 			@include btn-color-primary;
 		}
+		&.btn-color-white {
+			@include btn-color-white;
+		}
 	}
 	&.btn-large {
 		@include btn-large;
@@ -142,6 +145,12 @@ h1,
 	padding-top: 12rem;
 	padding-bottom: 12rem;
 }
+.primary-gradient {
+	@include primary-gradient;
+}
+.white-gradient {
+	@include white-gradient;
+}
 .alt-bg {
 	&:nth-child(2n+1) {
 		@include white-gradient;
@@ -171,6 +180,9 @@ h1,
 		flex: 1;
 		display: flex;
 	}
+	.sizeHero {
+		min-height: 33vmin !important;
+	}
 }
 
 .xten-hero-banner {
@@ -179,9 +191,6 @@ h1,
 		min-height: 0;
 		display: flex;
 		width: 100%;
-		.sizeHero {
-			min-height: 33vmin !important;
-		}
 		.container-xten-component-hero {
 			align-items: stretch;
 		}
@@ -266,6 +275,38 @@ h1,
 		cursor: default;
 	}
 }
+.form-control {
+	&.search-field {
+		border-top-left-radius: $border-radius-theme-style-em;
+		border-bottom-left-radius: $border-radius-theme-style-em;
+		padding: .5em;
+	}
+}
+.page-link {
+	color: $primary;
+}
+.header-search-wrapper {
+	background-color: $primary;
+}
+
+/*   Modal   */
+.modal-content {
+	padding: 6rem;
+	@include theme-card-style( $border-radius-theme-style-rem-lg );
+	border-radius: 3rem;
+	.close {
+		position: absolute;
+		right: 0;
+		top: 0;
+		font-size: 2.6rem;
+		text-shadow: none;
+		opacity: 1 !important;
+		width: 2em;
+		height: 2em;
+		border-radius: $border-radius-theme-style-em;
+	}
+}
+/*   /Modal   */
 /*   /Common   */
 
 /*   Header   */

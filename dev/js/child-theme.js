@@ -11,7 +11,6 @@ jQuery(document).ready(function($) {
 		$('.validateInput ').each(function() {
 			function coreFunc( input, $indicator ) {
 				var validity = input.checkValidity();
-				console.log(input.type);
 				if ( validity === true && input.type === 'tel' ) {
 					var patt = new RegExp("^[+]?[0-9()/ -]*$");
 					if ( ! patt.test(input.value) ) {

@@ -36,7 +36,7 @@ wp_add_inline_style( 'xten-site-header-inline-style', $style );
 				<?php echo get_site_phone_number_func(true); ?>
 			</div><!-- .site-branding -->
 
-			<button class="btn btn-theme-style" id="show-sidebar-modal" data-toggle="modal" data-target="#sidebar-modal" type="button">
+			<button class="btn btn-theme-style" id="show-site-wide-contact-form-modal" data-toggle="modal" data-target="#site-wide-contact-form-modal" type="button">
 				<span class="btn-text">Get Started</span>
 			</button>
 			<nav id="nav-mega-menu" class="main-navigation desktop-navigation navbar-nav ml-auto" aria-label="<?php esc_attr_e( 'Main menu', 'xten' ); ?>">

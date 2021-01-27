@@ -3,6 +3,81 @@
     "title": "XTen Child Theme Site Settings",
     "fields": [
         {
+            "key": "field_6011cc4b40d51",
+            "label": "Site Wide Contact Form",
+            "name": "",
+            "type": "accordion",
+            "instructions": "Contact Form that Shows anywhere on website when Site Wide Contact Form Button is Clicked.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 1,
+            "multi_expand": 0,
+            "endpoint": 0
+        },
+        {
+            "key": "field_6011e921f540b",
+            "label": "Contact Form",
+            "name": "contact_form",
+            "type": "post_object",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "wpcf7_contact_form"
+            ],
+            "taxonomy": "",
+            "allow_null": 0,
+            "multiple": 0,
+            "return_format": "object",
+            "ui": 1
+        },
+        {
+            "key": "field_6011cd3940d53",
+            "label": "Contact Form Title",
+            "name": "contact_form_title",
+            "type": "text",
+            "instructions": "Text that displays at the top of Site Wide Contact Form.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_6011cd2740d52",
+            "label": "Site Wide Contact Form Accordion Endpoint",
+            "name": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 1
+        },
+        {
             "key": "field_6010556c4152e",
             "label": "Contact Locations Component",
             "name": "",
@@ -193,5 +268,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1611684890
+    "modified": 1611786607
 }
