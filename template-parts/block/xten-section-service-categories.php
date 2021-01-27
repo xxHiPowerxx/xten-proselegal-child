@@ -45,7 +45,7 @@ $section_attrs_s = xten_stringify_attrs( $section_attrs );
 			<?php if ( $include_cta_button ) : ?>
 				<div class="anchor-btn-cta-wrapper">
 					<a class="anchor-btn-cta" href="http://localhost/proselegal/services/">
-						<button class="btn btn-theme-style btn-cta btn-large" type="button">See Services</button>
+						<button class="btn btn-theme-style btn-cta btn-large" type="button">See All Services</button>
 					</a>
 				</div>
 			<?php endif; ?>

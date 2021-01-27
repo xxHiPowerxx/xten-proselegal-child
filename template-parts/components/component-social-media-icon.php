@@ -14,6 +14,7 @@ function component_social_media_icon( $account ) {
 		get_theme_file_uri( $component_css_path ),
 		array(
 			'child-style',
+			'xten-base-style',
 		),
 		filemtime( get_stylesheet_directory() . $component_css_path ),
 		'all'

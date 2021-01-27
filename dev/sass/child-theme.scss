@@ -208,6 +208,9 @@ h1,
 	}
 	.xten-content {
 		max-width: 140rem;
+		@at-root body.blog & {
+			max-width: 70rem;
+		}
 		margin-left: auto;
 		margin-right: auto;
 		> * {
@@ -235,7 +238,6 @@ h1,
 		font-size: 1.6rem;
 		font-weight: 500;
 		padding: .5em 1em;
-		// background-image: linear-gradient( $secondary, $primary);
 		background-color: $primary;
 		@include theme-card-style;
 		color: $white;
@@ -247,11 +249,12 @@ h1,
 		transform: translate3d(-50%, 0, 0) scaleY(0);
 		transform-origin: 50% 100%;
 		opacity: 0;
-		max-width: calc( 100vw - 6rem );
 		@include smoother-transition;
 		word-break: normal;
+		white-space: normal;
 		line-height: 1.25;
 		width: max-content;
+		// max-width: calc( 100vw - 6rem );
 		max-width: 12em;
 	}
 }
@@ -602,3 +605,21 @@ h1,
 }
 /*   /Staff Section   */
 /*   /About Page   */
+
+/*   Blog Page   */
+.content-wrapper {
+	> .main-container {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+}
+.article-container {
+	.listed-post {
+		@include theme-card-style( $border-radius-theme-style-rem-sm );
+		overflow: hidden;
+	}
+}
+.post-category-title {
+	font-family: $font-fam-primary;
+}
+/*   /Blog Page   */
