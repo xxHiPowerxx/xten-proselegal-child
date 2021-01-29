@@ -2,20 +2,52 @@
 
 .component-contact-section {
 	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	flex-wrap: wrap;
+	@media (min-width: $vp_lg) {
+		justify-content: space-between;
+		flex-wrap: nowrap;
+	}
 	@at-root div.xten-content > & {
-		@include flex-margin( 3rem );
+		@include flex-margin( 1.5rem );
+		@media (min-width: $vp_xxl) {
+			@include flex-margin( 3rem );
+		}
 	}
 	.offices-list-wrapper {
-		flex: 0 1 auto;
+		flex: 1 1 50%;
 	}
 	.contact-form-wrapper {
-		flex: 1 0 auto;
+		// flex: 1 0 auto;
 	}
 	.component-offices-list {
-		@include flex-margin( 3rem );
+		@include flex-margin( 1.5rem );
+		align-items: center;
+		flex-direction: column;
+		@media (min-width: $vp_m) {
+			flex-direction: row;
+		}
+		@media (min-width: $vp_lg) {
+			flex-direction: column;
+		}
+		@media (min-width: $vp_xxl) {
+			@include flex-margin( 3rem );
+			flex-direction: row;
+		}
 	}
 	.component-office {
-		width: calc(50% - 6rem);
+		max-width: 100%;
+		width: 47.5rem;
+		@media (min-width: $vp_m) {
+			width: calc(50% - 3rem);
+		}
+		@media (min-width: $vp_lg) {
+			width: 47.5rem;
+		}
+		@media (min-width: $vp_xxl) {
+			width: calc(50% - 6rem);
+		}
 		min-height: 22.475rem;
 	}
 	.offices-list-title {

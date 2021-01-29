@@ -124,3 +124,13 @@ $background-blur: blur(5px) brightness(2.2);
 @mixin btn-large {
 	font-size: 3rem;
 }
+$landscape-percentage: 56.25%;
+@mixin before-spacer( $pad-bottom: $landscape-percentage ) {
+	position: relative;
+	&:before {
+		content: '';
+		display: block;
+		width: 100%;
+		padding-bottom: $pad-bottom;
+	}
+}

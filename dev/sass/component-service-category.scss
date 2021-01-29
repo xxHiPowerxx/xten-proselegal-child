@@ -3,11 +3,25 @@
 .component-service-categories-list {
   display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
 	@include flex-margin( 1.5rem );
 }
 .component-service-category {
-	flex: 1 1 calc(25% - 3rem);
-	max-width: calc(25% - 3rem);
+	flex: 1 1 calc(100% - 3rem);
+	max-width: 45rem;
+	width: 100%;
+	@media (min-width: $vp_xs) {
+		flex-basis: calc(50% - 3rem);
+		max-width: calc(50% - 3rem);
+	}
+	@media (min-width: $vp_m) {
+		flex-basis: calc(33.333% - 3rem);
+		max-width: calc(33.333% - 3rem);
+	}
+	@media (min-width: $vp_xl) {
+		flex-basis: calc(25% - 3rem);
+		max-width: calc(25% - 3rem);
+	}
   // width: 41.463rem;
 	height: 27.9rem;
 	&,
