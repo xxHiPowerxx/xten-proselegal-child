@@ -54,10 +54,31 @@ jQuery(document).ready(function($) {
 			}
 		});
 	}
+	function preFillContactForm() {
+		$('.preFillContactForm').on('click keyup', function(e) {
+			var key = e.key || e.keyCode,
+			fillContent = $(this).attr('data-pre-fill'),
+			serviceCat = $(this).attr('data-service-category'),
+			modal = $(this).attr('data-target'),
+			$modal = $(modal),
+			$serviceSel = $modal.find('.preFillContactFormServiceCat'),
+			$messageTextArea = $modal.find('.preFillContactFormMessage');
+			if (key) {
+				var enterKey = key === "Enter" || key === 13;
+				var spaceKey = key === " " || key === 32;
+				if (!(enterKey || spaceKey)) {
+					return;
+				}
+			}
+			$serviceSel.val(serviceCat);
+			$messageTextArea.val(fillContent);
+		});
+	}
 	function readyFuncs() {
 		addHTMLValidationToCF();
 		validateInput();
 		preventExpandedCollapse();
+		preFillContactForm();
 	}
 	readyFuncs();
 });

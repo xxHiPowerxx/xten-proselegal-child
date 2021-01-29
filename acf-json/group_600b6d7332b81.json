@@ -4,10 +4,10 @@
     "fields": [
         {
             "key": "field_6011cc4b40d51",
-            "label": "Site Wide Contact Form",
+            "label": "Site-Wide Contact Form",
             "name": "",
             "type": "accordion",
-            "instructions": "Contact Form that Shows anywhere on website when Site Wide Contact Form Button is Clicked.",
+            "instructions": "Contact Form that Shows anywhere on website when Site-Wide Contact Form Button is Clicked.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -61,8 +61,27 @@
             "maxlength": ""
         },
         {
+            "key": "field_60144c70ad403",
+            "label": "Pre-Fill Message Default",
+            "name": "pre_fill_message_default",
+            "type": "textarea",
+            "instructions": "Use this set \"Pre-Fill\" Text for Message in Site-Wide Contact Form when CTA button is clicked on a <b>Service<\/b>.<br \/>\r\nThis will support variables:<br \/>\r\n<b>${service-category}<\/b> = <b>\"Family Law\"<\/b>.<br \/>\r\n<b>${service}<\/b> = <b>\"Uncontested Divorce with Minor Children\"<\/b>.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 2,
+            "new_lines": ""
+        },
+        {
             "key": "field_6011cd2740d52",
-            "label": "Site Wide Contact Form Accordion Endpoint",
+            "label": "Site-Wide Contact Form Accordion Endpoint",
             "name": "",
             "type": "accordion",
             "instructions": "",
@@ -268,5 +287,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1611786607
+    "modified": 1611943576
 }

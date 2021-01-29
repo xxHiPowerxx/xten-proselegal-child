@@ -33,6 +33,15 @@ function component_service( $args = null ) {
 	$description     = xten_kses_post( get_the_content( $post_id ) );
 	$content         = null;
 	if ( $description ) :
+		$queried_object   = get_queried_object();
+		$service_category = get_class($queried_object) === 'WP_Term' ?
+			$queried_object->name :
+			null;
+		$pre_fill        = esc_attr( get_field( 'pre_fill_message_default', 'options', false ) );
+		if ( $pre_fill ) :
+			$pre_fill = str_replace('${service-category}', $service_category, $pre_fill );
+			$pre_fill = str_replace('${service}', $_args['title'], $pre_fill );
+		endif;
 		ob_start();
 		?>
 		<div class="accordion-content-inner">
@@ -50,7 +59,7 @@ function component_service( $args = null ) {
 				</span>
 			<?php endif; ?>
 		</div>
-		<button type="button" class="btn btn-theme-style btn-color-primary btn-large btn-show-contact">Get Started</button>
+		<button type="button" class="btn btn-theme-style btn-color-primary btn-large btn-show-contact preFillContactForm" data-toggle="modal" data-target="#site-wide-contact-form-modal" data-pre-fill="<?php echo $pre_fill; ?>" data-service-category="<?php echo $service_category; ?>">Get Started</button>
 		<?php
 		$content = ob_get_clean();
 	endif;
