@@ -126,47 +126,49 @@ function component_office_locations( $args = null ) {
 		<div class="office-locations-map-and-markers">
 			<?php if ( $map_img_elm ) : ?>
 				<div class="office-locations-map">
-					<?php echo $map_img_elm; ?>
-				</div>
-			<?php endif; ?>
-			<?php if ( ! empty( $_offices ) ) : ?>
-				<div class="office-locations-map-markers-wrapper">
 					<?php
-					foreach ( $_offices as $_office ) :
-						// $_office['control_attrs_a']['id'] .= '-map-marker';
-						$_office['control_attrs_a']['class'] = "office-location-map-marker-collapse-control collapse-control map-marker-{$_office['office_name']} preventExpandedCollapse";
+					echo $map_img_elm;
 
-						$map_marker_selector = "#{$_office['control_attrs_a']['id']}.map-marker-{$_office['office_name']}";
+					if ( ! empty( $_offices ) ) : ?>
+						<div class="office-locations-map-markers-wrapper">
+							<?php
+							foreach ( $_offices as $_office ) :
+								// $_office['control_attrs_a']['id'] .= '-map-marker';
+								$_office['control_attrs_a']['class'] = "office-location-map-marker-collapse-control collapse-control map-marker-{$_office['office_name']} preventExpandedCollapse";
 
-						$x_coordinates = $_office['coordinates']['x_coordinates'];
-						$y_coordinates = $_office['coordinates']['y_coordinates'];
-						if ( $x_coordinates || $y_coordinates ) :
-							$rules = array();
-							if ( $x_coordinates ) :
-								$rules['left'] = esc_attr( $x_coordinates );
-							endif;
-							if ( $y_coordinates ) :
-								$rules['top'] = esc_attr( $y_coordinates );
-							endif;
-							$styles .= xten_add_inline_style(
-								$map_marker_selector,
-								$rules
-							);
-						endif;
+								$map_marker_selector = "#{$_office['control_attrs_a']['id']}.map-marker-{$_office['office_name']}";
 
-						$_control_attrs_s = xten_stringify_attrs( $_office['control_attrs_a'] );
-						?>
-						<div <?php echo $_control_attrs_s; ?>>
-							<div class="map-marker-icon fa fa-map-marker-alt"></div>
-							<?php if ( $_office['office_name'] ) : ?>
-								<h5 class="map-marker-office-name"><?php echo $_office['office_name']; ?></h5>
-							<?php endif; ?>
+								$x_coordinates = $_office['coordinates']['x_coordinates'];
+								$y_coordinates = $_office['coordinates']['y_coordinates'];
+								if ( $x_coordinates || $y_coordinates ) :
+									$rules = array();
+									if ( $x_coordinates ) :
+										$rules['left'] = esc_attr( $x_coordinates );
+									endif;
+									if ( $y_coordinates ) :
+										$rules['top'] = esc_attr( $y_coordinates );
+									endif;
+									$styles .= xten_add_inline_style(
+										$map_marker_selector,
+										$rules
+									);
+								endif;
+
+								$_control_attrs_s = xten_stringify_attrs( $_office['control_attrs_a'] );
+								?>
+								<div <?php echo $_control_attrs_s; ?>>
+									<div class="map-marker-icon fa fa-map-marker-alt"></div>
+									<?php if ( $_office['office_name'] ) : ?>
+										<h5 class="map-marker-office-name"><?php echo $_office['office_name']; ?></h5>
+									<?php endif; ?>
+								</div>
+								<?php
+							endforeach;
+							?>
 						</div>
-						<?php
-					endforeach;
-					?>
+					<?php endif // endif ( ! empty( $_offices ) ) : ?>
 				</div>
-			<?php endif ?>
+			<?php endif; // endif ( $map_img_elm ) : ?>
 		</div>
 	</div>
 	<?php
