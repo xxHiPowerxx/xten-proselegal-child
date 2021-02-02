@@ -32,7 +32,8 @@ function component_footnote( $args = null ) {
 
 	$component_attrs = array();
 
-	$name                            = xten_kses_post( $args['name'] );
+	// $name                            = xten_kses_post( $args['name'] );
+	$name                            = '<span class="fa fa-asterisk"></span>';
 	$component_attrs['data-tooltip'] = esc_attr( $args['description'] );
 	$component_attrs['tabindex'] = 0;
 
