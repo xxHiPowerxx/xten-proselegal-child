@@ -42,9 +42,13 @@ $section_attrs_s = xten_stringify_attrs( $section_attrs );
 				<h2 class="xten-section-heading"><?php echo $title; ?></h2>
 			<?php endif; ?>
 			<?php echo xten_render_component( 'service-categories-list', $args ); ?>
-			<?php if ( $include_cta_button ) : ?>
+			<?php
+			if ( $include_cta_button ) :
+				$services_url = get_permalink( get_page_by_title( 'Services' ) ) ? : get_home_url( null, '/services' );
+				var_dump(get_permalink( get_page_by_title( 'Services' ) ));
+				?>
 				<div class="anchor-btn-cta-wrapper">
-					<a class="anchor-btn-cta" href="http://localhost/proselegal/services/">
+					<a class="anchor-btn-cta" href="<?php echo esc_url( $services_url ); ?>">
 						<button class="btn btn-theme-style btn-cta btn-large" type="button">See All Services</button>
 					</a>
 				</div>
