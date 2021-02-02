@@ -3,17 +3,24 @@
 .component-staff-list {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
 	@include flex-margin( 1.5rem );
 }
 .component-staff-member {
 	background-color: $white;
 	color: $primary;
-	flex-basis: 25%;
-	max-width: 25%;
 	text-align: center;
 	display: flex;
 	flex-direction: column;
 	border-radius: 3rem;
+	flex-basis: 100%;
+	max-width: 40rem;
+	@media (min-width: $vp_xs) {
+		flex-basis: calc(50% - 3rem);
+	}
+	@media (min-width: $vp_xl) {
+		flex-basis: calc(25% - 3rem);
+	}
 	> * {
 		margin-bottom: 0;
 		&:not(:first-child) {

@@ -17,6 +17,17 @@
 			background-color: $primary;
 		}
 	}
+	&:nth-child(even) {
+		&:before {
+			background-color: $secondary-light;
+		}
+		#{$active} {
+			color: $white;
+			&:before {
+				background-color: $primary;
+			}
+		}
+	}
 	&,
 	&:before {
 		@include smoother-transition;
@@ -31,6 +42,7 @@
 		padding-bottom: 100%;
 		border-radius: 50%;
 		background-color: $secondary;
+		border: $border-card-style;
 		transform: translate3d(-50%, -50%, 0);
 		z-index: -1;
 	}

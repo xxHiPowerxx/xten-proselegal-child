@@ -90,6 +90,10 @@
 	width: 100%;
 	background-color: $white;
 	flex: 1 0;
+	min-height: 22.1rem;
+	@media (min-width: $vp_xs) {
+		min-width: 27.5rem;
+	}
 	> * {
 		padding-left: 1.5rem;
 		padding-right: 1.5rem;

@@ -32,6 +32,8 @@
 .flip-card {
 	position: relative;
 	text-align: center;
+	transform-style: preserve-3d;
+	perspective: 1000px;
 	.flip-card-front,
 	.flip-card-back {
 		display: flex;

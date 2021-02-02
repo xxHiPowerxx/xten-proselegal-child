@@ -5,7 +5,10 @@
   flex-wrap: wrap;
 	@include flex-margin( 3rem );
 	.listed-service {
-		flex: 0 1 calc(50% - 6rem);
+		flex: 0 1 100%;
+		@media (min-width: $vp_m) {
+			flex-basis: calc(50% - 6rem);
+		}
 	}
 }
 .component-service {

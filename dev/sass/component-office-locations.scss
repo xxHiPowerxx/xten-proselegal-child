@@ -3,13 +3,22 @@
 
 .component-office-locations {
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: stretch;
+	flex-wrap: wrap;
+	row-gap: 3rem;
+	column-gap: 3rem;
+	@media (min-width: $vp_xxl) {
+		column-gap: 6rem;
+	}
 	.offices-list-wrapper {
-		padding: 6rem;
 		@include theme-card-style( $border-radius-theme-style-rem-lg );
 		background-color: $off-white;
 		width: 59.5rem;
+		padding: 3rem;
+		@media (min-width: $vp_xxl) {
+			padding: 6rem;
+		}
 	}
 	.office-location-collapse-control {
 		.office-title {
@@ -39,6 +48,11 @@
 	&:not(:last-child) {
 		border-bottom: 0;
 	}
+}
+.office-locations-map-and-markers {
+	width: 78.5rem;
+	max-width: 100%;
+	flex: 1 0 auto;
 }
 .office-location-collapse-control {
 	display: flex;
@@ -79,19 +93,30 @@
 .map-marker-icon {
 	color: $secondary;
 }
-.office-locations-map-and-markers {
-	position: relative;
-}
 .map-marker-office-name {
 	padding: .25em .5em;
 	margin-top: .75rem;
 	margin-bottom: 0;
 	@include theme-card-style;
 	@include smoothest-transition;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	@media (max-width: $vp_xs - 1) {
+		font-size: 2rem;
+	}
+	@media (max-width: 479px) {
+		font-size: 1.8rem;
+	}
 }
 .office-locations-map {
-	@include theme-card-style( $border-radius-theme-style-rem-lg );
-	overflow: hidden;
+	position: relative;
+	> img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		@include theme-card-style( $border-radius-theme-style-rem-lg );
+		overflow: hidden;
+	}
 }
 .component-office-locations .office-location-collapse-control .office-title,
 .map-marker-office-name {
