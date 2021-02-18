@@ -48,7 +48,7 @@ gulp.task("sass", function() {
 gulp.task("watch", function() {
 	gulp.watch(`${paths.sass}/**/*.scss`, gulp.series("styles"));
 	gulp.watch(`${paths.es6}/**/*.js`, gulp.series("scripts"));
-	gulp.watch(`${paths.imgsrc}/**/*.**`, gulp.series("imagemin-watch"));
+	gulp.watch(`${paths.imgsrc}/**/*.**`, gulp.series("imagemin"));
 });
 
 // Run:
@@ -66,11 +66,12 @@ gulp.task("imagemin", function(done) {
  * @verbose
  */
 gulp.task(
-	"imagemin-watch",
+	"imagemin-bs",
 	gulp.series("imagemin", function reloadBrowserSync() {
 		browserSync.reload();
 	})
 );
+
 
 // Run:
 // gulp cssnano
@@ -161,7 +162,7 @@ gulp.task("scripts", function() {
 gulp.task("watch", gulp.parallel("watch", "scripts", "styles", "imagemin"));
 gulp.task(
 	"watch-bs",
-	gulp.parallel("browser-sync", "watch", "scripts", "styles", "imagemin")
+	gulp.parallel("browser-sync", "watch", "scripts", "styles", "imagemin-bs")
 );
 
 // Run:
