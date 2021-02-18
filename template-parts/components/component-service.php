@@ -55,7 +55,7 @@ function component_service( $args = null ) {
 				?>
 				<span class='service-fee'>
 					<span class='fee-label'>Fee:</span> <span class='fee-price'>$<?php echo $fee; ?></span>
-					<?php echo $footnotes; ?>
+					<?php echo '&nbsp;' . $footnotes; ?>
 				</span>
 			<?php endif; ?>
 		</div>

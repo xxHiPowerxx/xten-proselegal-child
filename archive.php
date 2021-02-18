@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying the Blog Overview page
+ * The template for displaying archive pages
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
@@ -45,7 +45,7 @@ get_header(); ?>
 						wp_print_styles( array( 'xten-content-css' ) ); // Note: If this was already done it will be skipped.
 
 						/* Display the appropriate header when required. */
-						xten_index_header();
+						// xten_index_header();
 
 						?>
 

@@ -170,11 +170,21 @@ h1,
 	}
 }
 /*   Hero Banner   */
+.xten-hero-banner-w-divider-wrapper {
+	&.entry-header {
+		margin-bottom: 0;
+	}
+}
 .xten-hero-banner-w-divider {
 	> * {
 		display: flex;
 		flex-direction: column;
 		min-height: calc(100vh - 10.5rem);
+	}
+	&.half-banner {
+		> * {
+			min-height: calc(62.432vh - 10.5rem);
+		}
 	}
 	.xten-section-hero {
 		flex: 1;
@@ -197,6 +207,7 @@ h1,
 	}
 	.xten-content-inner {
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		height: 30vh;
@@ -592,7 +603,11 @@ h1,
 .accreditations-list {
   display: flex;
 	justify-content: space-between;
+	align-items: center;
 	@include flex-margin( .75rem );
+	> * {
+		max-width: calc(33% - 1.5rem);
+	}
 }
 
 /*   Home Page   */
@@ -666,8 +681,9 @@ h1,
 	overflow: hidden;
 	@include card-style;
 	@include smoothest-transition;
+	border-bottom: $thin-gray-line;
 	&:not([aria-expanded="true"]) {
-		// box-shadow: 0 0 transparent;
+		box-shadow: 0 0 transparent;
 		.fa-check {
 			&:before {
 				content: '\f128';
@@ -816,6 +832,13 @@ h1,
 	}
 }
 /*   /Staff Section   */
+/*   Office Locations Section   */
+.map-marker-Calimesa {
+	@media(max-width: 434px) {
+		right: 0;
+	}
+}
+/*   /Office Locations Section   */
 /*   /About Page   */
 
 /*   Blog Page   */
@@ -834,10 +857,33 @@ h1,
 .post-category-title {
 	font-family: $font-fam-primary;
 }
-/*   /Blog Page   */
-
-.map-marker-Calimesa {
-	@media(max-width: 434px) {
-		right: 0;
+.sub-footer {
+	&.row {
+		> * {
+			width: 100%;
+		}
 	}
 }
+/*   /Blog Page   */
+
+/*   Single Blog Post   */
+.xten-content-inner {
+	.post-date {
+		text-align: center;
+		font-family: $font-fam-primary;
+		font-weight: 500;
+	}
+}
+body {
+	&.single-post {
+		.entry-content {
+			.section {
+				border-top: $thin-gray-line;
+			}
+		}
+		.site-main {
+			padding-bottom: 12rem;
+		}
+	}
+}
+/*   /Single Blog Post   */

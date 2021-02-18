@@ -117,3 +117,48 @@ function office_locations_shortcode( $atts = '' ) {
 	return xten_render_component( 'office-locations' );
 }
 add_shortcode( 'office_locations', 'office_locations_shortcode' );
+
+/**
+ * Hero Content Shortcode
+ * Renders Post Title, and posted on if Single Post.
+ */
+function xten_hero_content_shortcode( $atts = '' ) {
+	// When Shortcode is used $atts defaults to ''.
+	// Ensure that this gets converted to an array.
+	$atts = $atts === '' ? array() : $atts;
+
+	$html = '';
+	$post_title = get_the_title();
+	ob_start();
+	?>
+	<h1 class="post-title"><?php echo $post_title; ?></h1>
+	<?php
+	if ( is_single() ) :
+		$date = xten_posted_on();
+		ob_start();
+		?>
+		<h2 class="post-date xten-h5"><?php echo xten_posted_on(); ?></h2>
+		<?php
+		$html .= ob_get_clean();
+	endif; // endif ( is_single() ) :
+	return $html;
+}
+add_shortcode( 'xten_hero_content', 'xten_hero_content_shortcode' );
+
+/**
+ * Office Locations Shortcode
+ * Renders Office Locations.
+ */
+function xten_button_shortcode( $atts = '', $content = null ) {
+	if ( $content ) :
+		// When Shortcode is used $atts defaults to ''.
+		// Ensure that this gets converted to an array.
+		$atts = $atts === '' ? array() : $atts;
+		ob_start();
+		?>
+		<button class="btn btn-theme-style" type="button"><?php echo $content; ?></button>
+		<?php
+		return trim(ob_get_clean());
+	endif; // endif( $content ) :
+}
+add_shortcode( 'xten_button', 'xten_button_shortcode' );

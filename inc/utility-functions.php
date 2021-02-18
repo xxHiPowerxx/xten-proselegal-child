@@ -89,9 +89,18 @@ class XTenChildUtilities {
 			 */
 			function render_hero_banner( $queried_object ) {
 				/*   Hero Banner   */
+				$featured_image_size = array(2560, null );
 				if ( get_class( $queried_object ) === 'WP_Term' ) :
 					$title          = esc_attr( $queried_object->name );
 					$featured_image = get_field( 'featured_image', $queried_object );
+					if ( ! $featured_image ) :
+						$featured_image = array(
+							'url' => get_the_post_thumbnail_url(
+								get_option( 'page_for_posts' ),
+								$featured_image_size
+							),
+						);
+					endif;
 					$description    = get_field( 'long_description', $queried_object, false ) ? :
 							$queried_object->description;
 					$anchor_href    = '#services';
@@ -101,19 +110,28 @@ class XTenChildUtilities {
 					$featured_image = array(
 						'url' => get_the_post_thumbnail_url(
 							$queried_object,
-							array(2560, null )
+							$featured_image_size
 						),
 					);
 					$meta_id        = 'metadescription_17587';
 					$description    = get_post_meta( $queried_object->ID, $meta_id, true );
 					$anchor_href    = '#main';
-					$button_text    = "<span>See</span> <span>$title<span> <span>Services</span>";
-				endif;
+					$button_text    = "<span>See</span> <span>$title<span>";
+				endif; // endif ( get_class( $queried_object ) === 'WP_Term' ) :
 				if ( is_home() ) :
 					$title = get_bloginfo() . ' ' . $title;
+					$button_text    = "Read Our Blog";
+				endif;
+
+				$half_banner_class   = ! $description ?
+					'half-banner' :
+					null;
+				$date_posted_h2      = null;
+				if ( is_single() ) :
+					$date_posted_h2 = '<h2 class="post-date xten-h5">' . xten_posted_on() . '</h2>';
 				endif;
 				$social_media   = xten_render_component( 'social-media-icons-list' );
-				$hero_content   = "<div class='xten-content-inner'><h1>$title</h1></div>$social_media";
+				$hero_content   = "<div class='xten-content-inner'><h1>$title</h1>$date_posted_h2</div>$social_media";
 				$args = array(
 					'c_attrs' => array(
 						'class' => 'xten-hero-banner',
@@ -137,7 +155,7 @@ class XTenChildUtilities {
 				);
 				ob_start();
 				?>
-				<div class="xten-hero-banner-w-divider">
+				<div class="xten-hero-banner-w-divider <?php echo $half_banner_class; ?>">
 					<div class="xten-hero-banner-w-divider-inner">
 						<div class="xten-section-hero">
 							<?php echo xten_sections_render_component( 'hero', $args ); ?>

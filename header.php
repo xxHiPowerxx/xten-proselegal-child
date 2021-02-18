@@ -18,7 +18,7 @@
 		<?php wp_head(); ?>
 	</head>
 
-	<body <?php body_class('xten-theme-color-bg'); ?> data-spy="scroll" data-target="#xten-scroll-nav" data-offset="100">
+	<body <?php body_class('xten-theme-color-bg'); ?> data-spy="scroll" data-target="#xten-scroll-nav" data-offset="260">
 
 		<div id="load-splash" class="loading xten-theme-color-bg">
 			<div class="load-splash-inner">
