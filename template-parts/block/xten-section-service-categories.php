@@ -45,7 +45,6 @@ $section_attrs_s = xten_stringify_attrs( $section_attrs );
 			<?php
 			if ( $include_cta_button ) :
 				$services_url = get_permalink( get_page_by_title( 'Services' ) ) ? : get_home_url( null, '/services' );
-				var_dump(get_permalink( get_page_by_title( 'Services' ) ));
 				?>
 				<div class="anchor-btn-cta-wrapper">
 					<a class="anchor-btn-cta" href="<?php echo esc_url( $services_url ); ?>">

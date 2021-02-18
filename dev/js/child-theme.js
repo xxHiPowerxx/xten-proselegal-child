@@ -1,26 +1,8 @@
 jQuery(document).ready(function($) {
 	var $body = $('body').first(),
 		$contactFormModal = $('#site-wide-contact-form-modal').first(),
-		$siteHeader = $('#masthead').first(),
-		mouseDetected = false;
-
-	function detectMouse(){
-		function checkPointer(mediaQueryItem) {
-			if (mediaQueryItem.matches) {
-				mouseDetected = true;
-				$(window).trigger('mouseDetected');
-			} else {
-				mouseDetected = false;
-				$(window).trigger('mouseUndetected');
-			}
-			return mediaQueryItem;
-		}
-		var mediaRule = window.matchMedia('(pointer:fine)');
-		checkPointer(mediaRule);
-		mediaRule.addEventListener('change', function(){
-			checkPointer(this);
-		});
-	}
+		$siteHeader = $('#masthead').first();
+		window.mouseDetected = window.mouseDetected || false;
 
 	function addHTMLValidationToCF() {
 		$('form.wpcf7-form').each(function () {
@@ -101,10 +83,10 @@ jQuery(document).ready(function($) {
 	function scrollToTarget($target, offset) {
 		// Make sure $target is a jQuery object.
 		$target = $target instanceof jQuery ? $target : $($target);
-		var targetTop = $target.position().top;
+		var targetTop = $target.offset().top;
 		if ( ! offset ) {
-			var siteHeaderHeight =  parseFloat(window.siteHeaderHeight) ||
-			$siteHeader[0].getBoundingClientRect().height,
+			var siteHeaderHeight = parseFloat(window.siteHeaderHeight) ||
+				$siteHeader[0].getBoundingClientRect().height,
 			headerCompensation;
 
 			if ( $target.is('.scrollToCenter') ) {
@@ -125,8 +107,8 @@ jQuery(document).ready(function($) {
 				$target = $target || $(window.location.hash);
 			}
 			if ($target !== null && $target.length) {
-				e.stopImmediatePropagation();
 				e.preventDefault();
+				e.stopImmediatePropagation();
 				scrollToTarget($target);
 				var $anchors = $('[href="' + window.location.hash + '"');
 				$anchors.each(function(){
@@ -177,113 +159,119 @@ jQuery(document).ready(function($) {
 			coreFunc();
 		}
 	}
-	// Highly modified version of thise function.
-	// Only aware of vertical (Y) positions.
-	function isElementPartiallyInViewport(el, vertOffSet) {
-			//special bonus for those using jQuery
-			if (typeof jQuery !== 'undefined' && el instanceof jQuery) el = el[0];
 
-			var rect = el.getBoundingClientRect();
-			var percentage = .75;
-			var vertOffSet = vertOffSet || null;
-			var windowHeight = (window.innerHeight || document.documentElement.clientHeight) + vertOffSet;
-			// var windowWidth = (window.innerWidth || document.documentElement.clientWidth);
-
-			var windowFrame = windowHeight - windowHeight * percentage;
-			var windowFrameTop = (windowHeight - windowFrame) / 2;
-			var windowFrameBottom = windowFrameTop + windowFrame;
-
-			var vertInView = (rect.top <= windowFrameBottom) && ((rect.top + rect.height) >= windowFrameTop);
-			// var horInView = (rect.left <= windowWidth) && ((rect.left + rect.width) >= 0);
-			var vertReturn = {
-				topOffSet: false,
-				bottomOffSet: false
-			};
-			if (vertInView) {
-				vertReturn.topOffSet = (rect.top + rect.height) - windowFrameTop;
-				vertReturn.bottomOffSet = windowFrameBottom - rect.top;
-			}
-			// return (vertInView && horInView);
-			return vertReturn;
-	}
-	function scrollSpy() {
-		function coreFunc() {
-			$('.component-service-categories-list').each(function(){
-				// disable Bootstrap ScrollSpy
-				var $scrollNav = $(this).find('.service-categories-list-scroll-nav'),
-					$scrollSpies = $(this).find('.scrollSpy'),
-					headerHeight = parseFloat(window.siteHeaderHeight) ||
-						$siteHeader[0].getBoundingClientRect().height,
-					scrollNavHeight = $scrollNav[0].getBoundingClientRect().height,
-					vertOffSet = headerHeight + scrollNavHeight,
-					mostProminent = [],
-					$navLinks = $scrollNav.find('.nav-link');
-
-				$scrollSpies.each(function(){
-					var isElInFrame = isElementPartiallyInViewport(this, vertOffSet);
-					if ( isElInFrame.topOffSet && isElInFrame.bottomOffSet ) {
-						mostProminent.push({
-							'$el': $(this),
-							'isElInFrame': isElInFrame
-						});
-					}
-					$(this).add($navLinks).removeClass('active');
-				});
-
-				var mostProminentDefault = {
-					topOffSet: 0,
-					bottomOffSet: 0
-				},
-				$mostProminent = $([]);
-				if ( mostProminent.length ) {
-					for ( var i = mostProminent.length - 1; i >= 0; i-- ) {
-						if (
-							(mostProminent[i].isElInFrame.topOffSet >= mostProminentDefault.topOffSet) &&
-							(mostProminent[i].isElInFrame.bottomOffSet >= mostProminentDefault.bottomOffSet)
-						) {
-							if ('$el' in mostProminent[i] ) {
-								mostProminentDefault.topOffSet = mostProminent[i].isElInFrame.topOffSet;
-								mostProminentDefault.bottomOffSet = mostProminent[i].isElInFrame.bottomOffSet;
-
-								$mostProminent = $mostProminent.add(mostProminent[i]['$el']);
-							}
-						}
-					}
-
-					$mostProminent.each(function(){
-						var id = $(this).attr('id'),
-						$scrollNavLink = $scrollNav.find('[href="#' + id + '"]');
-						$(this).add($scrollNavLink).addClass('active');
-					});
+	function touchSolutionToHover() {
+		$('.touchSolutionToHover').each(function(){
+			$(this).on('click', function(e) {
+				// Only prevent Default if not from clickTrigger
+				this.clickFromTrigger = this.clickFromTrigger || false;
+				if ( ! this.clickFromTrigger) {
+					e.preventDefault();
 				}
 			});
-		}
-		function bindCoreFunc() {
-			coreFunc();
-			$(this).on('scroll', coreFunc);
-		}
-		function unbindCoreFunc() {
-			$(this).unbind('scroll', coreFunc);
-		}
-		$(window).on('mouseUndetected', bindCoreFunc).
-			on('mouseDetected', unbindCoreFunc);
+
+			if (
+				! window.mouseDetected &&
+				$(this).is('a')
+			) {
+				$hoverTrigger = $(this).find('.hoverTrigger'),
+				$clickTrigger = $(this).find('.clickTrigger');
+				$($hoverTrigger, $(this)).on('click', function(){
+					var $anchor = $(this).closest('.touchSolutionToHover');
+					$anchor.addClass('active').siblings().removeClass('active');
+				});
+				$($clickTrigger, $(this)).on('click', function() {
+					var $anchor = $(this).closest('.touchSolutionToHover');
+					$anchor[0].clickFromTrigger = true;
+					$anchor.trigger('click');
+				});
+			}
+		});
 	}
+	function serviceCatsNavScrollSpy() {
+		var $serviceCatsNav = $('.service-categories-list-scroll-nav:visible');
+		$serviceCatsNav.each(function(){
+			var $parent = $(this).closest('.xten-section'),
+			$parent = $parent.length ?
+				$parent :
+				$(this).closest('.component-service-categories-list'),
+				serviceCatsNavRect = this.getBoundingClientRect(),
+				siteHeaderHeight = parseFloat(window.siteHeaderHeight) ||
+					$siteHeader[0].getBoundingClientRect().height,
+				navAndSiteHeaderHeight = siteHeaderHeight + serviceCatsNavRect.height,
+				parentRect,
+				parentTop,
+				parentBottom;
+
+			if ( ! $parent[0] ) {
+				return;
+			} else {
+				parentRect = $parent[0].getBoundingClientRect()
+				parentTop = parentRect.top;
+				parentBottom = parentTop + parentRect.height;
+			}
+
+			$parent.css('position', 'relative');
+			if ( parentTop <= serviceCatsNavRect.height && parentBottom >= navAndSiteHeaderHeight ) {
+				$(this).addClass('scroll-nav-active');
+			} else {
+				$(this).removeClass('scroll-nav-active');
+			}
+		});
+	}
+	
+	function setScrollSpyOffset() {
+		var $serviceCatsNav = $('.service-categories-list-scroll-nav:visible');
+		$serviceCatsNav.each(function(){
+			var $parent = $(this).closest('.xten-section'),
+				$parent = $parent.length ?
+					$parent :
+					$(this).closest('.component-service-categories-list'),
+				$serviceCats = $parent.find('.component-service-category'),
+				headerHeight = parseFloat(window.siteHeaderHeight) ||
+					$siteHeader[0].getBoundingClientRect().height,
+				headerCompensation = window.innerHeight / 2 - headerHeight,
+				tallestServiceCategory = 0;
+			$serviceCats.each(function(){
+				var thisHeight = this.getBoundingClientRect().height;
+				tallestServiceCategory = thisHeight > tallestServiceCategory ?
+					thisHeight :
+					tallestServiceCategory;
+			});
+
+			headerCompensation += (tallestServiceCategory / 2);
+			
+			$body.each(function(){
+				$(this).scrollspy('dispose').scrollspy({
+					target: '.xten-scroll-nav',
+					offset: headerCompensation
+				});
+			});
+		});
+	}
+	
 	function readyFuncs() {
-		detectMouse();
 		interceptHashChange();
 		addHTMLValidationToCF();
 		validateInput();
 		preventExpandedCollapse();
 		preFillContactForm();
 		contactUsClick();
-		scrollSpy();
+		serviceCatsNavScrollSpy();
+		touchSolutionToHover();
+		setScrollSpyOffset();
 	}
 	readyFuncs();
 
-	// function scrollFuncs() {
-		
-	// }
-	// $(window).on('scroll', function() {
-	// 	scrollFuncs();
-	// });
+	function scrollFuncs() {
+		serviceCatsNavScrollSpy();
+	}
+	function resizeFuncs() {
+		setScrollSpyOffset();
+	}
+	$(window).on('scroll', function() {
+		scrollFuncs();
+	}).on('resize', function () {
+		resizeFuncs();
+	});
 });
