@@ -28,25 +28,25 @@ get_header(); ?>
 		<div class="row">
 			<div class="col<?php echo esc_attr( $column ); ?> order-xl-1" id="primary">
 				<main id="main" class="site-main single-page">
+					<div class="container container-post">
+						<?php
+						while ( have_posts() ) :
+							the_post();
 
-					<?php
-					while ( have_posts() ) :
-						the_post();
+							/*
+							* Include the component stylesheet for the content.
+							* This call runs only once on index and archive pages.
+							* At some point, override functionality should be built in similar to the template part below.
+							*/
+							wp_print_styles( array( 'xten-content-css' ) ); // Note: If this was already done it will be skipped.
 
-						/*
-						* Include the component stylesheet for the content.
-						* This call runs only once on index and archive pages.
-						* At some point, override functionality should be built in similar to the template part below.
-						*/
-						wp_print_styles( array( 'xten-content-css' ) ); // Note: If this was already done it will be skipped.
+							get_template_part( 'template-parts/content', get_post_type() );
 
-						get_template_part( 'template-parts/content', get_post_type() );
-
-					endwhile; // End of the loop.
-					?>
-
-				</main><!-- #main -->
-			</div> <!-- end column -->
+						endwhile; // End of the loop.
+						?>
+					</div><!-- /.container-post -->
+				</main><!-- /#main -->
+			</div> <!-- /.col -->
 			<?php
 			/**
 			 * Customizer Ordered sidebar.

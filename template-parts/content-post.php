@@ -10,44 +10,42 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'content-area' ); ?>>
-	<div class="container container-post">
-		<div class="entry-content">
-			<?php
+	<div class="entry-content">
+		<?php
 
-			the_content(
-				sprintf(
-					wp_kses(
-						/* translators: %s: Name of current post. Only visible to screen readers */
-						__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'xten' ),
-						array(
-							'span' => array(
-								'class' => array(),
-							),
-						)
-					),
-					get_the_title()
-				)
-			);
+		the_content(
+			sprintf(
+				wp_kses(
+					/* translators: %s: Name of current post. Only visible to screen readers */
+					__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'xten' ),
+					array(
+						'span' => array(
+							'class' => array(),
+						),
+					)
+				),
+				get_the_title()
+			)
+		);
 
-			wp_link_pages(
-				array(
-					'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'xten' ),
-					'after'  => '</div>',
-				)
-			);
-			?>
-		</div><!-- /.entry-content -->
+		wp_link_pages(
+			array(
+				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'xten' ),
+				'after'  => '</div>',
+			)
+		);
+		?>
+	</div><!-- /.entry-content -->
 
-		<footer class="entry-footer xten-highlight-font">
-			<div class="post-category">
-				<h5 class="post-category-title">Category:</h5>
-				<?php xten_post_categories(); ?>
-			</div><!-- .post-category -->
-			<?php
-			xten_edit_post_link();
-			?>
-		</footer><!-- /.entry-footer -->
-	</div><!-- /.container-post -->
+	<footer class="entry-footer xten-highlight-font">
+		<div class="post-category">
+			<h5 class="post-category-title">Category:</h5>
+			<?php xten_post_categories(); ?>
+		</div><!-- .post-category -->
+		<?php
+		xten_edit_post_link();
+		?>
+	</footer><!-- /.entry-footer -->
 </article><!-- /#post-<?php the_ID(); ?> -->
 
 <?php
