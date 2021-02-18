@@ -16,7 +16,9 @@
 			$image_id = get_post_thumbnail_id();
 			$wide_tall;
 			if ( $image_id ) :
-				$size = xten_get_optimal_image_size( $image_id, array( 450, null ), array( 16, 9 ) );
+				$sidebar_location = get_theme_mod( 'sidebar_location', 'sidebar_right' );
+				$image_width = $sidebar_location !== 'sidebar_none' ? 450 : 540;
+				$size = xten_get_optimal_image_size( $image_id, array( $image_width, null ), array( 16, 9 ) );
 				if ( is_array( $size ) ) :
 					$wide_tall = xten_wide_tall_image( $size );
 				else :
