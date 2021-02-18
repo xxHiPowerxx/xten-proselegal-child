@@ -13,11 +13,11 @@ get_header(); ?>
 
 	<?php
 	$sidebar_location = get_theme_mod( 'sidebar_location', 'sidebar_right' );
-	$column           = '';
-	$article_col_size = '3';
+	$column            = '';
+	$article_col_class = 'col-xxl-4 col-md-6';
 	if ( 'sidebar_none' !== $sidebar_location ) {
-		$column           = '-xl-8';
-		$article_col_size = '6';
+		$column            = '-xl-8';
+		$article_col_class = 'col-md-6';
 	};
 	?>
 
@@ -55,7 +55,7 @@ get_header(); ?>
 							/* Start the Loop */
 							while ( have_posts() ) :
 								?>
-								<div class="article-container col-md-<?php echo $article_col_size; ?>">
+								<div class="article-container <?php echo esc_attr( $article_col_class ); ?>">
 									<?php
 									the_post();
 
@@ -64,7 +64,7 @@ get_header(); ?>
 									* If you want to override this in a child theme, then include a file
 									* called content-___.php (where ___ is the Post Type name) and that will be used instead.
 									*/
-									get_template_part( 'template-parts/content', 'archive-post' );
+									get_template_part( 'template-parts/content-archive', get_post_type() );
 									?>
 								</div><!-- .article-container -->
 								<?php
