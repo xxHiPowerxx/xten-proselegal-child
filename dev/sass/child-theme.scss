@@ -429,6 +429,16 @@ h1,
   padding: 0.375em;
   margin-right: -.375em;
 }
+.header-wrapper,
+.service-categories-list-scroll-nav,
+html.nav-open .mobile-sidebar,
+.close-layer {
+	transform: translateZ(1000px);
+}
+.mobile-sidebar,
+.mobile-sidebar.collapse {
+	transform: translate3d(100%,0,1000px);
+}
 // TODO: Add Customizer Setting to turn scrolledPastHeader styles off.
 .header-wrapper .site-header .navbar .header-container .site-branding .custom-logo-link .custom-logo {
 	@include smoothest-transition;
@@ -721,11 +731,11 @@ h1,
 	align-content: stretch;
 	grid-template-columns: 34% 1fr;
 	flex-wrap: wrap;
-	grid-column-gap: 3rem;
-	grid-row-gap: 3rem;
+	@include flex-margin(3rem);
+	margin-top: 3rem;
 	@media ( min-width: $vp_xl ) {
-		grid-column-gap: 6rem;
-		grid-row-gap: 6rem;
+		@include flex-margin(6rem);
+		margin-top: 6rem;
 	}
 	&.is-stacked-on-mobile {
 		@media ( max-width: ($vp_xl - 1) ) {
