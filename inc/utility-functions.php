@@ -90,7 +90,10 @@ class XTenChildUtilities {
 			function render_hero_banner( $queried_object ) {
 				/*   Hero Banner   */
 				$featured_image_size = array(2560, null );
-				if ( get_class( $queried_object ) === 'WP_Term' ) :
+				if (
+					is_object( $queried_object ) &&
+					get_class( $queried_object ) === 'WP_Term'
+				) :
 					$title          = esc_attr( $queried_object->name );
 					$featured_image = get_field( 'featured_image', $queried_object );
 					if ( ! $featured_image ) :
