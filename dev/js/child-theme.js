@@ -110,7 +110,6 @@ jQuery(document).ready(function($) {
 		// Action can be either "collapse", "modal", "dropdown", or "tab".
 		var action = $activateController.attr('data-toggle'),
 		$activateTarget = $($activateController.attr('data-target'));
-		console.log($activateTarget);
 		switch(action) {
 			case 'collapse':
 				$activateTarget.collapse('show');
