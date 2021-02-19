@@ -92,24 +92,53 @@ jQuery(document).ready(function($) {
 			if ( $target.is('.scrollToCenter') ) {
 				headerCompensation = window.innerHeight / 2 - siteHeaderHeight;
 			} else {
-				var padding = 30;
-				headerCompensation = siteHeaderHeight - padding;
+				var padding = 60;
+				headerCompensation = siteHeaderHeight + padding;
 			}
 			offset = headerCompensation;
 		}
 		var scrollPosition = targetTop - offset;
 		$("html, body").animate({ scrollTop: scrollPosition }, 350);
 	}
+	function activateTarget( $target ) {
+		var $activateController = $target.is('[data-toggle]') ?
+			$target :
+			$target.find('[data-toggle]').first();
+		if ($activateController.length === 0 ) {
+			return;
+		}
+		// Action can be either "collapse", "modal", "dropdown", or "tab".
+		var action = $activateController.attr('data-toggle'),
+		$activateTarget = $($activateController.attr('data-target'));
+		console.log($activateTarget);
+		switch(action) {
+			case 'collapse':
+				$activateTarget.collapse('show');
+				break;
+			case 'modal':
+				$activateTarget.modal('show');
+				break;
+			case 'dropdown':
+				$activateTarget.dropdown('toggle');
+				break;
+			case 'tab':
+				$activateTarget.tab('show');
+				break;
+		} 
+	}
 	function interceptHashChange($target) {
-		$(window).on("load hashchange", function (e, $target) {
+		function coreFunc( e, $target ) {
 			$target = $target || null;
 			if (window.location.hash && $(window.location.hash).length) {
 				$target = $target || $(window.location.hash);
 			}
 			if ($target !== null && $target.length) {
-				e.preventDefault();
-				e.stopImmediatePropagation();
+				if ( e !== null ) {
+					e.preventDefault();
+					e.stopImmediatePropagation();
+				}
 				scrollToTarget($target);
+				activateTarget( $target );
 				var $anchors = $('[href="' + window.location.hash + '"');
 				$anchors.each(function(){
 					this.boundClickHandler = this.boundClickHandler || false;
@@ -122,6 +151,10 @@ jQuery(document).ready(function($) {
 					}
 				});
 			}
+		}
+		coreFunc(null, $target);
+		$(window).on('hashchange', function (e, $target) {
+			coreFunc(e, $target);
 		});
 	}
 	function contactUsClick() {

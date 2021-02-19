@@ -194,7 +194,11 @@ function xten_child_custom_post_types() {
 		'publicly_queryable'  => true,
 		'capability_type'     => 'post',
 		'menu_icon'           => $menu_icon,
-		'rewrite'             => false,
+		// 'rewrite'             => false,
+		'rewrite'             => array(
+			'slug'       => 'services/%service_category%',
+			'with_front' => false
+		),
 	);
 	// Registering your Custom Post Type
 	register_post_type( $post_handle, $args );

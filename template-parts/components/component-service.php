@@ -64,10 +64,21 @@ function component_service( $args = null ) {
 		$content = ob_get_clean();
 	endif;
 	$_args['content'] = $content;
+	if ( is_object( $post_id ) && get_class( $post_id ) === 'WP_Post' ) :
+		$post = $post_id;
+	else:
+		global $post;
+	endif;
+	$component_attrs_array = array(
+		'id' => $post->post_name,
+		'c-id' => $component_id,
+		'class' => "component-$handle",
+	);
+	$component_attrs = xten_stringify_attrs( $component_attrs_array );
 
 	ob_start();
 	?>
-	<div id="<?php echo $component_id; ?>" class="component-<?php echo $handle; ?>">
+	<div <?php echo $component_attrs; ?>>
 		<?php echo xten_render_component( 'accordion', $_args ); ?>
 	</div>
 	<?php

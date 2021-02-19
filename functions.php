@@ -96,14 +96,14 @@ add_action( 'acf/init', 'save_acf_fields_to_child_theme' );
 add_filter('wpcf7_autop_or_not', '__return_false');
 
 /**
- * Custom Post Types.
- */
-require get_stylesheet_directory() . '/inc/custom-post-types.php';
-
-/**
  * Custom Taxonomies.
  */
 require get_stylesheet_directory() . '/inc/custom-taxonomies.php';
+
+/**
+ * Custom Post Types.
+ */
+require get_stylesheet_directory() . '/inc/custom-post-types.php';
 
 /**
  * Utility Functions
@@ -213,3 +213,15 @@ function tag_manager_body(){
 	endif;
 }
 add_action('__before_header','tag_manager_body', 20);
+
+function service_category_permalink_structure($post_link, $post, $leavename, $sample) {
+	if ( $post->post_type === 'services' ) :
+		$service_category = get_the_terms( $post, 'service-categories' );
+		if ( ! empty( $service_category ) ) :
+			$post_link = rtrim( str_replace('%service_category%/', array_pop($service_category)->slug . '/#', $post_link), "/" );
+			$post_link = str_replace('#/', '#', $post_link);
+		endif; // endif ( ! empty( $service_category ) ) :
+	endif; // endif ( $post->post_type === 'services' ) :
+	return $post_link;
+}
+add_filter('post_type_link', 'service_category_permalink_structure', 10, 4);
