@@ -432,7 +432,9 @@ h1,
 .header-wrapper,
 .service-categories-list-scroll-nav,
 html.nav-open .mobile-sidebar,
-.close-layer {
+.close-layer,
+.modal,
+.modal-backdrop {
 	transform: translateZ(1000px);
 }
 .mobile-sidebar,
