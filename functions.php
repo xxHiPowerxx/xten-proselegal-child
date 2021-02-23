@@ -221,3 +221,30 @@ function staff_member_permalink_structure($post_link, $post, $leavename, $sample
 	return $post_link;
 }
 add_filter('post_type_link', 'staff_member_permalink_structure', 10, 4);
+
+/**
+ * Redirect Service to Service Category Page with Service as Hash
+ * This is already stored in the permalink, so we just need to redirect to that.
+ */
+function redirect_service() {
+	$post_type = 'services';
+	if ( is_singular( $post_type ) ) :
+		$link = get_permalink();
+    wp_redirect( $link, 301 );
+    exit;
+	endif;
+}
+add_action( 'template_redirect', 'redirect_service' );
+
+/**
+ * Redirect Staff Member to Staff Section on About Us Page.
+ */
+function redirect_staff() {
+	$post_type = 'staff';
+	if ( is_singular( $post_type ) ) :
+		$link = get_permalink();
+    wp_redirect( $link, 301 );
+    exit;
+	endif;
+}
+add_action( 'template_redirect', 'redirect_staff' );
