@@ -172,8 +172,6 @@ function mod_service_categories_order( $query ) {
 // Hook our custom query function to the pre_get_posts 
 add_action( 'pre_get_posts', 'mod_service_categories_order' );
 
-add_action( 'template_redirect', 'redirect_staff' );
-
 function tag_manager_head() {
 	if ( strpos( $_SERVER['SERVER_NAME'], 'localhost' ) === false ) :
 		?>
