@@ -172,19 +172,6 @@ function mod_service_categories_order( $query ) {
 // Hook our custom query function to the pre_get_posts 
 add_action( 'pre_get_posts', 'mod_service_categories_order' );
 
-/**
- * Redirect Staff Member to Staff Section on About Us Page.
- */
-function redirect_staff() {
-	$post_type = 'staff';
-	if ( is_singular( $post_type ) ) :
-		$link = get_page_by_title( 'About' );
-		// var_dump($link->guid);
-		// die;
-    wp_redirect( $link->guid . '#staff', 301 );
-    exit;
-	endif;
-}
 add_action( 'template_redirect', 'redirect_staff' );
 
 function tag_manager_head() {
@@ -225,3 +212,14 @@ function service_category_permalink_structure($post_link, $post, $leavename, $sa
 	return $post_link;
 }
 add_filter('post_type_link', 'service_category_permalink_structure', 10, 4);
+
+function staff_member_permalink_structure($post_link, $post, $leavename, $sample) {
+	if ( $post->post_type === 'staff' ) :
+		$staff_member_name = $post->post_name;
+		$about_slug = 'about';
+			// return $about_page_obj->page_name;
+		$post_link = rtrim( str_replace('%about_slug%/', $about_slug . '/#', $post_link), "/" );
+	endif; // endif ( $post->post_type === 'services' ) :
+	return $post_link;
+}
+add_filter('post_type_link', 'staff_member_permalink_structure', 10, 4);

@@ -22,9 +22,9 @@ function component_staff_member( $args = null ) {
 		wp_enqueue_style( $component_handle . '-css' );
 	endif;
 
-	$styles = '';
+	$styles         = '';
 
-	$component_id = xten_register_component_id( $handle );
+	$component_id   = xten_register_component_id( $handle );
 
 	$post_id        = $args['post_id'];
 	$image_id       =	get_post_thumbnail_id( $post_id );
@@ -37,9 +37,16 @@ function component_staff_member( $args = null ) {
 	$office_name    = esc_attr( $office->post_title );
 	$bio            = get_the_content( null, false, $post_id );
 
+	$component_attrs = array(
+		'id'        => $post_id->post_name,
+		'data-c-id' => $component_id,
+		'class'     => "component-$handle",
+	);
+	$component_attrs_s = xten_stringify_attrs( $component_attrs );
+
 	ob_start();
 	?>
-	<div id="<?php echo $component_id; ?>" class="component-<?php echo $handle; ?>">
+	<div <?php echo $component_attrs_s; ?>>
 		<?php if ( $portrait ) : ?>
 			<div class="staff-member-portrait"><?php echo $portrait; ?></div>
 		<?php endif; ?>
