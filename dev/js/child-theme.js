@@ -194,18 +194,18 @@ jQuery(document).ready(function($) {
 
 	function touchSolutionToHover() {
 		$('.touchSolutionToHover').each(function(){
-			$(this).on('click', function(e) {
-				// Only prevent Default if not from clickTrigger
-				this.clickFromTrigger = this.clickFromTrigger || false;
-				if ( ! this.clickFromTrigger) {
-					e.preventDefault();
-				}
-			});
-
 			if (
 				! window.mouseDetected &&
 				$(this).is('a')
 			) {
+				$(this).on('click', function(e) {
+					// Only prevent Default if not from clickTrigger
+					this.clickFromTrigger = this.clickFromTrigger || false;
+					if ( ! this.clickFromTrigger) {
+						e.preventDefault();
+					}
+				});
+
 				$hoverTrigger = $(this).find('.hoverTrigger'),
 				$clickTrigger = $(this).find('.clickTrigger');
 				$($hoverTrigger, $(this)).on('click', function(){
