@@ -53,7 +53,7 @@ $smooth-transition: all 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
 $border-radius-theme-style-em: 0.435em;
 $border-radius-theme-style-rem-sm: 1.5rem;
 $border-radius-theme-style-rem-lg: 3rem;
-$card-style: 0 .25rem .25rem rgba($black, 0.16);
+$card-style: 0 .2rem .5rem .05rem rgba(0,0,0,.20);
 $border-card-style: 1px solid rgba($dark, .1);
 $background-blur: blur(5px) brightness(2.2);
 @mixin card-style {
@@ -61,7 +61,7 @@ $background-blur: blur(5px) brightness(2.2);
 }
 @mixin theme-card-style( $border-radius: $border-radius-theme-style-em ) {
 	border-radius: $border-radius;
-	border: $border-card-style;
+	// border: $border-card-style;
 	@include card-style;
 }
 @mixin flex-margin( $margin ) {

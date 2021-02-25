@@ -682,18 +682,17 @@ html.nav-open .mobile-sidebar,
 
 .component-accordions-list,
 .component-service {
-	@include theme-card-style( $border-radius-theme-style-rem-sm );
+	border-radius: $border-radius-theme-style-rem-sm;
+	@include card-style;
   overflow: hidden;
 }
 .component-accordion {
-  // border: $border-card-style;
   background-color: $white;
 }
 .accordion-control {
 	overflow: hidden;
 	@include card-style;
 	@include smoothest-transition;
-	border-bottom: $thin-gray-line;
 	&:not([aria-expanded="true"]) {
 		box-shadow: 0 0 transparent;
 		.fa-check {

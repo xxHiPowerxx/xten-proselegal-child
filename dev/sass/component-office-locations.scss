@@ -34,7 +34,7 @@
 	}
 }
 .office-location-collapse-wrapper {
-	border: $border-card-style;
+	// border: $border-card-style;
 	@include card-style;
 	overflow: hidden;
 	&:first-child {
