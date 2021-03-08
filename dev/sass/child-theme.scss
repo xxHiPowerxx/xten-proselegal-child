@@ -89,7 +89,14 @@ h1,
 	@include card-style;
 }
 .theme-card-style {
+	overflow: hidden;
 	@include theme-card-style;
+	&.sm {
+		@include theme-card-style($border-radius-theme-style-rem-sm);
+	}
+	&.lg {
+		@include theme-card-style($border-radius-theme-style-rem-lg);
+	}
 }
 .leading-p {
 	@include leading-p;
@@ -726,7 +733,26 @@ html.nav-open .mobile-sidebar,
 }
 
 /*   /Accordion Section   */
-
+.xten-text-box {
+	@include theme-card-style( $border-radius-theme-style-rem-lg );
+	@include white-gradient;
+	flex: 1 1 auto;
+	@at-root #were-mobile & {
+		@media (min-width: $vp_lg) {
+			max-width: 59.5rem;
+		}
+	}
+	padding: 3rem;
+	grid-row: 2;
+	grid-column: 1;
+	@media ( min-width: $vp_xl ) {
+		grid-column: 2;
+		padding: 6rem;
+	}
+	> :last-child {
+		margin-bottom: 0;
+	}
+}
 /*   WP Block Overrides   */
 .wp-block-media-text {
 	align-content: stretch;
@@ -794,27 +820,9 @@ html.nav-open .mobile-sidebar,
 		min-width: 40rem;
 	}
 	.wp-block-media-text__content {
-		@include theme-card-style( $border-radius-theme-style-rem-lg );
-		@include white-gradient;
-		flex: 1 1 auto;
-		@at-root #were-mobile & {
-			@media (min-width: $vp_lg) {
-				max-width: 59.5rem;
-			}
-		}
-		padding: 3rem;
-		grid-row: 2;
-		grid-column: 1;
-		@media ( min-width: $vp_xl ) {
-			grid-column: 2;
-			padding: 6rem;
-		}
-		> :last-child {
-			margin-bottom: 0;
-		}
+		@extend .xten-text-box;
 	}
 }
-
 .wp-block-media-text__media {
 	img {
 		position: absolute;
@@ -826,6 +834,35 @@ html.nav-open .mobile-sidebar,
 		object-fit: cover;
 	}
 }
+.wp-block-columns {
+	&,
+	> .wp-block-column {
+		max-width: 100%;
+	}
+	&.row-gap-3 {
+		margin-top: -3rem;
+		margin-bottom: -3rem;
+		> .wp-block-column {
+			margin-top: 3rem;
+			margin-bottom: 3rem;
+		}
+	}
+	&.stack-bp-xl {
+		flex-direction: column;
+		@media (min-width: $vp_xl) {
+			flex-direction: row;
+			&.column-gap-3 {
+				margin-left: -3rem;
+				margin-right: -3rem;
+				> .wp-block-column {
+					margin-left: 3rem;
+					margin-right: 3rem;
+				}
+			}
+		}
+	}
+}
+/*   /WP Block Overrides   */
 /*   Contact Section   */
 .office-location-icon,
 .office-featured-image-wrapper {
@@ -850,6 +887,22 @@ html.nav-open .mobile-sidebar,
 	}
 }
 /*   /Office Locations Section   */
+.xten-component-image-gallery {
+	.nav-slider-wrapper {
+		padding: .5275% 1.055%;
+	}
+	.nav-slider {
+		border-radius: 0 0 3rem 3rem;
+		overflow: hidden;
+		&.slick-slider {
+			.slick-slide {
+				&.slick-center {
+					background-color: $secondary;
+				}
+			}
+		}
+	}
+} 
 /*   /About Page   */
 
 /*   Blog Page   */
