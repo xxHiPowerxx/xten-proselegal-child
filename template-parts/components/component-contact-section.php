@@ -33,7 +33,7 @@ function component_contact_section( $args = null ) {
 	<div id="<?php echo $component_id; ?>" class="component-<?php echo $handle; ?>">
 		<div class="offices-list-wrapper">
 			<?php if ( $args['offices_list_title'] ) : ?>
-				<h3 class="offices-list-title"><?php echo esc_attr( $args['offices_list_title'] ); ?></h3>
+				<h3 class="offices-list-title xten-section-heading"><?php echo esc_attr( $args['offices_list_title'] ); ?></h3>
 			<?php endif; ?>
 			<?php
 			echo xten_render_component( 'offices-list', array(
