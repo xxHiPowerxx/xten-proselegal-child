@@ -863,6 +863,33 @@ html.nav-open .mobile-sidebar,
 	}
 }
 /*   /WP Block Overrides   */
+/*   Google Review Slider   */
+.component-google-review-slider{
+	a {
+		color: $primary;
+	}
+	.wp-google-place {
+		background-color: $white;
+		@include theme-card-style($border-radius-theme-style-rem-sm);
+	}
+	.wp-google-reviews {
+		@include theme-card-style($border-radius-theme-style-rem-lg);
+		overflow: hidden;
+	}
+	.slick-arrow,
+	.slick-arrow:focus {
+		background-image: none;
+		background-color: $primary;
+	}
+	.wp-google-url {
+		@include btn;
+		@include btn-theme-style;
+	}
+	.wp-more-toggle {
+		color: $primary;
+	}
+}
+/*   /Google Review Slider   */
 /*   Contact Section   */
 .office-location-icon,
 .office-featured-image-wrapper {
