@@ -386,6 +386,7 @@ h1,
 			&.menu-type-flyout,
 			&.menu-type-mega-menu {
 				.sub-menu {
+					width: 24rem;
 					li {
 						a {
 							// TODO: Build these color choices into customizer
@@ -638,8 +639,18 @@ html.nav-open .mobile-sidebar,
 		padding-bottom: 6rem;
 	}
 	.xten-content {
-		width: 100%;
 		padding: 0;
+		margin-left: auto;
+		margin-right: auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		@media ( min-width: $vp_xl ) {
+			width: 100%;
+			flex-direction: row;
+			align-items: flex-end;
+			justify-content: space-between;
+		}
 	}
 	.xten-content-inner {
 		max-width: 96rem;
@@ -647,6 +658,12 @@ html.nav-open .mobile-sidebar,
 		padding: 6rem;
 		@include theme-card-style( $border-radius-theme-style-rem-lg );
 		@include background-blur;
+		width: 100%;
+		@media (min-width: $vp_xl) {
+			width: auto;
+			// min-width: 81.4rem;
+			min-width: 47.381%;
+		}
 		> * {
 			margin-bottom: 0;
 			&:not(:first-child) {
@@ -665,12 +682,25 @@ html.nav-open .mobile-sidebar,
 		.component-social-media-icons-list {
 			right: 0;
 			bottom: 0;
-			position: static;
 			margin: 2.25rem -.75rem -.75rem;
-			@media ( min-width: $vp_xl ) {
-				margin-top: -.75rem;
-				position: absolute;
+			@media ( min-width: $vp_sm ) and (max-width: ($vp_xl - 1)) {
+				margin-top: 0;
+				margin-left: 2.25rem;
 			}
+		}
+	}
+	.social-media-google-reviews-wrapper {
+		margin-top: 3rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-direction: column;
+		width: 100%;
+		@media ( min-width: $vp_sm ) and (max-width: ($vp_xl - 1)) {
+			flex-direction: row;
+		}
+		@media ( min-width: $vp_xl ) {
+			width: auto;
 		}
 	}
 }
@@ -862,28 +892,107 @@ html.nav-open .mobile-sidebar,
 		}
 	}
 }
+.hentry {
+	.wp-block-quote {
+		&:before,
+		&:after {
+			content: none;
+		}
+		font-size: 2rem;
+		text-align: center;
+		background-color: $white;
+		@include theme-card-style($border-radius-theme-style-rem-lg);
+		padding: 6rem;
+		border-left: 0;
+		&.blockquote-large {
+			font-size: 3rem;
+		}
+		p {
+			font-size: inherit;
+			font-weight: 500;
+			margin-bottom: .5em;
+			position: relative;
+			color: $primary;
+			padding: 1em 1em 0;
+			&:before,
+			&:after {
+				@include font-awesome-font;
+				position: absolute;
+				top: 0;
+				color: $secondary;
+			}
+			&:before {
+				content: '\f10d';
+				left: 0;
+			}
+			&:after {
+				content: '\f10e';
+				right: 0;
+			}
+		}
+		cite {
+			font-size: .8em;
+			opacity: .7;
+			&:before {
+				content: '\2013\ ';
+			}
+		}
+	}
+}
 /*   /WP Block Overrides   */
 /*   Google Review Slider   */
-.component-google-review-slider{
+.wpac {
+	.wp-google-place {
+		display: flex;
+		align-items: center;
+		background-color: rgba($white, .8);
+		@include background-blur;
+	}
+}
+.google-reviews-place-clone {
+	.anchor-btn-cta {
+		margin-top: 3rem;
+	}
+}
+.wp-google-place-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wp-google-place {
+	background-color: $white;
+	@include theme-card-style($border-radius-theme-style-rem-sm);
+}
+.component-google-review-slider {
 	a {
 		color: $primary;
-	}
-	.wp-google-place {
-		background-color: $white;
-		@include theme-card-style($border-radius-theme-style-rem-sm);
 	}
 	.wp-google-reviews {
 		@include theme-card-style($border-radius-theme-style-rem-lg);
 		overflow: hidden;
 	}
-	.slick-arrow,
-	.slick-arrow:focus {
-		background-image: none;
-		background-color: $primary;
+	&[class*="component-google-review-slider"] {
+		.slick-arrow,
+		.slick-arrow:focus {
+			background-image: none;
+			background-color: $secondary;
+			&:before {
+				color: $primary;
+			}
+			@at-root .alt-bg:nth-child(2n+1) & {
+				background-color: $primary;
+				&:before {
+					color: $white;
+				}
+			}
+		}
 	}
 	.wp-google-url {
 		@include btn;
 		@include btn-theme-style;
+		@include btn-large;
+		margin-top: 1em;
 	}
 	.wp-more-toggle {
 		color: $primary;
@@ -970,6 +1079,8 @@ body {
 		.entry-content {
 			.section {
 				border-top: $thin-gray-line;
+				padding-top: 6rem;
+				padding-bottom: 6rem;
 			}
 		}
 		.site-main {

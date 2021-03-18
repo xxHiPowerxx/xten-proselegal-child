@@ -133,8 +133,22 @@ class XTenChildUtilities {
 				if ( is_single() ) :
 					$date_posted_h2 = '<h2 class="post-date xten-h5">' . xten_posted_on() . '</h2>';
 				endif;
-				$social_media   = xten_render_component( 'social-media-icons-list' );
-				$hero_content   = "<div class='xten-content-inner'><h1>$title</h1>$date_posted_h2</div>$social_media";
+				$google_reviews_place_image  = get_field( 'google_reviews_place_image', 'options' );
+				$place_image                 = wp_get_attachment_image_url( $google_reviews_place_image, array( 160, null ) );
+				$google_reviews_place_id     = get_field( 'google_reviews_place_id', 'options' );
+				$social_media_google_reviews = social_media_google_reviews_shortcode( array(
+					'place_photo'         => $place_image,
+					'place_name'          => 'ProSe Legal',
+					'place_id'            => $google_reviews_place_id,
+					'pagination'          => '0',
+					'text_size'           => '120',
+					'refresh_reviews'     => 'true',
+					'hide_based_on'       => 'true',
+					'reduce_avatars_size' => 'true',
+					'open_link'           => 'true',
+					'nofollow_link'       => 'true',
+				));
+				$hero_content   = "<div class='xten-content-inner'><h1>$title</h1>$date_posted_h2</div>$social_media_google_reviews";
 				$args = array(
 					'c_attrs' => array(
 						'class' => 'xten-hero-banner',
@@ -149,9 +163,6 @@ class XTenChildUtilities {
 						'background_overlay_opacity' => 40,
 					),
 					'content' => $hero_content,
-					'content_minimum_width_group' => array(
-						'minimum_width' => 814,
-					),
 					'content_location_group' => array(
 						'content_horizontal_location' => 'left',
 					),
@@ -193,6 +204,21 @@ class XTenChildUtilities {
 				return $html;
 			}
 		endif; // endif ( ! function_exists( 'render_hero_banner' ) ) :
+
+		if ( ! function_exists( 'xten_split_office_title' ) ) :
+			function xten_split_office_title( $office_title ) {
+				$seperator = '/';
+				$office_titles = preg_split("#$seperator#", $office_title);
+				$_office_title_s = '';
+				foreach ( $office_titles as $_office_title ) :
+					$_seperator = $office_titles[0] === $_office_title ?
+						null :
+						$seperator;
+					$_office_title_s .= " $_seperator <span>$_office_title</span>";
+				endforeach;
+				return $_office_title_s;
+			}
+		endif; // endif ( ! function_exists( 'xten_split_office_title' ) ) :
 	}
 }
 

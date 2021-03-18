@@ -1,7 +1,7 @@
 /*   Viewport Sizes   */
 $vp_xxs: 380px;
-$vp_xs: 575px;
-$vp_sm: 767px;
+$vp_xs: 576px;
+$vp_sm: 768px;
 $vp_m: 992px;
 $vp_lg: 1200px;
 $vp_xl: 1680px;
@@ -64,10 +64,14 @@ $background-blur: blur(5px) brightness(2.2);
 	// border: $border-card-style;
 	@include card-style;
 }
-@mixin flex-margin( $margin ) {
-	margin: -$margin;
+@mixin flex-margin( $units, $padding: false ) {
+	margin: -$units;
 	> * {
-		margin: $margin;
+		@if $padding {
+			padding: $units;
+		} @else {
+			margin: $units;
+		}
 	}
 }
 @mixin leading-p {
@@ -137,3 +141,11 @@ $landscape-percentage: 56.25%;
 }
 
 $thin-gray-line: 1px solid rgba($gray, 0.35);
+
+@mixin font-awesome-font {
+	font-weight: 900;
+	font-family: 'Font Awesome 5 Free';
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+}
