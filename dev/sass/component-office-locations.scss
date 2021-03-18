@@ -22,6 +22,7 @@
 	}
 	.office-location-collapse-control {
 		.office-title {
+			font-size: 2.5rem;
 			margin-bottom: 0;
 			flex: 1;
 			padding: .25em;
@@ -94,6 +95,8 @@
 	color: $secondary;
 }
 .map-marker-office-name {
+	font-size: 2rem;
+	max-width: 11em;
 	padding: .25em .5em;
 	margin-top: .75rem;
 	margin-bottom: 0;

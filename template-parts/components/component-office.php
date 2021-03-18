@@ -67,8 +67,11 @@ function component_office( $args = null ) {
 			</div>
 		<?php endif; ?>
 		<div class="office-title-content-wrapper">
-			<?php if ( $office_title ) : ?>
-				<h4 class="office-title"><?php echo $office_title; ?></h4>
+			<?php
+			if ( $office_title ) :
+				$_office_title = xten_split_office_title( $office_title );
+				?>
+				<h4 class="office-title"><span class="office-title-inner nowrap-parent"><?php echo $_office_title; ?></span></h4>
 			<?php endif; ?>
 			<?php if ( $office_open ) : ?>
 				<div class="office-content">

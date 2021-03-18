@@ -82,7 +82,10 @@ function component_office_locations( $args = null ) {
 				$open                          = $key === 0;
 				$_offices[$key]['open']        = $open;
 				$office_name                   = esc_attr( $office->post_title );
+				$office_name_s                 = xten_split_office_title( $office_name );
+				$office_name_sel               = str_replace( ' ', '-', str_replace( '/', '', $office_name ) );
 				$_offices[$key]['office_name'] = $office_name;
+				$_offices[$key]['office_name_s'] = $office_name_s;
 
 				$target                              = "$component_id-collapse-$key";
 				$control_attrs_a                     = array();
@@ -115,7 +118,7 @@ function component_office_locations( $args = null ) {
 				<div class="office-location-collapse-wrapper">
 					<div <?php echo $control_attrs_s; ?>>
 						<span class="office-location-icon fa fa-map-marker-alt"></span>
-						<h4 class="office-title"><?php echo $office_name; ?></h4>
+						<h4 class="office-title nowrap-parent"><?php echo $office_name_s; ?></h4>
 					</div>
 					<div <?php echo $collapse_attrs_s; ?>>
 						<?php echo xten_render_component( 'office', $args ); ?>
@@ -134,9 +137,9 @@ function component_office_locations( $args = null ) {
 							<?php
 							foreach ( $_offices as $_office ) :
 								// $_office['control_attrs_a']['id'] .= '-map-marker';
-								$_office['control_attrs_a']['class'] = "office-location-map-marker-collapse-control collapse-control map-marker-{$_office['office_name']} preventExpandedCollapse";
+								$_office['control_attrs_a']['class'] = "office-location-map-marker-collapse-control collapse-control map-marker-{$_office['office_name_sel']} preventExpandedCollapse";
 
-								$map_marker_selector = "#{$_office['control_attrs_a']['id']}.map-marker-{$_office['office_name']}";
+								$map_marker_selector = "#{$_office['control_attrs_a']['id']}.map-marker-{$_office['office_name_sel']}";
 
 								$x_coordinates = $_office['coordinates']['x_coordinates'];
 								$y_coordinates = $_office['coordinates']['y_coordinates'];
@@ -158,8 +161,10 @@ function component_office_locations( $args = null ) {
 								?>
 								<div <?php echo $_control_attrs_s; ?>>
 									<div class="map-marker-icon fa fa-map-marker-alt"></div>
-									<?php if ( $_office['office_name'] ) : ?>
-										<h5 class="map-marker-office-name"><?php echo $_office['office_name']; ?></h5>
+									<?php
+									if ( $_office['office_name_s'] ) :
+										?>
+										<h5 class="map-marker-office-name nowrap-parent"><?php echo $_office['office_name_s']; ?></h5>
 									<?php endif; ?>
 								</div>
 								<?php

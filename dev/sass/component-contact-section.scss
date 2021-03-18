@@ -18,21 +18,21 @@
 	.offices-list-wrapper {
 		flex: 1 1 50%;
 	}
-	.contact-form-wrapper {
-		// flex: 1 0 auto;
-	}
 	.component-offices-list {
 		@include flex-margin( 1.5rem );
 		align-items: center;
 		flex-direction: column;
 		@media (min-width: $vp_m) {
+			align-items: stretch;
 			flex-direction: row;
 		}
 		@media (min-width: $vp_lg) {
+			align-items: center;
 			flex-direction: column;
 		}
 		@media (min-width: $vp_xxl) {
 			@include flex-margin( 3rem );
+			align-items: stretch;
 			flex-direction: row;
 		}
 	}
