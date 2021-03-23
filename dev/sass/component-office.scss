@@ -36,6 +36,10 @@
 			&,
 			#{$active} {
 				color: inherit;
+				text-decoration: none;
+				:not(.office-icon) {
+					text-decoration: underline;
+				}
 			}
 		}
 		> a {
