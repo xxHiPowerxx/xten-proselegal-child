@@ -12,6 +12,7 @@ jQuery(document).ready(function($) {
 				.prop('required', true);
 		});
 	}
+
 	function validateInput() {
 		$('.validateInput ').each(function() {
 			function coreFunc( input, $indicator ) {
@@ -43,6 +44,7 @@ jQuery(document).ready(function($) {
 			});
 		});
 	}
+
 	function preventExpandedCollapse() {
 		$('.preventExpandedCollapse').on('click keyup', function(e) {
 			if ($(this).attr('aria-expanded') == 'true') {
@@ -59,6 +61,7 @@ jQuery(document).ready(function($) {
 			}
 		});
 	}
+
 	function preFillContactForm() {
 		$('.preFillContactForm').on('click keyup', function(e) {
 			var key = e.key || e.keyCode,
@@ -100,10 +103,16 @@ jQuery(document).ready(function($) {
 		var scrollPosition = targetTop - offset;
 		$("html, body").animate({ scrollTop: scrollPosition }, 350);
 	}
-	function activateTarget( $target ) {
+
+	function activateTarget($target) {
+		// Bail if not .activateOnHash.
+		if ( ! $target.is('.activateOnHash') ) {
+			return;
+		}
+		// find nearest child [data-toggle].
 		var $activateController = $target.is('[data-toggle]') ?
-			$target :
-			$target.find('[data-toggle]').first();
+				$target :
+				$target.find('[data-toggle]').first();
 		if ($activateController.length === 0 ) {
 			return;
 		}
@@ -125,37 +134,41 @@ jQuery(document).ready(function($) {
 				break;
 		} 
 	}
-	function interceptHashChange($target) {
-		function coreFunc( e, $target ) {
-			$target = $target || null;
-			if (window.location.hash && $(window.location.hash).length) {
-				$target = $target || $(window.location.hash);
-			}
-			if ($target !== null && $target.length) {
-				if ( e !== null ) {
-					e.preventDefault();
-					e.stopImmediatePropagation();
-				}
-				scrollToTarget($target);
-				activateTarget( $target );
-				var $anchors = $('[href="' + window.location.hash + '"');
-				$anchors.each(function(){
-					this.boundClickHandler = this.boundClickHandler || false;
-					if ( this.boundClickHandler === false ) {
-						$(this).on('click', function(e){
-							e.preventDefault();
-							this.boundClickHandler = true;
-							scrollToTarget($target);
-						});
-					}
-				});
+
+	function scrollActivate($target) {
+		// If no $target is passed, use hash.
+		if ( $target === undefined ) {
+			var hash = window.location.hash;
+			if (hash !== '' && $(hash).length) {
+				$target = $target || $(hash);
 			}
 		}
-		coreFunc(null, $target);
-		$(window).on('hashchange', function (e, $target) {
-			coreFunc(e, $target);
+		if ( ! $target || ! $target.length) {
+			return;
+		}
+		scrollToTarget($target);
+		activateTarget($target);
+	}
+
+	function bindScrollActivate() {
+		// Find links whose href STARTS WITH # but IS NOT #contact-us.
+		var $anchors = $('[href^="#"]:not([href="#contact-us"])');
+		$anchors.each(function(){
+			this.boundClickHandler = this.boundClickHandler || false;
+			if ( this.boundClickHandler === false ) {
+				$(this).on('click', function(e){
+					e.stopImmediatePropagation();
+					e.preventDefault();
+					this.boundClickHandler = true;
+					var href = $(this).attr('href');
+					$target = $(href);
+					history.pushState({}, '', href);
+					scrollActivate($target);
+				});
+			}
 		});
 	}
+
 	function contactUsClick() {
 		var _hash = '#contact-us';
 		function coreFunc($this) {
@@ -220,6 +233,7 @@ jQuery(document).ready(function($) {
 			}
 		});
 	}
+
 	function serviceCatsNavScrollSpy() {
 		var $serviceCatsNav = $('.service-categories-list-scroll-nav:visible');
 		$serviceCatsNav.each(function(){
@@ -285,40 +299,35 @@ jQuery(document).ready(function($) {
 	function sizeOfficeTitles() {
 		$('.component-offices-list').each(function(){
 			var $origOfficeTitles = $(this).find('.office-title'),
-				minHeightVal = 'auto';
-			// if ( $(this).css('align-items') === 'stretch' ) {
-				// console.log($(this).closest('.xten-section-contact-section'));
-				var $parent = $(this).closest('.xten-section-contact-section, .site-footer');
-				if ($parent.length) {
-					console.log('hey');
-					var $clone = $parent.clone();
-					$clone.css({
-						'visibility': 'hidden',
-						'position': 'absolute',
-						'bottom': 0,
-						'z-index': -9999,
-					}).appendTo($body);
-					$clone.each(function(){
-						var $officeTitle = $(this).find('.office-title'),
-							tallestHeight = 0;
-						$officeTitle.css('min-height', 'auto').each(function(){
-							var height = $(this).outerHeight();
-							if (height > tallestHeight) {
-								tallestHeight = height;
-							}
-						});
-						minHeightVal = tallestHeight + 'px';
-						console.log('minHeightVal', minHeightVal);
-					}).remove();
-				}
-			// }
+				minHeightVal = 'auto',
+				$parent = $(this).closest('.xten-section-contact-section, .site-footer');
+			if ($parent.length) {
+				var $clone = $parent.clone();
+				$clone.css({
+					'visibility': 'hidden',
+					'position': 'absolute',
+					'bottom': 0,
+					'z-index': -9999,
+				}).appendTo($body);
+				$clone.each(function(){
+					var $officeTitle = $(this).find('.office-title'),
+						tallestHeight = 0;
+					$officeTitle.css('min-height', 'auto').each(function(){
+						var height = $(this).outerHeight();
+						if (height > tallestHeight) {
+							tallestHeight = height;
+						}
+					});
+					minHeightVal = tallestHeight + 'px';
+				}).remove();
+			}
 			$origOfficeTitles.css('min-height', minHeightVal);
-			console.log("$origOfficeTitles.css('min-height')", $origOfficeTitles.css('min-height'));
 		});
 	}
 	
 	function readyFuncs() {
-		interceptHashChange();
+		scrollActivate();
+		bindScrollActivate();
 		addHTMLValidationToCF();
 		validateInput();
 		preventExpandedCollapse();
@@ -334,10 +343,12 @@ jQuery(document).ready(function($) {
 	function scrollFuncs() {
 		serviceCatsNavScrollSpy();
 	}
+
 	function resizeFuncs() {
 		setScrollSpyOffset();
 		sizeOfficeTitles();
 	}
+
 	$(window).on('scroll', function() {
 		scrollFuncs();
 	}).on('resize', function () {
