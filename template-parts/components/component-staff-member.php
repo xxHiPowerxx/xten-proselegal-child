@@ -29,18 +29,17 @@ function component_staff_member( $args = null ) {
 	$post_id        = $args['post_id'];
 	$image_id       =	get_post_thumbnail_id( $post_id );
 	$image_size     = xten_get_optimal_image_size( $image_id, array(415, 415), array( 1, 1 ) );
-	// var_dump($image_size);
 	$portrait       = get_the_post_thumbnail( $post_id, $image_size );
 	$name           = get_the_title( $post_id );
 	$position_title = esc_attr( get_field( 'position_title', $post_id ) );
 	$office         = get_field( 'office', $post_id );
-	$office_name    = esc_attr( $office->post_title );
+	$office_name    = xten_split_office_title( esc_attr( $office->post_title ) );
 	$bio            = get_the_content( null, false, $post_id );
 
 	$component_attrs = array(
 		'id'        => $post_id->post_name,
 		'data-c-id' => $component_id,
-		'class'     => "component-$handle",
+		'class'     => "component-$handle activateOnHash",
 	);
 	$component_attrs_s = xten_stringify_attrs( $component_attrs );
 
@@ -57,7 +56,7 @@ function component_staff_member( $args = null ) {
 			<h4 class="staff-member-position-title"><?php echo $position_title; ?></h4>
 		<?php endif; ?>
 		<?php if ( $office_name ) : ?>
-			<h4 class="staff-member-office"><?php echo $office_name; ?> Office</h4>
+			<h4 class="staff-member-office nowrap-parent"><?php echo $office_name; ?> Office</h4>
 		<?php endif; ?>
 		<?php
 		if ( $bio ) :
