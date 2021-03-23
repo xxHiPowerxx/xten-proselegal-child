@@ -173,7 +173,9 @@ function google_review_place_shortcode( $atts = '', $content = null ) {
 		$google_reviews_place_image = get_field( 'google_reviews_place_image', 'options' );
 		$atts['place_photo'] = wp_get_attachment_image_url( $google_reviews_place_image, array( 160, null ) );
 	endif;
-	
+
+	$atts['place_id'] = $atts['place_id'] ? : get_field( 'google_reviews_place_id', 'options' );
+
 	// Ensure that grw_place function from Google Reviews Widget exists.
 	$wp_google_place;
 	if ( ! function_exists( 'grw_place' ) ) :
