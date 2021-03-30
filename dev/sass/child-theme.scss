@@ -1026,6 +1026,13 @@ html.nav-open .mobile-sidebar,
 	.wp-more-toggle {
 		color: $primary;
 	}
+	.slick-dots {
+		li {
+			button {
+				background-color: $primary;
+			}
+		}
+	}
 }
 /*   /Google Review Slider   */
 /*   Contact Section   */
