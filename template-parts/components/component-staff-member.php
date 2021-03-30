@@ -33,13 +33,13 @@ function component_staff_member( $args = null ) {
 	$name           = get_the_title( $post_id );
 	$position_title = esc_attr( get_field( 'position_title', $post_id ) );
 	$office         = get_field( 'office', $post_id );
-	$office_name    = xten_split_office_title( esc_attr( $office->post_title ) );
+	$office_name    = esc_attr( $office->post_title );
 	$bio            = get_the_content( null, false, $post_id );
 
 	$component_attrs = array(
 		'id'        => $post_id->post_name,
 		'data-c-id' => $component_id,
-		'class'     => "component-$handle activateOnHash",
+		'class'     => "component-$handle",
 	);
 	$component_attrs_s = xten_stringify_attrs( $component_attrs );
 
@@ -56,7 +56,7 @@ function component_staff_member( $args = null ) {
 			<h4 class="staff-member-position-title"><?php echo $position_title; ?></h4>
 		<?php endif; ?>
 		<?php if ( $office_name ) : ?>
-			<h4 class="staff-member-office nowrap-parent"><?php echo $office_name; ?> Office</h4>
+			<h4 class="staff-member-office"><?php echo $office_name; ?> Office</h4>
 		<?php endif; ?>
 		<?php
 		if ( $bio ) :

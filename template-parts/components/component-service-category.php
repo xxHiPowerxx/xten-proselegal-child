@@ -52,6 +52,10 @@ function component_service_category( $term = null ) {
 	endif;
 
 	$title                         = esc_attr( $term->name );
+	if ( $title ) :
+		$stripped_title = trim( str_replace( array('services','Services'), '', $title ) );
+		$component_attrs_array['title'] = "See $stripped_title Services";
+	endif;
 	$description                   = wp_trim_excerpt( wp_kses_post( $term->description ) );
 	$url                           = esc_url( get_term_link( $term ) );
 	$component_attrs_array['href'] = $url;
