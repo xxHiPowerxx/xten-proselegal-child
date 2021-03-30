@@ -57,6 +57,7 @@ $mouse-detected-active: '&.active, body.mouse-detected &:focus, body.mouse-detec
 		transition: $smooth-transition;
 		transition-duration: .75s;
 		perspective: inherit;
+		@include card-style;
 		&:before {
 			content: '';
 			display: block;
