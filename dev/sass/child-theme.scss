@@ -817,11 +817,9 @@ html.nav-open .mobile-sidebar,
 	align-content: stretch;
 	grid-template-columns: 34% 1fr;
 	flex-wrap: wrap;
-	@include flex-margin(3rem);
-	margin-top: 3rem;
-	@media ( min-width: $vp_xl ) {
-		@include flex-margin(6rem);
-		margin-top: 6rem;
+	&[class*="wp-block-media-text"] {
+		@include flex-margin(3rem);
+		margin-top: 3rem;
 	}
 	&.is-stacked-on-mobile {
 		@media ( max-width: ($vp_xl - 1) ) {
