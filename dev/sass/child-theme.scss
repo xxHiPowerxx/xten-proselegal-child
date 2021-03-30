@@ -529,7 +529,7 @@ html.nav-open .mobile-sidebar,
 	.footer-wrapper {
 		display: flex;
 		flex-wrap: wrap;
-		flex: 0 1 50%;
+		flex: 0 1 auto;
 		justify-content: center;
 		@media (min-width: $vp_lg) {
 			justify-content: flex-start;
@@ -564,6 +564,7 @@ html.nav-open .mobile-sidebar,
 		max-width: 100%;
 		margin-bottom: 3rem;
 		margin-right: 0;
+		text-align: center;
 		@media (min-width: $vp_lg) {
 			margin-bottom: 0;
 			margin-right: 3rem;
@@ -592,7 +593,6 @@ html.nav-open .mobile-sidebar,
 }
 .footer-wrapper {
 	@include flex-margin( 1.5rem );
-	flex: 1 0 auto;
 }
 
 .footer-1-wrapper,
