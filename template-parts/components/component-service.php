@@ -72,7 +72,7 @@ function component_service( $args = null ) {
 	$component_attrs_array = array(
 		'id' => $post->post_name,
 		'c-id' => $component_id,
-		'class' => "component-$handle",
+		'class' => "component-$handle activateOnHash",
 	);
 	$component_attrs = xten_stringify_attrs( $component_attrs_array );
 

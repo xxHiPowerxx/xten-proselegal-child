@@ -39,7 +39,7 @@ function component_staff_member( $args = null ) {
 	$component_attrs = array(
 		'id'        => $post_id->post_name,
 		'data-c-id' => $component_id,
-		'class'     => "component-$handle",
+		'class'     => "component-$handle activateOnHash",
 	);
 	$component_attrs_s = xten_stringify_attrs( $component_attrs );
 
