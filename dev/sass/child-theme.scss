@@ -2,23 +2,9 @@
 
 /*   Common   */
 
-html {
-	font-size: 2vmin;
-	@media (min-width: 400px) and (min-height: 400px) {
-		font-size: 8px;
-	}
-	@media (min-width: 576px) {
-		font-size: 10px;
-	}
-}
+
 body {
-	font-size: 100%;
 	color: $dark;
-	@media (min-width: 340px) {
-		min-width: 340px;
-		max-width: 100%;
-		overflow-x: hidden;
-	}
 	&.xten-theme-color-bg {
 		background-color: $white;
 	}
