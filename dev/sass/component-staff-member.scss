@@ -15,7 +15,7 @@
 	border-radius: 3rem;
 	flex-basis: 100%;
 	max-width: 40rem;
-	@media (min-width: $vp_xs) {
+	@media (min-width: $vp_sm) {
 		flex-basis: calc(50% - 3rem);
 	}
 	@media (min-width: $vp_xl) {

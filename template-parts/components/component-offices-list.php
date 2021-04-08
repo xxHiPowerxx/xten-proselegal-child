@@ -4,22 +4,25 @@
  * @package xten
  */
 function component_offices_list( $args = null ) {
-	$handle             = 'offices-list';
+
 	// Enqueue Stylesheet.
-/*
+	$handle             = 'offices-list';
 	$component_handle   = 'component-' . $handle;
-	$component_css_path = '/assets/css/' . $component_handle . '.css';
-	wp_register_style(
-		$component_handle . '-css',
-		get_theme_file_uri( $component_css_path ),
-		array(
-			'child-style',
-		),
-		filemtime( get_stylesheet_directory() . $component_css_path ),
-		'all'
-	);
-	wp_enqueue_style( $component_handle );
-*/
+	$component_css_path = '/assets/css/' . $component_handle . '.min.css';
+	$component_css_file = get_stylesheet_directory() . $component_css_path;
+	if ( file_exists( $component_css_file ) ) :
+		wp_register_style(
+			$component_handle . '-css',
+			get_theme_file_uri( $component_css_path ),
+			array(
+				'child-style',
+			),
+			filemtime( $component_css_file ),
+			'all'
+		);
+		wp_enqueue_style( $component_handle . '-css' );
+	endif;
+
 	$styles = '';
 
 	$post_ids = $args['post_ids'];
@@ -36,7 +39,8 @@ function component_offices_list( $args = null ) {
 			$post_ids = get_posts( array (
 				'post_type'   => 'offices',
 				'numberposts' => -1,
-				'order'       => 'ASC'
+				'order'       => 'ASC',
+				'orderby'     => 'menu_order',
 			) );
 		endif;
 		foreach ( $post_ids as $post_id ) :

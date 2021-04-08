@@ -5,20 +5,6 @@
  */
 function component_office_locations( $args = null ) {
 
-	// $offices = get_posts( array(
-	// 	'numberposts' => -1,
-	// 		'post_type'   => 'offices',
-	// 		'order'       => 'ASC',
-	// 		'orderby'     => array(
-	// 			'menu_order',
-	// 			'date'
-	// 		),
-	// ) );
-
-	// if ( empty( $offices ) ) :
-	// 	return false;
-	// endif;
-
 	// Enqueue Stylesheet.
 	$handle             = 'office-locations';
 	$component_handle   = 'component-' . $handle;
@@ -164,7 +150,10 @@ function component_office_locations( $args = null ) {
 									<?php
 									if ( $_office['office_name_s'] ) :
 										?>
-										<h5 class="map-marker-office-name nowrap-parent"><?php echo $_office['office_name_s']; ?></h5>
+										<div class="map-marker-office-name-wrapper">
+											<div class="map-marker-office-name-bg"></div>
+											<h5 class="map-marker-office-name nowrap-parent"><?php echo $_office['office_name_s']; ?></h5>
+										</div>
 									<?php endif; ?>
 								</div>
 								<?php

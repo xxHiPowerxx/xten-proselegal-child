@@ -213,7 +213,7 @@ class XTenChildUtilities {
 				foreach ( $office_titles as $_office_title ) :
 					$_seperator = $office_titles[0] === $_office_title ?
 						null :
-						$seperator;
+						"<span>$seperator</span>";
 					$_office_title_s .= " $_seperator <span>$_office_title</span>";
 				endforeach;
 				return $_office_title_s;

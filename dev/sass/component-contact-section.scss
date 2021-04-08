@@ -22,6 +22,7 @@
 		@include flex-margin( 1.5rem );
 		align-items: center;
 		flex-direction: column;
+		justify-content: center;
 		@media (min-width: $vp_m) {
 			align-items: stretch;
 			flex-direction: row;

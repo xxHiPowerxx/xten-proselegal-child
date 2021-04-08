@@ -81,7 +81,10 @@
 .office-location-map-marker-collapse-control {
 	text-align: center;
 	position: absolute;
+	outline: none;
 	&[aria-expanded="true"] {
+		z-index: 1;
+		pointer-events: none;
 		.map-marker-icon {
 			color: $white;
 		}
@@ -89,16 +92,16 @@
 }
 .map-marker-icon {
 	font-size: 3.5rem;
-	text-shadow: $card-style;
+	text-shadow: 0 .05714295em .1428573722em rgba($black, .2);
 	@include smoothest-transition;
 }
 .office-location-icon,
 .map-marker-icon {
 	color: $secondary;
 }
-.map-marker-office-name {
-	font-size: 2rem;
-	max-width: 11em;
+.map-marker-office-name-wrapper {
+	position: relative;
+	font-size: 1.5rem;
 	padding: .25em .5em;
 	margin-top: .75rem;
 	margin-bottom: 0;
@@ -112,6 +115,40 @@
 	@media (max-width: 479px) {
 		font-size: 1.8rem;
 	}
+	@media (min-width: $vp_m) {
+		font-size: 2rem;
+	}
+}
+.map-marker-office-name {
+	position: relative;
+	font-size: inherit;
+	margin: 0;
+	max-width: 11em;
+	@media (max-width: $vp-m - 1) {
+		max-width: 7em;
+		max-height: 1em;
+		line-height: 1;
+		&,
+		* {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+		* {
+			max-width: 100%;
+			display: inline;
+		}
+	}
+	@media (max-width: $vp-sm - 1) {
+		max-width: 5.5em;
+	}
+}
+.map-marker-office-name-bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
 .office-locations-map {
 	position: relative;
@@ -123,13 +160,23 @@
 		overflow: hidden;
 	}
 }
+.map-marker-office-name-bg {
+	opacity: .75;
+	@include background-blur;
+}
 .component-office-locations .office-location-collapse-control .office-title,
 .map-marker-office-name {
 	color: $primary;
+}
+.component-office-locations .office-location-collapse-control .office-title,
+.map-marker-office-name-bg {
 	background-color: $white;
 }
 .component-office-locations .component-office .office-title,
 .office-location-map-marker-collapse-control[aria-expanded="true"] .map-marker-office-name {
-	background-color: $primary;
 	color: $white;
+}
+.component-office-locations .component-office .office-title,
+.office-location-map-marker-collapse-control[aria-expanded="true"] .map-marker-office-name-bg {
+	background-color: $primary;
 }
