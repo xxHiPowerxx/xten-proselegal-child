@@ -190,12 +190,14 @@ h1,
 
 .xten-hero-banner {
 	&.xten-component-hero {
-		// min-height: calc(65vmin - 10.5rem);
-		min-height: 0;
-		display: flex;
-		width: 100%;
-		.container-xten-component-hero {
-			align-items: stretch;
+		.xten-hero-slide {
+			// min-height: calc(65vmin - 10.5rem);
+			min-height: 0;
+			display: flex;
+			width: 100%;
+			.container-xten-component-hero {
+				align-items: stretch;
+			}
 		}
 	}
 	.xten-content-inner {
@@ -643,11 +645,13 @@ html.nav-open .mobile-sidebar,
 
 .xten-component-hero {
 	&[class*="xten-component-hero"] {
-		&:before {
-			@at-root .xten-section-hero & {
-				@media (max-width: $vp_xs - 1) {
-					background-color: rgba($white, 0.8);
-					@include background-blur;
+		.xten-hero-slide {
+			&:before {
+				@at-root .xten-section-hero & {
+					@media (max-width: $vp_xs - 1) {
+						background-color: rgba($white, 0.8);
+						@include background-blur;
+					}
 				}
 			}
 		}
@@ -741,6 +745,10 @@ html.nav-open .mobile-sidebar,
 		}
 		@media ( min-width: $vp_xl ) {
 			width: auto;
+		}
+		.wp-google-place {
+			width: 100%;
+			max-width: 50rem;
 		}
 	}
 }
@@ -919,10 +927,16 @@ html.nav-open .mobile-sidebar,
 		flex-direction: column;
 		@media (min-width: $vp_xl) {
 			flex-direction: row;
-			&.column-gap-3 {
+		}
+		&.column-gap-3 {
+			@media (min-width: $vp_xl) {
 				margin-left: -3rem;
 				margin-right: -3rem;
-				> .wp-block-column {
+			}
+			> .wp-block-column {
+				margin-left: 0;
+				margin-right: 0;
+				@media (min-width: $vp_xl) {
 					margin-left: 3rem;
 					margin-right: 3rem;
 				}
