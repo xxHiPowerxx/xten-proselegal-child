@@ -48,4 +48,11 @@ get_header();
 	</div><!-- #primary -->
 </div>
 <?php
+$tax_custom_css = get_field( 'tax_custom_css' );
+$min_css = xten_minify_css( $tax_custom_css );
+$inline_style = 'post-' . $queried_object->term_id . '-css';
+wp_register_style( $inline_style, false );
+wp_enqueue_style( $inline_style );
+wp_add_inline_style( $inline_style, $min_css );
+
 get_footer();
