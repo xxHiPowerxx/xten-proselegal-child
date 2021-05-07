@@ -1,0 +1,62 @@
+{
+    "key": "group_6091a79b03313",
+    "title": "Advanced Image Attributes",
+    "fields": [
+        {
+            "key": "field_6091a7e3496dc",
+            "label": "Banner Background Position X",
+            "name": "banner_background_position_x",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "50%",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_6091a869496dd",
+            "label": "Banner Background Position Y",
+            "name": "banner_background_position_y",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "50%",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "attachment",
+                "operator": "==",
+                "value": "image"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "Advanced Image Fields such as Default Background-Positions",
+    "modified": 1620160327
+}

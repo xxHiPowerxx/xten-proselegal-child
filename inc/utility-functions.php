@@ -97,9 +97,12 @@ class XTenChildUtilities {
 					$title          = esc_attr( $queried_object->name );
 					$featured_image = get_field( 'featured_image', $queried_object );
 					if ( ! $featured_image ) :
+						$page_for_posts = get_option( 'page_for_posts' );
+						$thumbnail_id   = get_post_thumbnail_id( $page_for_posts );
 						$featured_image = array(
+							'id'  => $thumbnail_id,
 							'url' => get_the_post_thumbnail_url(
-								get_option( 'page_for_posts' ),
+								$page_for_posts,
 								$featured_image_size
 							),
 						);
@@ -110,7 +113,9 @@ class XTenChildUtilities {
 					$button_text    = "<span>See</span> <span>$title<span> <span>Services</span>";
 				else:
 					$title          = esc_attr( $queried_object->post_title );
+					$thumbnail_id   = get_post_thumbnail_id( $queried_object );
 					$featured_image = array(
+						'id'  => $thumbnail_id,
 						'url' => get_the_post_thumbnail_url(
 							$queried_object,
 							$featured_image_size
@@ -149,23 +154,37 @@ class XTenChildUtilities {
 					'nofollow_link'       => 'true',
 				));
 				$hero_content   = "<div class='xten-content-inner'><h1>$title</h1>$date_posted_h2</div>$social_media_google_reviews";
+				$banner_background_position_x = esc_attr( get_field( 'banner_background_position_x', $featured_image['id'] ) );
+				$banner_background_position_y = esc_attr( get_field( 'banner_background_position_y', $featured_image['id'] ) );
 				$args = array(
 					'c_attrs' => array(
 						'class' => 'xten-hero-banner',
 					),
-					'minimum_height' => 56.203,
-					'background_image_group' => array(
-						'background_image' => $featured_image,
-						'background_image_size' => 'cover',
+					'minimum_height_group' => array (
+						'minimum_height'      => 56.203,
+						'minimum_height_unit' => '%',
 					),
-					'background_overlay_group' => array(
-						'background_overlay_color'   => '#203046',
-						'background_overlay_opacity' => 40,
+					'slides' => array( 
+						array(
+							// Move into Slides
+							'background_image_group' => array(
+								'background_image'      => $featured_image,
+								'background_image_size' => 'cover',
+								'background_image_position_x' => $banner_background_position_x,
+								'background_image_position_y' => $banner_background_position_y,
+							),
+							'background_overlay_group' => array(
+								'background_overlay_color'   => '#203046',
+								'background_overlay_opacity' => 40,
+							),
+							'content' => $hero_content,
+							'content_location_group' => array(
+								'content_horizontal_location' => 'left',
+							),
+						),
 					),
-					'content' => $hero_content,
-					'content_location_group' => array(
-						'content_horizontal_location' => 'left',
-					),
+					'slide_method' => 'default',
+					// /Move into Slides
 				);
 				ob_start();
 				?>
