@@ -93,6 +93,18 @@ h1,
 .background-blur {
 	@include background-blur;
 }
+.xten-theme-color-primary {
+	color: $primary;
+}
+.xten-theme-color-secondary {
+	color: $secondary;
+}
+.xten-theme-bg-primary {
+	background-color: $primary;
+}
+.xten-theme-bg-secondary {
+	background-color: $secondary;
+}
 
 .btn {
   @include btn;
@@ -182,6 +194,9 @@ h1,
 	.xten-section-hero {
 		flex: 1;
 		display: flex;
+	}
+	.xten-component-hero {
+		flex: 1;
 	}
 	.sizeHero {
 		min-height: 33vmin !important;
@@ -337,6 +352,12 @@ h1,
 		}
 	}
 }
+.iframe {
+	display: block;
+	border: 0;
+	margin-top: 3rem;
+	margin-bottom: 3rem;
+}
 /*   /Common   */
 
 /*   Header   */
@@ -438,7 +459,7 @@ html.nav-open .mobile-sidebar,
 	transform: translate3d(100%,0,1000px);
 }
 // TODO: Add Customizer Setting to turn scrolledPastHeader styles off.
-.header-wrapper .site-header .navbar .header-container .site-branding .custom-logo-link .custom-logo {
+.header-wrapper:not(.sizeHeaderRefClone) .site-header .navbar .header-container .site-branding .custom-logo-link .custom-logo {
 	@include smoothest-transition;
 	@at-root body.scrolledPastHeader & {
 		max-height: 5rem;
@@ -646,13 +667,22 @@ html.nav-open .mobile-sidebar,
 .xten-component-hero {
 	&[class*="xten-component-hero"] {
 		.xten-hero-slide {
+			.xten-content {
+				padding-left: 0;
+				padding-right: 0;
+			}
 			&:before {
 				@at-root .xten-section-hero & {
-					@media (max-width: $vp_xs - 1) {
+					@media (max-width: $vp_sm - 1) {
 						background-color: rgba($white, 0.8);
 						@include background-blur;
 					}
 				}
+			}
+		}
+		.slick-arrow {
+			@media (max-width: $vp_xs - 1) {
+				max-width: calc(15px + 3rem);
 			}
 		}
 	}
@@ -679,7 +709,7 @@ html.nav-open .mobile-sidebar,
 			width: 100%;
 			flex-direction: row;
 			align-items: flex-end;
-			justify-content: space-between;
+			// justify-content: space-between;
 		}
 	}
 	.xten-content-inner {
@@ -742,13 +772,100 @@ html.nav-open .mobile-sidebar,
 		width: 100%;
 		@media ( min-width: $vp_m ) and (max-width: ($vp_xl - 1)) {
 			flex-direction: row;
+			justify-content: center;
 		}
 		@media ( min-width: $vp_xl ) {
 			width: auto;
+			margin-left: auto;
 		}
 		.wp-google-place {
-			width: 100%;
-			max-width: 50rem;
+			@media ( min-width: $vp_xl ) {
+				width: 100%;
+				max-width: 50rem;
+			}
+		}
+	}
+	&.sizeHero {
+		&:not(.heroSized) {
+			.slick-arrow {
+				@media (max-width: $vp_sm - 1) {
+					top: calc(50vh - 10.5rem);
+				}
+			}
+		}
+	}
+	.slick-arrow {
+		font-size: 5rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		@media (max-width: $vp_sm - 1) {
+			height: 1.5em;
+			&:before {
+				color: $primary;
+			}
+		}
+		/*
+		&:hover {
+			background: none;
+			&:before {
+				background-color: rgba($white, .75);
+				width: 100%;
+				height: 200%;
+			}
+		}*/
+		&:before {
+			display: inline-block;
+			// width: 2em;
+			// height: 2em;
+			// background-color: $white;
+			// color: $primary;
+			// @include background-blur;
+			padding: .5em;
+			// @include theme-card-style;
+			position: absolute;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			// left: 50%;
+			// top: 50%;
+			// transform: translate3d(-50%, -50%, 0);
+		}
+	}
+	.slick-next {
+		&,
+		&:focus {
+			background-image: linear-gradient(270deg,rgba($white, 0.4),transparent);
+		}
+		&:hover {
+			background-image: linear-gradient(270deg,rgba($white, 0.8),transparent);
+		}
+	}
+	.slick-prev {
+		&,
+		&:focus {
+			background-image: linear-gradient(90deg,rgba($white, 0.4),transparent);
+		}
+		&:hover {
+			background-image: linear-gradient(90deg,rgba($white, 0.8),transparent);
+		}
+	}
+}
+.xten-hero-slide {
+	&[data-content-horizontal-location="left"] {
+		.xten-content {
+			justify-content: flex-start;
+		}
+	}
+	&[data-content-horizontal-location="middle"] {
+		.xten-content {
+			justify-content: center;
+		}
+	}
+	&[data-content-horizontal-location="right"] {
+		.xten-content {
+			justify-content: flex-end;
 		}
 	}
 }
@@ -814,6 +931,10 @@ html.nav-open .mobile-sidebar,
 .xten-text-box {
 	@include theme-card-style( $border-radius-theme-style-rem-lg );
 	@include white-gradient;
+	&.primary-gradient {
+		@include primary-gradient;
+		color: $white;
+	}
 	flex: 1 1 auto;
 	@at-root #were-mobile & {
 		@media (min-width: $vp_lg) {
@@ -1052,13 +1173,6 @@ html.nav-open .mobile-sidebar,
 	.wp-more-toggle {
 		color: $primary;
 	}
-	.slick-dots {
-		li {
-			button {
-				background-color: $primary;
-			}
-		}
-	}
 }
 /*   /Google Review Slider   */
 /*   Contact Section   */
@@ -1140,9 +1254,11 @@ body {
 	&.single-post {
 		.entry-content {
 			.section {
-				border-top: $thin-gray-line;
 				padding-top: 6rem;
 				padding-bottom: 6rem;
+				&:not(:first-child) {
+					border-top: $thin-gray-line;
+				}
 			}
 		}
 		.site-main {
@@ -1151,3 +1267,62 @@ body {
 	}
 }
 /*   /Single Blog Post   */
+
+/*   Bootstrap Overrides   */
+.modal-lg,
+.modal-xl {
+	@media (min-width: $vp_m) {
+	 max-width:80rem;
+	}
+}
+/*   Bootstrap Overrides   */
+
+/*   Event Card   */
+.event-card-wrapper {
+	&:not(:first-child) {
+		margin-top: 6rem;
+	}
+	&:not(:last-child) {
+		margin-bottom: 6rem;
+	}
+}
+.event-card {
+	padding: 1em;
+	display: inline-block;
+	color: $white;
+	line-height: 1;
+}
+.event-title {
+	font-size: 1.25em;
+	line-height: 1;
+	margin-bottom: .25em;
+	padding-bottom: .25em;
+	border-bottom: .2rem solid $secondary;
+}
+.event-date-time {
+	font-size: .85em;
+	margin: 0;
+}
+.event-date-name,
+.event-time-name {
+	width: 1em;
+	padding-right: .25em;
+}
+/*   /Event Card   */
+
+/*   Slick Overrides   */
+.slick-dots {
+	&[class*='slick-dots'] {
+		li {
+			button {
+				background-color: $primary;
+				@at-root .xten-component-hero & {
+					@media (min-width: $vp_sm) {
+						background-color: $white;
+					}
+				}
+			}
+		}
+	}
+}
+/*   /Slick Overrides   */
