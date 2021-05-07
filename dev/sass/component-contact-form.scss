@@ -48,6 +48,8 @@
 	/*   Contact Form 7 Overrides   */
 	.wpcf7-form {
 		max-width: 50rem;
+		margin-left: auto;
+		margin-right: auto;
 		> :not(:first-child) {
 			margin-top: 3rem;
 		}
