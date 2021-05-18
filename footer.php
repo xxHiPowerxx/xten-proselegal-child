@@ -17,34 +17,11 @@ include get_stylesheet_directory() . '/inc/modals.php';
 						</div> <!-- /.content-wrapper -->
 					</div> <!-- /#page-wrapper -->
 
-
-
 					<?php
 					$site_name         = esc_attr( get_bloginfo() );
 					$site_info_content = wp_kses_post( get_field_without_wpautop( 'site_info_content', 'option' ) );
 					$site_info_default = do_shortcode( wp_kses_post( '[site-info-default]' ) );
 					$site_info_content = ( ! $site_info_content ) ? $site_info_default : $site_info_content;
-
-					// Site Footer Variables //
-					if ( have_rows( 'social_media_accounts', 'option' ) ) :
-						while ( have_rows( 'social_media_accounts', 'option' ) ) :
-							the_row();
-							$facebook_account  = esc_url( get_sub_field( 'facebook_account' ) );
-							$twitter_account   = esc_url( get_sub_field( 'twitter_account' ) );
-							$youtube_account   = esc_url( get_sub_field( 'youtube_account' ) );
-							$instagram_account = esc_url( get_sub_field( 'instagram_account' ) );
-							$linkedin_account  = esc_url( get_sub_field( 'linkedin_account' ) );
-						endwhile;
-
-						// social profile link
-						$facebook_profile  = '<a class="facebook" target="_blank" aria-label="Visit Our Facebook Page" href="' . $facebook_account . '"><i aria-hidden="true" class="fab fa-facebook-square" title="Visit Our Facebook Page"></i><span class="sr-only">Visit Our Facebook Page</span></a>';
-						$twitter_profile   = '<a class="twitter" target="_blank" aria-label="Visit Our Twitter Profile" href="' . $twitter_account . '"><i aria-hidden="true" class="fab fa-twitter-square" title="Visit Our Twitter Profile"></i><span class="sr-only">Visit Our Twitter Profile</span></a>';
-						$youtube_profile   = '<a class="youtube" target="_blank" aria-label="Visit Our Youtube Channel" href="' . $youtube_account . '"><i aria-hidden="true" class="fab fa-youtube" title="Visit Our Youtube Channel"></i><span class="sr-only">Visit Our Youtube Channel</span></a>';
-						$instagram_profile = '<a class="instagram" target="_blank" aria-label="Visit Our Instagram Account" href="' . $instagram_account . '"><i aria-hidden="true" class="fab fa-instagram" title="Visit Our Instagram Account"></i><span class="sr-only">Visit Our Instagram Account</span></a>';
-						$linkedin_profile  = '<a class="linkedin" target="_blank" aria-label="Visit Our Linkedin Profile" href="' . $linkedin_account . '"><i aria-hidden="true" class="fab fa-linkedin" title="Visit Our Linkedin Profile"></i><span class="sr-only">Visit Our Linkedin Profile</span></a>';
-					endif;
-
-					// /Site Footer Variables //
 
 					// Site Footer   //
 					?>
