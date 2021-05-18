@@ -11,16 +11,16 @@
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?> class="no-js xten-theme-color-bg">
+<html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?> class="no-js xten-theme-bg-color">
 	<head>
 		<!--insert meta tags  -->
 		<?php require_once get_template_directory() . '/inc/meta-tags.php'; ?>
 		<?php wp_head(); ?>
 	</head>
 
-	<body <?php body_class('xten-theme-color-bg'); ?> >
+	<body <?php body_class('xten-theme-bg-color'); ?> >
 
-		<div id="load-splash" class="loading xten-theme-color-bg">
+		<div id="load-splash" class="loading xten-theme-bg-color">
 			<div class="load-splash-inner">
 				<?php echo $GLOBALS['xten-site-logo']; ?>
 			</div>
