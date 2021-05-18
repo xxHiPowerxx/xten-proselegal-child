@@ -1165,10 +1165,11 @@ html.nav-open .mobile-sidebar,
 		}
 	}
 	.wp-google-url {
-		@include btn;
+		display: none;
+		/*@include btn;
 		@include btn-theme-style;
 		@include btn-large;
-		margin-top: 1em;
+		margin-top: 1em;*/
 	}
 	.wp-more-toggle {
 		color: $primary;
