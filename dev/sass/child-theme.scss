@@ -871,6 +871,17 @@ html.nav-open .mobile-sidebar,
 }
 /*   /Hero Section   */
 
+/*   Social Media Icon Component   */
+.component-social-media-icon {
+	color: $primary;
+	@include background-blur;
+	#{$active} {
+		color: $secondary;
+		background-color: rgba($primary, .8);
+	}
+	@include theme-card-style;
+}
+
 /*   Service Categories Section   */
 .xten-section-service-categories {
 	.anchor-btn-cta-wrapper {
