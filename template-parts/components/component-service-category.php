@@ -24,18 +24,14 @@ function component_service_category( $term = null ) {
 	$component_id   = xten_register_component_id( $handle );
 	$featured_image = get_field( 'featured_image', $term );
 	if ( $featured_image ) :
-		$image_size = xten_get_optimal_image_size(
-			$featured_image['id'],
-			array( 415, null),
-			array( 415, 279 )
-		);
-		$featured_image_src = wp_get_attachment_image_src( $featured_image['id'], $image_size );
-		if ( $featured_image_src[0] ) :
+		$image_size = 'large';
+		$featured_image_src = wp_get_attachment_image_url( $featured_image['id'], $image_size );
+		if ( $featured_image_src ) :
 			$styles .= xten_add_inline_style(
 				'[data-c-id="' . $component_id . '"] .flip-card-front,' .
 				'[data-c-id="' . $component_id . '"] .flip-card-back',
 				array(
-					'background-image' => 'url(' . $featured_image_src[0] . ')',
+					'background-image' => 'url(' . $featured_image_src . ')',
 				)
 			);
 		endif;
